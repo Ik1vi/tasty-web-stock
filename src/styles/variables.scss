@@ -1,0 +1,55 @@
+$WHITE: #ffffff;
+$BLACK: #000000;
+
+$white-like: #eaeaea;
+$dark-shades: #1e1c21;
+
+$primary-color:#d3b3a3;
+
+$primary-color-transparent:rgba(211, 179, 163, 0.15);
+$white-like-transparent: rgba(234, 234, 234, 0.8);
+$dark-shades-transparent: rgba(30, 28, 33, 0.8);
+
+$yellow: #ffcd1e;
+$orange: #fe9200;
+$red: #dc2a32;
+$violet: #642caa;
+$magenta: #b33f7e;
+$green: #2d8349;
+$cyan: #328b88;
+$blue: #025f8c;
+
+$white-bg: rgba(255, 255, 255, 0.08);
+$black-bg: rgba(0, 0, 0, 0.08);
+$yellow-bg: rgba(255, 205, 30, 0.08);
+$orange-bg: rgba(254, 146, 0, 0.08);
+$red-bg: rgba(220, 42, 50, 0.08);
+$violet-bg: rgba(100, 44, 170, 0.08);
+$magenta-bg: rgba(179, 63, 126, 0.08);
+$green-bg: rgba(45, 131, 73, 0.08);
+$cyan-bg: rgba(50, 139, 136, 0.08);
+$blue-bg: rgba(2, 95, 140, 0.08);
+
+$background-color: $white-like;
+$background-secondary-color: $dark-shades;
+
+$text-primary-color: $BLACK;
+$text-secondary-color: $WHITE;
+
+.dark-scheme {
+    $background-color: $dark-shades;
+    $background-secondary-color: $white-like;
+
+    $text-primary-color: $WHITE;
+    $text-secondary-color: $BLACK; 
+}
+
+
+
+// if (window.matchMedia("(prefers-color-scheme: light)").matches) {
+//     
+//   } else {
+//     
+//   }
+
+// light, dark, и no-preference.

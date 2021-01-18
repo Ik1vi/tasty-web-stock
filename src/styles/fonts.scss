@@ -1,0 +1,52 @@
+/* roboto-regular - latin */
+@font-face { /*позволяет указать шрифты для отображения текста на веб-страницах, которые могут быть загружены либо с удаленного сервера, либо с компьютера пользователя.*/
+  font-weight: 400; /*задает начертание шрифта*/
+  font-family: 'Roboto'; /* задает семейство шрифта */
+  font-style: normal; /* устанавливает, каким образом шрифт должен быть стилизирован */
+  /*font-display определяет, как отображается шрифт, основываясь на том, был ли он загружен и готов ли к использованию.*/
+  font-display: swap; /*правило моментального отображения текста при наличии запасного варианта шрифта */
+
+  src:
+    local('Roboto'), local('Roboto-Regular'),/*поиск указанного шрифта на компьютере пользователя. Иначе будет скачан и использован шрифт, указанный в функции url()*/
+    url('../fonts/roboto-v20-latin_cyrillic-regular.woff2') format('woff2'), /* Super Modern Browsers */
+    url('../fonts/roboto-v20-latin_cyrillic-regular.woff') format('woff'); /*поддержка во всех основных браузерах, кроме Opera Mini*/
+}
+
+/* roboto-500 - latin */
+@font-face {
+  font-weight: 500;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-display: swap;
+
+  src:
+    local('Roboto Medium'), local('Roboto-Medium'),
+    url('../fonts/roboto-v20-latin_cyrillic-500.woff2') format('woff2'),
+    url('../fonts/roboto-v20-latin_cyrillic-500.woff') format('woff');
+}
+
+/* roboto-700 - latin */
+@font-face {
+  font-weight: 700;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-display: swap;
+
+  src:
+    local('Roboto Bold'), local('Roboto-Bold'),
+    url('../fonts/roboto-v20-latin_cyrillic-700.woff2') format('woff2'),
+    url('../fonts/roboto-v20-latin_cyrillic-700.woff') format('woff');
+}
+
+/* roboto-900 - latin */
+@font-face {
+  font-weight: 900;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-display: swap;
+
+  src:
+    local('Roboto Black'), local('Roboto-Black'),
+    url('../fonts/roboto-v20-latin_cyrillic-900.woff2') format('woff2'),
+    url('../fonts/roboto-v20-latin_cyrillic-900.woff') format('woff');
+}

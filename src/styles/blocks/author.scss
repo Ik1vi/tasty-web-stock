@@ -1,0 +1,29 @@
+.author {
+    @include flex-container(flex-start, center);
+    opacity: 0.5;
+
+    transition: opacity 0.3s;
+
+    &__img-wrapper {
+        overflow: hidden;
+        
+        width: 35px;
+        height: 35px;
+
+        border-radius:50%;
+    }
+
+    &__img {
+        height: 100%;
+        filter: blur(1px);
+        transition: filter 0.3s;
+    }
+
+    &__name {
+        @include indent-reset();
+        margin-left: 10px;
+
+        font-size: 14px;
+        font-weight: 400;
+    }
+}

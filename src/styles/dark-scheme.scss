@@ -1,0 +1,33 @@
+.dark-scheme {
+    background-color: $dark-shades;
+    color: $WHITE;
+
+    .header { 
+        background-color: $dark-shades-transparent;
+        
+        &__bar-container {
+            background-color: $white-like;
+        }
+    }
+
+    .btn {
+        &--color-scheme {
+            background-image: url(../img/color-scheme-dark.svg);
+            transform: rotate(360deg);
+        }
+    }
+
+    .btn-close {
+        background-image: url(../img/icons/btn-close-dark.svg);
+    }
+
+    .logo {
+        &__link {
+            background-image: url(../img/logo-light.svg);
+
+            @media (max-width: 1024px) {
+                background-image: url(../img/logo-light-short.svg);
+            }
+        }
+    }
+}

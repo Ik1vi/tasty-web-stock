@@ -1,0 +1,24 @@
+.like-btn {
+    @include button-reset();
+    
+    width:35px;
+    height: 35px;
+
+    @include background-image(url(../img/like.svg), center);
+    background-size: 15px;
+    background-color:  rgba(234, 234, 234, 0.3);
+    border-radius: 8px;
+
+    &:hover {
+        animation: pulse 1.5s ease-in-out 1;
+    }
+
+    @keyframes pulse {
+        from   {
+            box-shadow: 0 0 0 0 rgba(234, 234, 234, 0.5);
+        }
+        to  {
+            box-shadow: 0 0 0 20px rgba(234, 234, 234, 0);
+        }
+    }
+}

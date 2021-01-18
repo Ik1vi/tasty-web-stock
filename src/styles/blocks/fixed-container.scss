@@ -1,0 +1,15 @@
+.fixed-container {
+  	max-width: 1170px; /* задает ширину */
+	margin: 0 auto; /* задает внешние отcтупы */
+
+  @media (max-width: 1170px) {
+		max-width: 1024px;
+		padding: 0 40px;
+	}
+
+  @media (max-width: 1024px) {
+		min-width: 320px;
+		max-width: 768px;
+		padding: 0 20px;
+  }
+}

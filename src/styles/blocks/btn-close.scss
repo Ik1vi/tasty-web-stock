@@ -1,0 +1,15 @@
+.btn-close {
+    @include button-reset();
+    position: fixed;
+    left: 40px;
+    top:40px;
+
+    height: 20px;
+    width: 20px;
+
+    opacity: 0;
+    transform: translateY(-40px);
+
+    @include background-image(url(../img/icons/btn-close.svg), center);
+    transition: transform 0.7s, opacity 0.3s;
+}

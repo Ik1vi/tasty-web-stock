@@ -1,0 +1,241 @@
+
+.white-selected {
+    .header__bg-color {
+        background-color: $white-bg;
+    }
+    .colors-menu {
+        &__item {
+            min-width: 6.8%;
+
+            &:last-child {
+                min-width: 20px;
+    
+                &:hover {
+                    min-width: 13%;
+                    transform: translateY(0) 
+                }
+            }
+            
+            &--white {
+                min-width: 17%;
+            }
+        }
+    }
+}
+
+.black-selected {
+    .header__bg-color {
+        background-color: $black-bg;
+    }
+    .colors-menu {
+        &__item {
+            min-width: 6.8%;
+
+            &:last-child {
+                min-width: 20px;
+    
+                &:hover {
+                    min-width: 13%;
+                    transform: translateY(0) 
+                }
+            }
+
+            
+            &--black {
+                min-width: 17%;
+            }
+        }
+    }
+}
+
+.yellow-selected {
+    .header__bg-color {
+        background-color: $yellow-bg;
+    }
+    .colors-menu {
+        &__item {
+            min-width: 6.8%;
+
+            &:last-child {
+                min-width: 20px;
+    
+                &:hover {
+                    min-width: 13%;
+                    transform: translateY(0) 
+                }
+            }
+            
+            &--yellow {
+                min-width: 17%;
+            }
+        }
+    }
+}
+
+.orange-selected {
+    .header__bg-color {
+        background-color: $orange-bg;
+    }
+    .colors-menu {
+        &__item {
+            min-width: 6.8%;
+
+            &:last-child {
+                min-width: 20px;
+    
+                &:hover {
+                    min-width: 13%;
+                    transform: translateY(0) 
+                }
+            }
+        
+            &--orange {
+                min-width: 17%;
+            }
+        }
+    }
+}
+
+.red-selected {
+    .header__bg-color {
+        background-color: $red-bg;
+    }
+    .colors-menu {
+            &__item {
+                min-width: 6.8%;
+
+            &:last-child {
+                min-width: 20px;
+    
+                &:hover {
+                    min-width: 13%;
+                    transform: translateY(0) 
+                }
+            }
+            
+            &--red {
+                min-width: 17%;
+            }
+        }
+    }
+}
+
+.violet-selected {
+    .header__bg-color {
+        background-color: $violet-bg;
+    }
+    .colors-menu {
+        &__item{
+            min-width: 6.8%;
+
+            &:last-child {
+                min-width: 20px;
+    
+                &:hover {
+                    min-width: 13%;
+                    transform: translateY(0) 
+                }
+            }
+            
+            &--violet {
+                min-width: 17%;
+            }
+        }
+    }
+}
+
+.magenta-selected {
+    .header__bg-color {
+        background-color: $magenta-bg;
+    }
+    .colors-menu {
+        &__item{
+            min-width: 6.8%;
+
+            &:last-child {
+                min-width: 20px;
+    
+                &:hover {
+                    min-width: 13%;
+                    transform: translateY(0) 
+                }
+            }
+            
+            &--magenta {
+                min-width: 17%;
+            }
+        }
+    }
+}
+
+.green-selected {
+    .header__bg-color {
+        background-color: $green-bg;
+    }
+    .colors-menu {
+        &__item{
+            min-width: 6.8%;
+
+            &:last-child {
+                min-width: 20px;
+    
+                &:hover {
+                    min-width: 13%;
+                    transform: translateY(0) 
+                }
+            }
+            
+            &--green {
+                min-width: 17%;
+            }
+        }
+    }
+}
+
+.cyan-selected {
+    .header__bg-color {
+        background-color: $cyan-bg;
+    }
+    .colors-menu {
+        &__item{
+            min-width: 6.8%;
+
+            &:last-child {
+                min-width: 20px;
+    
+                &:hover {
+                    min-width: 13%;
+                    transform: translateY(0) 
+                }
+            }
+            
+            &--cyan {
+                min-width: 17%;
+            }
+        }
+    }
+}
+
+.blue-selected {
+    .header__bg-color {
+        background-color: $blue-bg;
+    }
+    .colors-menu {
+        &__item{
+            min-width: 6.8%;
+
+            &:last-child {
+                min-width: 20px;
+    
+                &:hover {
+                    min-width: 13%;
+                    transform: translateY(0) 
+                }
+            }
+            
+            &--blue {
+                min-width: 17%;
+            }
+        }
+    }
+}

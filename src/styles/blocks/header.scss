@@ -1,0 +1,85 @@
+.header {
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+  z-index: 100;
+
+  width:100%;
+  padding-bottom: 0;
+
+  background-color: $white-like-transparent;
+  transition: background-color 0.8s, padding 0.8s, filter 0.8s;
+
+    &__bar-container {
+      z-index: 10;
+
+      width: 100%;
+
+      background-color: $background-secondary-color;
+
+      transition: background-color 0.8s;
+    }
+
+    &__bg-color {
+      padding: 10px 0;
+
+      background-color: transparent;
+      transition: background-color 0.5s;
+    }
+
+    &__logo {
+      height: 100%;
+    }
+
+    &__bar {
+      height: 65px;
+      @include flex-container(space-between, center);
+    }
+
+    &__colors-handle{
+      display:block;
+
+      height: 50px;
+      width: 50px;
+
+      @include button-reset();
+
+      @include background-image(url(../img/open-colors-btn.svg), center);
+      background-size: 115%;
+
+      transition-property: filter, background-image, transform, width, height, box-shadow;
+      transition-duration: 0.8s, 0.5s, 1s, 0.5s, 0.5s, 0.3s;
+
+      border-radius: 50%;
+
+      &:hover {
+        filter: hue-rotate(310deg) grayscale(0.3);
+      }
+
+      &:focus {
+        box-shadow: 0 0 0px 10px $primary-color-transparent;
+            
+      }
+    }
+
+    &__btn-list {
+      @include flex-container(space-between, center);
+
+      height: 100%;
+      width: 10%;
+
+      @include list-reset();
+    }
+
+    &__btn-item {
+      @include list-el-reset();
+      max-height: 45px;
+      max-width: 45px;
+      padding: 5px;
+      border-radius: 50%;
+    }
+
+    &__colors-menu {
+      margin-top: 0;
+    }
+}

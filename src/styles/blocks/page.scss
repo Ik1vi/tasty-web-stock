@@ -1,0 +1,7 @@
+.page {
+    transition: filter 0.8s;
+    
+    &__pic-grid {
+        @include list-reset();
+    }
+}

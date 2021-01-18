@@ -1,0 +1,45 @@
+@mixin list-reset() {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@mixin list-el-reset() {
+  padding: 0;
+  list-style: none;
+}
+
+@mixin indent-reset() {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin button-reset { /*сбрасываем стили кнопки*/
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  outline: none;
+  cursor: pointer; /*отображаем курсор*/
+}
+
+@mixin flex-container($justify-content, $align-items: stretch) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
+
+@mixin background-image($url, $background-position: 0% 0%) {
+  background-image: $url;
+  background-repeat: no-repeat;
+  background-position: $background-position;
+}
+
+@mixin icon-btn { 
+  padding: 12px;
+  border-radius: 50%;
+
+  transition: box-shadow 0.3s, background-color 0.3s, background-image 0.8s, transform 0.8s, opacity 0.6s;
+}

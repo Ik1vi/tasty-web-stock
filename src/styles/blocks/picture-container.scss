@@ -1,0 +1,92 @@
+.picture-container {
+    position: fixed;
+
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    
+    visibility: hidden;
+    z-index: 1000;
+    overflow: hidden;
+
+    width: 100%;
+    height: 100%;
+    padding-top: 40px;
+
+    opacity: 0;
+
+    background-color:$black-bg;
+    color: $WHITE;
+
+    transition: opacity 0.5s, visibility 0.5s;
+
+    cursor: zoom-out;
+
+    &__wrapper {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        height: fit-content;
+        min-height: 100%;
+        width: 75%;
+        padding: 35px 6%;
+
+        background-color: $dark-shades-transparent;
+        border-radius: 10px;
+
+        transform: translateY(30px);
+
+        transition: transform 0.4s;
+        cursor: auto;
+    }
+
+    &__img-wrapper {
+        @include indent-reset();
+
+        display: block;
+        position: relative;
+
+        width: 100%;
+        margin-top: 20px;
+
+        cursor: pointer;
+    }
+
+    &__img {
+        display: block;
+
+        width: 100%;
+
+        border-radius: 8px;
+        filter: none;
+        transform: translateY(40px);
+
+        transition: filter 0.2s, transform 0.5s;
+    }
+
+    .author {
+        opacity: 1;
+    
+        &__img-wrapper {
+            width: 45px;
+            height: 45px;
+        }
+    
+        &__img {
+            filter: none;
+        }
+    }
+
+    .like-btn {
+        width: 40px;
+        height: 40px;
+
+        background-size: 18px;
+    }
+
+    .publication-time {
+        margin-top: 10px;
+        margin-left: auto;
+    }
+}

@@ -1,0 +1,57 @@
+.liked-container-open {
+    transition: all 0.8s;
+
+    .liked-container {
+        visibility: visible;
+
+        opacity: 1;
+
+        &__wrapper {
+            width: 37%;
+            padding: 35px 6%;
+        }
+
+        &__title {
+            transform: translate(0);
+            font-size: 14px;
+            opacity: 1;
+
+            &::before {
+                opacity: 1;
+
+                transform: scale(1);
+            }
+        }
+
+        &__img {
+            opacity: 1;
+
+            transform: scaleX(1);
+        }
+    }
+
+    .header {
+        filter: blur(2.5px);
+    }
+
+    .page {
+        filter: blur(2.5px);
+    }
+
+    .btn-close {
+        opacity: 1;
+        transform: translate(0);
+    }
+
+    .like-btn {
+        @include button-reset();
+        visibility: hidden;
+    }
+
+    .btn {
+        &--likes {
+            visibility: hidden;
+            transform: translate(-1200%) scale(0.3);
+        }
+    }
+}
