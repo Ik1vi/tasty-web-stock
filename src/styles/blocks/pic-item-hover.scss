@@ -1,20 +1,6 @@
 .pic-item-hover {
-    .pic-grid { 
-        &__img {
-            filter: brightness(0.5);
-        }
-    
-        &__like-btn {
-            visibility: visible;
-        }
-    
-        &__publication-time {
-            visibility: visible;
-        }
-    }
-
-    .liked-container {
-        &__img {
+    .publication { 
+        .content-img {
             filter: brightness(0.5);
         }
     

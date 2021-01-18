@@ -1,9 +1,7 @@
 .picture-container {
     position: fixed;
 
-    display: flex;
-    align-content: center;
-    justify-content: center;
+    @include flex-container(center, center);
     
     visibility: hidden;
     z-index: 1000;
@@ -23,9 +21,7 @@
     cursor: zoom-out;
 
     &__wrapper {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
+        @include flex-container(space-between);
 
         height: fit-content;
         min-height: 100%;
@@ -53,16 +49,9 @@
         cursor: pointer;
     }
 
-    &__img {
-        display: block;
-
-        width: 100%;
-
-        border-radius: 8px;
-        filter: none;
-        transform: translateY(40px);
-
-        transition: filter 0.2s, transform 0.5s;
+    &__publication-time {
+        margin-top: 10px;
+        margin-left: auto;
     }
 
     .author {
@@ -83,10 +72,5 @@
         height: 40px;
 
         background-size: 18px;
-    }
-
-    .publication-time {
-        margin-top: 10px;
-        margin-left: auto;
     }
 }

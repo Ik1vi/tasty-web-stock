@@ -1,0 +1,28 @@
+.publication {
+    width: 100%;
+
+    &__points {
+        position: relative;
+        width: 100%;
+    }
+
+    &__like-btn {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+
+        visibility: hidden;
+    }
+
+    &__publication-time {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+
+        visibility: hidden;
+    }
+
+    .author {
+        margin-top: 15px;
+    }
+}

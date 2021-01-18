@@ -22,8 +22,8 @@
                 transform: scale(1);
             }
         }
-
-        &__img {
+        
+        .content-img  {
             opacity: 1;
 
             transform: scaleX(1);
@@ -41,11 +41,6 @@
     .btn-close {
         opacity: 1;
         transform: translate(0);
-    }
-
-    .like-btn {
-        @include button-reset();
-        visibility: hidden;
     }
 
     .btn {
