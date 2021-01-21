@@ -11,17 +11,19 @@
 
 		Предварительная загрузка шрифта – ставит шрифты в приоритет загрузки браузером.
 		Помогает избежать неоправданную задержку рендеринга текста, FOIT и минимализировать FOUT -->
-		<link rel="preload" href="fonts/roboto-v20-latin_cyrillic-regular.woff2" as="font" crossorigin="anonymous"/> <!-- Все браузеры, которые поддерживают preload, также поддерживают WOFF2 -->
-		<link rel="preload" href="fonts/roboto-v20-latin_cyrillic-500.woff2" as="font" crossorigin="anonymous" />
+		<!-- <link rel="preload" href="fonts/roboto-v20-latin_cyrillic-regular.woff2" as="font" crossorigin="anonymous"/> <!-- Все браузеры, которые поддерживают preload, также поддерживают WOFF2 -->
+		<!-- <link rel="preload" href="fonts/roboto-v20-latin_cyrillic-500.woff2" as="font" crossorigin="anonymous" />
 		<link rel="preload" href="fonts/roboto-v20-latin_cyrillic-700.woff2" as="font" crossorigin="anonymous" />
-		<link rel="preload" href="fonts/roboto-v20-latin_cyrillic-900.woff2" as="font" crossorigin="anonymous" />
+		<link rel="preload" href="fonts/roboto-v20-latin_cyrillic-900.woff2" as="font" crossorigin="anonymous" /> -->
 
 		<link rel="icon" href="img/icons/favicon.png" type="image/x-icon">
   		<link rel="shortcut icon" href="img/icons/favicon.png" type="image/x-icon">
     </head>
 
     <body class="body js-body no-js">
-		<div class="picture-container js-picture-container">
+        <div class="root">
+        </div>
+		<!-- <div class="picture-container js-picture-container">
             <button class="picture-container__btn-close btn-close js-btn-close" type="button" aria-label="Закрыть форму"></button>
             
             <div class="picture-container__wrapper js-picture-container-wrapper">
@@ -78,83 +80,6 @@
             </div>
 		</div>
 
-		<header class="header js-header">
-            <h1 class="visually-hidden">Красивые картинки на тему программирования</h1>
-
-            <div class="header__bar-container">
-                <div class="header__bg-color">
-                    <div class= "fixed-container">
-                        <div class="header__bar">
-                            <div class="header__logo logo">
-                                <a class="logo__link" href="#"></a>
-                            </div>
-                            <button class="header__colors-handle js-colors-handle" type="button" ></button>
-
-                            <ul class="header__btn-list">
-                                <li class="header__btn-item">
-                                    <button class="header__btn btn btn--color-scheme js-btn-color-scheme" type="button"></button>
-                                </li>
-                                <li class="header__btn-item">
-                                    <button class="header__btn btn btn--likes js-btn-likes" type="button"></button>
-                                </li>
-                            </ul>  
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="header__colors-menu colors-menu">
-                <div class= "fixed-container">
-                    <ul class="colors-menu__list js-colors-list">
-                        <li class="colors-menu__item colors-menu__item--white js-item-white">
-                            <button class="colors-menu__btn colors-menu__btn--white">
-                            </button>
-                        </li>
-                        <li class="colors-menu__item colors-menu__item--black js-item-black">
-                            <button class="colors-menu__btn colors-menu__btn--black">
-                            </button>
-                        </li>
-                        <li class="colors-menu__item colors-menu__item--yellow js-item-yellow">
-                            <button class="colors-menu__btn colors-menu__btn--yellow">
-                            </button>
-                        </li>
-                        <li class="colors-menu__item  colors-menu__item--orange js-item-orange">
-                            <button class="colors-menu__btn colors-menu__btn--orange">
-                            </button>
-                        </li>
-                        <li class="colors-menu__item colors-menu__item--red js-item-red">
-                            <button class="colors-menu__btn colors-menu__btn--red">
-                            </button>
-                        </li>
-                        <li class="colors-menu__item colors-menu__item--violet js-item-violet">
-                            <button class="colors-menu__btn colors-menu__btn--violet">
-                            </button>
-                        </li>
-                        <li class="colors-menu__item colors-menu__item--magenta js-item-magenta">
-                            <button class="colors-menu__btn colors-menu__btn--magenta">
-                            </button>
-                        </li>
-                        <li class="colors-menu__item colors-menu__item--green js-item-green">
-                            <button class="colors-menu__btn colors-menu__btn--green">
-                            </button>
-                        </li>
-                        <li class="colors-menu__item colors-menu__item--cyan js-item-cyan">
-                            <button class="colors-menu__btn colors-menu__btn--cyan">
-                            </button>
-                        </li>
-                        <li class="colors-menu__item colors-menu__item--blue js-item-blue">
-                            <button class="colors-menu__btn colors-menu__btn--blue">
-                            </button>
-                        </li>
-                        <li class="colors-menu__item colors-menu__item--unsplash js-item-unsplash">
-                            <button class="colors-menu__btn colors-menu__btn--unsplash">
-                            </button>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-		</header>
-
 		<main class="page">
             <div class= "fixed-container">
                 <ul class="page__pic-grid pic-grid js-pic-grid">
@@ -181,7 +106,7 @@
                     </li>
                 </ul>
             </div>
-		</main>
+		</main> -->
     </body>
 
 </html>

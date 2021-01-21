@@ -29,9 +29,14 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-env'],
+                        presets: ['@babel/preset-env', "@babel/preset-react"],
                     }
                 },
+            },
+            {
+                test: /\.js$/,
+                enforce: 'pre',
+                use: ['source-map-loader'],
             },
             {
                 test: /\.(png|svg|jpg|jpeg|gif)$/,
