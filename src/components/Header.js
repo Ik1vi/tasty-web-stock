@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ColorsMenu } from '../components/ColorsMenu.js';
 
-export function Header() {
+export function Header(props) {
     const bodyEl = document.querySelector('.js-body');
 
     const toggleColorsMenu = ev => {
@@ -15,6 +15,7 @@ export function Header() {
         ev.preventDefault();
 
         bodyEl.classList.toggle('dark-scheme');
+        props.getPublications();
     };
 
     return (

@@ -6,22 +6,35 @@ import { PublicationTime } from '../components/PublicationTime.js';
 import { Author } from '../components/Author.js';
 
 export function PicGridItem(props) {
+    const [hovered, setHovered] = React.useState(false);
+
+    const toggleHover = () => {
+        setHovered(!hovered);
+    }
     return (
-        <li className="pic-grid__list-item">
+        <li className={"pic-grid__list-item " + (hovered ? "pic-item-hover" : "")}
+            onMouseEnter={toggleHover}
+            onMouseLeave={toggleHover}
+        >
             <article className="pic-grid__publication publication js-publication">
                 <div className="publication__points">
                     <ContentImg
+                        img={props.img}
                     />
-                    
+
                     <LikeBtn
                     />
 
                     <PublicationTime
+                        time={props.time}
                     />
-                </div>
+                 </div>
 
                 <div className="publication__author-wrapper">
-                    <Author />
+                    <Author
+                        authorName={props.authorName}
+                        authorImg={props.authorImg}
+                    />
                 </div>
             </article>
         </li>
