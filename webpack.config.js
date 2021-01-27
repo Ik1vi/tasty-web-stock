@@ -13,6 +13,12 @@ module.exports = {
         publicPath: ''
     },
 
+    resolve: {
+        fallback: {
+          util: require.resolve("util/")
+        }
+    },
+
     module: {
         rules: [
             {

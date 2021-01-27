@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Header } from '../components/Header.js';
 import { Page } from '../components/Page.js';
@@ -6,23 +6,26 @@ import { Page } from '../components/Page.js';
 import '../styles/style.scss';
 
 export function App() {
-    const [error, setError] = React.useState(null);
-    const [isLoaded, setIsLoaded] = React.useState(false);
-    const [publications, setPublications] = React.useState({
+    const [error, setError] = useState(null);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [publications, setPublications] = useState({
         'total': 0,
         'total_pages': 0,
         'results': [],
     });
 
-    // const getPublications = (color = null) => {
-    //     let queryParams = { query: 'computer' };
-    //     if (color) {
-    //         queryParams['color'] = color;
-    //     }
-    // }
+    const getPublications = (color = null) => {
+        let params = {
+            query: 'html5 js javascript php coder programming programmer computers coworking internet git github website',
+            per_page: 30
+        }
 
-    React.useEffect(() => {
-        fetch('https://api.unsplash.com/search/photos/?' + new URLSearchParams({query: 'computer'}), {
+        if (color) {
+            params.color = color;
+        }
+
+        console.log('fetch!')
+        fetch('https://api.unsplash.com/search/photos/?' + new URLSearchParams(params), {
             method: 'get',
             headers: new Headers({
                 'Authorization': 'Client-ID IclwidfyuuU2dcaoL9yAu4DQTfW1o8U1Uqx_kjkxrRE'
@@ -40,8 +43,12 @@ export function App() {
                     setError(error);
                 }
             )
+    }
+
+    useEffect(() => {
+        getPublications();
     }, [])
-    
+
     if (error) {
         return (<div>Ошибка: {error.message}</div>);
     } else if (!isLoaded) {
@@ -51,15 +58,13 @@ export function App() {
             <div className="body__app app">
                 {
                 /* <PictureContainer
-                // removeComment={removeComment}
-                // comments={comments}
-            />
-            <Liked-Container
-                // addComment={addComment} 
-            /> */}
-                <Header
-                    
                 />
+                <Liked-Container
+                /> */}
+                <Header
+                    getPublications={getPublications}
+                />
+
                 <Page
                     publications={publications}
                 />

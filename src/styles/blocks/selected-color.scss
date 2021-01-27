@@ -120,9 +120,9 @@
     }
 }
 
-.colors-menu-violet {
+.colors-menu-purple {
     .header__bg-color {
-        background-color: $violet-bg;
+        background-color: $purple-bg;
     }
     .colors-menu {
         &__item{
@@ -137,7 +137,7 @@
                 }
             }
             
-            &--violet {
+            &--purple {
                 min-width: 17%;
             }
         }
@@ -192,9 +192,9 @@
     }
 }
 
-.colors-menu-cyan {
+.colors-menu-teal {
     .header__bg-color {
-        background-color: $cyan-bg;
+        background-color: $teal-bg;
     }
     .colors-menu {
         &__item{
@@ -209,7 +209,7 @@
                 }
             }
             
-            &--cyan {
+            &--teal {
                 min-width: 17%;
             }
         }

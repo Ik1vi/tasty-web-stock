@@ -15,7 +15,6 @@ export function Header(props) {
         ev.preventDefault();
 
         bodyEl.classList.toggle('dark-scheme');
-        props.getPublications();
     };
 
     return (
@@ -54,6 +53,7 @@ export function Header(props) {
             </div>
 
             <ColorsMenu
+                getPublications={props.getPublications}
             />
         </header>
     );

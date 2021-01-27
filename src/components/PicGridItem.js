@@ -11,8 +11,12 @@ export function PicGridItem(props) {
     const toggleHover = () => {
         setHovered(!hovered);
     }
+
+    window.addEventListener("resize", props.resizeAllGridItems);
+    
     return (
         <li className={"pic-grid__list-item " + (hovered ? "pic-item-hover" : "")}
+           onLoad={props.resizeAllGridItems}
             onMouseEnter={toggleHover}
             onMouseLeave={toggleHover}
         >

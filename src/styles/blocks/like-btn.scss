@@ -3,14 +3,27 @@
     
     width:35px;
     height: 35px;
+    padding: 9px;
 
-    @include background-image(url(../img/like.svg), center);
-    background-size: 15px;
     background-color:  rgba(234, 234, 234, 0.3);
     border-radius: 8px;
 
+    &__wrapper {
+        width: 18px;
+    }
+
+    &__heart {
+        fill: $primary-color;
+
+        transition: fill 0.8s;
+    }
+
     &:hover {
         animation: pulse 1.5s ease-in-out 1;
+
+        .like-btn__heart {
+            fill: $white-like;
+        }
     }
 
     @keyframes pulse {
