@@ -5,11 +5,19 @@ import { ColorsMenu } from '../components/ColorsMenu.js';
 export function Header(props) {
     const bodyEl = document.querySelector('.js-body');
 
-    const toggleColorsMenu = ev => {
+    const [menuOpened, setMenuOpened] = React.useState(false);
+
+    const toggleMenu = (ev) => {
         ev.preventDefault();
 
-        bodyEl.classList.toggle('colors-menu-open');
-    };
+        setMenuOpened(!menuOpened);
+
+        if(menuOpened) {
+            bodyEl.classList.remove('colors-menu-open');
+        } else {
+            bodyEl.classList.add('colors-menu-open');
+        }
+    }
 
     const changeColorScheme = ev => {
         ev.preventDefault();
@@ -31,7 +39,7 @@ export function Header(props) {
                             <button
                                 className="header__colors-handle js-colors-handle"
                                 type="button"
-                                onClick={toggleColorsMenu}>
+                                onClick={toggleMenu}>
                             </button>
 
                             <ul className="header__btn-list">

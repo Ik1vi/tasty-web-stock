@@ -30,6 +30,9 @@ export function Page(props) {
                         <PicGridItem
                             key={i.id}
                             img={i.urls.small}
+                            placeholderSrc={i.urls.thumb}
+                            altDescription={i.alt_description}
+                            blurHash={i.blur_hash}
                             time={i.created_at}
                             authorName={i.user.name}
                             authorImg={i.user.profile_image.small}

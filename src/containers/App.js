@@ -15,8 +15,10 @@ export function App() {
     });
 
     const getPublications = (color = null) => {
+        
+
         let params = {
-            query: 'html5 js javascript php coder programming programmer computers coworking internet git github website',
+            query: 'laptop html5 js javascript php coder programming programmer computers coworking internet git github website',
             per_page: 30
         }
 
@@ -24,7 +26,6 @@ export function App() {
             params.color = color;
         }
 
-        console.log('fetch!')
         fetch('https://api.unsplash.com/search/photos/?' + new URLSearchParams(params), {
             method: 'get',
             headers: new Headers({
