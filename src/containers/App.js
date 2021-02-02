@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react'
 
 import { Header } from '../components/Header.js';
 import { Page } from '../components/Page.js';
@@ -15,8 +15,6 @@ export function App() {
     });
 
     const getPublications = (color = null) => {
-        
-
         let params = {
             query: 'laptop html5 js javascript php coder programming programmer computers coworking internet git github website',
             per_page: 30
@@ -56,7 +54,10 @@ export function App() {
         return (<div>Загрузка...</div>);
     } else {
         return (
-            <div className="body__app app">
+            <div
+                className="body__app app"
+                
+            >
                 {
                 /* <PictureContainer
                 />

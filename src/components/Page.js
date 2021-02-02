@@ -1,4 +1,5 @@
-import React from 'react';
+
+import React, { useState} from 'react';
 
 import { PicGridItem } from '../components/PicGridItem.js';
 
@@ -9,6 +10,8 @@ export function Page(props) {
     let resizeGridItem = function (item) {
         let rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
         let rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
+        let publicationHeight = item.querySelector('.js-publication').getBoundingClientRect().height;
+
         let rowSpan = Math.ceil((item.querySelector('.js-publication').getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
         item.style.gridRowEnd = "span " + rowSpan;
     }
@@ -29,9 +32,10 @@ export function Page(props) {
                     {props.publications.results.map((i) => 
                         <PicGridItem
                             key={i.id}
-                            img={i.urls.small}
-                            placeholderSrc={i.urls.thumb}
-                            altDescription={i.alt_description}
+                            src={i.urls.small}
+                            placeholder={i.urls.thumb}
+                            color={i.color}
+                            alt={i.alt_description}
                             blurHash={i.blur_hash}
                             time={i.created_at}
                             authorName={i.user.name}

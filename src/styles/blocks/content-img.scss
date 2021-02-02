@@ -4,9 +4,10 @@
     width: 100%;
 
     border-radius: 8px;
-    filter: none;
+    filter:  none;
 
     cursor: zoom-in;
 
-    transition: filter 0.4s, transform 0.6s;
+    transition: filter 0.4s, transform 0.6s, opacity 0.15s;
+    transition-timing-function: linear;
 }

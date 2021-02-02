@@ -1,49 +1,50 @@
-import React from 'react';
+import React, { useState } from 'react';
 
+import { ContentImg } from '../components/ContentImg.js';
 import { LikeBtn } from '../components/LikeBtn.js';
 import { PublicationTime } from '../components/PublicationTime.js';
 import { Author } from '../components/Author.js';
 
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
-
 export function PicGridItem(props) {
-    const [hovered, setHovered] = React.useState(false);
-    const [isLoaded, setIsLoaded] = React.useState(false);
+    const [hovered, setHovered] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [appHeight, setAppHeight] = useState('');
 
     const toggleHover = () => {
         setHovered(!hovered);
     }
 
-    window.addEventListener("resize", props.resizeAllGridItems);
+    window.addEventListener('resize', props.resizeAllGridItems);
+
+    window.addEventListener('DOMContentLoaded', console.log(appHeight));
 
     return (
         <li className={"pic-grid__list-item " + (hovered ? "pic-item-hover" : "")}
             onLoad={props.resizeAllGridItems}
             onMouseEnter={toggleHover}
             onMouseLeave={toggleHover}
-        >
-
-            <article className="pic-grid__publication publication js-publication">
-                <div className="publication__points">
-                    <LazyLoadImage
-                        className="content-img"
-                        afterLoad={() => setIsLoaded(true)}
-                        alt={props.altDescription}
-                        effect="blur"
-                        src={props.img}
+            >
+            
+            <article className="pic-grid__publication publication js-publication"
+            onLoad={()=>setAppHeight(document.querySelector('.app').getBoundingClientRect().height)}
+            >
+                <div className="publication__points"
+                    style={{
+                        backgroundColor: props.color,
+                    }}>
+                    <ContentImg
+                        src={props.src}
+                        placeholder={props.placeholder}
+                        alt={props.alt}
+                        setIsLoaded={setIsLoaded}
                     />
 
-                    {isLoaded ? (
-                        <div>
-                            <LikeBtn />
-
-                            <PublicationTime
-                                time={props.time}
-                            /> </div>)
-                        : (null)}
-
+                    <LikeBtn />
+                    <PublicationTime
+                        time={props.time}
+                    />
                 </div>
+
                 {isLoaded ? (
                     <div className="publication__author-wrapper">
                         <Author

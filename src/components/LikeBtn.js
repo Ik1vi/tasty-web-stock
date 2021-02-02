@@ -1,11 +1,13 @@
 import React from 'react';
 
 export function LikeBtn(props) {
+    const getHeight = (e) => e.target.getBoundingClientRect().height;
 
      return (
         <button
             className="publication__like-btn like-btn"
-            onClick={ () => document.querySelector('.js-dislike-animate').beginElement() }>
+            // onClick={ (e) => e.target('.js-dislike-animate').beginElement() }
+            >
             <svg
                 className="like-btn__wrapper"
                 viewBox="0 0 42.44 36.97">

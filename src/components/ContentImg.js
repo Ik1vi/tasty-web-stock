@@ -1,17 +1,31 @@
-import React from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import 'react-lazy-load-image-component/src/effects/blur.css';
-
+import React, { useState, useEffect } from 'react';
 
 export function ContentImg(props) {
+    const [loading, setLoading] = useState(true);
+    const [currentSrc, updateSrc] = useState(props.placeholder);
+
+    useEffect(() => {
+        // start loading original image
+        const imageToLoad = new Image();
+        imageToLoad.src = props.src;
+        imageToLoad.onload = () => {
+            // When image is loaded replace the src and set loading to false
+            setLoading(false);
+            updateSrc(props.src);
+        }
+    }, [props.src])
 
     return (
-        <LazyLoadImage
+        <img
+            onLoad={() => props.setIsLoaded(true)}
             className="content-img"
-            beforeLoad={() => console.log('loaded')}
-            alt={props.altDescription}
-            effect="blur"
-            src={props.img}
+            src={currentSrc}
+            style={{
+                opacity: loading ? 0.5 : 1,
+                filter: loading ? 'blur(10px)' : blur(0)
+            }}
+            alt={props.alt}
+            // onClick={(e)=>someFunk(currentSrc, e)}
         />
-    );
+    )
 };
