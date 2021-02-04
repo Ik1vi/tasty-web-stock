@@ -10,7 +10,6 @@ export function Page(props) {
     let resizeGridItem = function (item) {
         let rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
         let rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
-        let publicationHeight = item.querySelector('.js-publication').getBoundingClientRect().height;
 
         let rowSpan = Math.ceil((item.querySelector('.js-publication').getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
         item.style.gridRowEnd = "span " + rowSpan;

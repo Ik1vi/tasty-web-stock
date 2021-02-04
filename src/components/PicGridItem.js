@@ -16,8 +16,6 @@ export function PicGridItem(props) {
 
     window.addEventListener('resize', props.resizeAllGridItems);
 
-    window.addEventListener('DOMContentLoaded', console.log(appHeight));
-
     return (
         <li className={"pic-grid__list-item " + (hovered ? "pic-item-hover" : "")}
             onLoad={props.resizeAllGridItems}
@@ -26,7 +24,6 @@ export function PicGridItem(props) {
             >
             
             <article className="pic-grid__publication publication js-publication"
-            onLoad={()=>setAppHeight(document.querySelector('.app').getBoundingClientRect().height)}
             >
                 <div className="publication__points"
                     style={{

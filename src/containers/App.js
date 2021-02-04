@@ -17,7 +17,7 @@ export function App() {
     const getPublications = (color = null) => {
         let params = {
             query: 'laptop html5 js javascript php coder programming programmer computers coworking internet git github website',
-            per_page: 30
+            per_page: 10
         }
 
         if (color) {
