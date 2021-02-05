@@ -8,18 +8,21 @@ export function ColorsMenu(props) {
 
     const selectColor = (color, e) => {
         e.preventDefault();
+
+        props.setPublications([]);
+        props.setPage(1);
         
         const headerEl = document.querySelector('.js-header');
         let colorClass = "colors-menu-" + color;
 
         if (headerEl.classList.contains(colorClass)) {
             headerEl.classList.remove(colorClass);
-            props.getPublications();
+            props.setColor(null);
         } else {
             for (let i = 0; i < colors.length; i++) {
                 let headerColorClass = "colors-menu-" + colors[i];
                 headerEl.classList.remove(headerColorClass);
-                props.getPublications(color);
+                props.setColor(color);
             }
             headerEl.classList.add(colorClass);
         }

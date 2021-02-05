@@ -5,10 +5,9 @@ import { LikeBtn } from '../components/LikeBtn.js';
 import { PublicationTime } from '../components/PublicationTime.js';
 import { Author } from '../components/Author.js';
 
-export function PicGridItem(props) {
+export const PicGridItem = React.forwardRef((props, ref) => {
     const [hovered, setHovered] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
-    const [appHeight, setAppHeight] = useState('');
 
     const toggleHover = () => {
         setHovered(!hovered);
@@ -21,6 +20,7 @@ export function PicGridItem(props) {
             onLoad={props.resizeAllGridItems}
             onMouseEnter={toggleHover}
             onMouseLeave={toggleHover}
+            ref={ref}
             >
             
             <article className="pic-grid__publication publication js-publication"
@@ -53,4 +53,4 @@ export function PicGridItem(props) {
             </article>
         </li>
     );
-};
+});

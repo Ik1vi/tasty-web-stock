@@ -62,6 +62,10 @@ export function Header(props) {
 
             <ColorsMenu
                 getPublications={props.getPublications}
+                setColor={props.setColor}
+                setPublications={props.setPublications}
+                setPage={props.setPage}
+                page={props.page}
             />
         </header>
     );
