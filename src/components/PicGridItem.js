@@ -20,16 +20,19 @@ export const PicGridItem = React.forwardRef((props, ref) => {
             onLoad={props.resizeAllGridItems}
             onMouseEnter={toggleHover}
             onMouseLeave={toggleHover}
+            onClick={() => props.picContainerHandler(props.authorName, props.authorImg, props.time, props.fullImg, props.placeholder, props.alt, setIsLoaded)}
             ref={ref}
-            >
-            
-            <article className="pic-grid__publication publication js-publication"
+        >
+
+            <article
+                className="pic-grid__publication publication js-publication"
             >
                 <div className="publication__points"
                     style={{
                         backgroundColor: props.color,
                     }}>
                     <ContentImg
+                        className="content-img"
                         src={props.src}
                         placeholder={props.placeholder}
                         alt={props.alt}

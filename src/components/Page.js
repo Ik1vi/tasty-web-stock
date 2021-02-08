@@ -4,8 +4,8 @@ import React from 'react';
 import { PicGridItem } from '../components/PicGridItem.js';
 
 export function Page(props) {
-    const allItems = document.getElementsByClassName("pic-grid__list-item");
-    const grid = document.querySelector(".js-pic-grid");
+    const allItems = document.getElementsByClassName('pic-grid__list-item');
+    const grid = document.querySelector('.js-pic-grid');
 
     let resizeGridItem = function (item) {
         let rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
@@ -22,47 +22,62 @@ export function Page(props) {
     }
 
     return (
-            <main className="page">
-                <div className="fixed-container">
-                    <ul
-                        className="page__pic-grid pic-grid js-pic-grid"
-                        onLoad={resizeAllGridItems()}
-                    >
-                        {props.publications.map((p, i) => {
-                            if (props.publications.length === i + 1) {
-                                return <PicGridItem
-                                    key={p.id}
-                                    src={p.urls.small}
-                                    placeholder={p.urls.thumb}
-                                    color={p.color}
-                                    alt={p.alt_description}
-                                    blurHash={p.blur_hash}
-                                    time={p.created_at}
-                                    authorName={p.user.name}
-                                    authorImg={p.user.profile_image.small}
-                                    resizeAllGridItems={resizeAllGridItems}
-                                    ref={props.lastElementRef}
-                                />
-                            } else {
-                                return <PicGridItem
-                                    key={p.id}
-                                    src={p.urls.small}
-                                    placeholder={p.urls.thumb}
-                                    color={p.color}
-                                    alt={p.alt_description}
-                                    blurHash={p.blur_hash}
-                                    time={p.created_at}
-                                    authorName={p.user.name}
-                                    authorImg={p.user.profile_image.small}
-                                    resizeAllGridItems={resizeAllGridItems}
-                                    ref={null}
-                                />
-                            }
-                        }
+        <main className="page">
+            <div className="fixed-container">
+                <ul
+                    className="page__pic-grid pic-grid js-pic-grid"
+                    onLoad={resizeAllGridItems()}
+                >
+                    {props.publications.map((p, i) => {
+                        if (props.publications.length === i + 1) {
 
-                        )}
-                    </ul>
-                </div>
-            </main>
+                            return <PicGridItem
+                                key={p.id}
+
+                                src={p.urls.small}
+                                fullImg={p.urls.raw}
+                                placeholder={p.urls.thumb}
+                                color={p.color}
+                                alt={p.alt_description}
+
+                                time={p.created_at}
+
+                                authorName={p.user.name}
+                                authorImg={p.user.profile_image.small}
+
+                                setCurrentAuthorName={props.setCurrentAuthorName}
+                                setCurrentAuthorImg={props.setCurrentAuthorImg}
+
+                                resizeAllGridItems={resizeAllGridItems}
+                                picContainerHandler={props.picContainerHandler}
+                                ref={props.lastElementRef}
+                            />
+                        } else {
+                            return <PicGridItem
+                                key={p.id}
+
+                                src={p.urls.small}
+                                fullImg={p.urls.full}
+                                placeholder={p.urls.thumb}
+                                color={p.color}
+                                alt={p.alt_description}
+
+                                time={p.created_at}
+
+                                authorName={p.user.name}
+                                authorImg={p.user.profile_image.small}
+
+                                resizeAllGridItems={resizeAllGridItems}
+                                picContainerHandler={props.picContainerHandler}
+
+                                ref={null}
+                            />
+                        }
+                    }
+
+                    )}
+                </ul>
+            </div>
+        </main>
     );
 }

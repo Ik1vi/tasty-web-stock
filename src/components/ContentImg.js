@@ -18,14 +18,13 @@ export function ContentImg(props) {
     return (
         <img
             onLoad={() => props.setIsLoaded(true)}
-            className="content-img"
+            className={props.className}
             src={currentSrc}
             style={{
                 opacity: loading ? 0.5 : 1,
                 filter: loading ? 'blur(10px)' : blur(0)
             }}
             alt={props.alt}
-            // onClick={(e)=>someFunk(currentSrc, e)}
         />
     )
 };
