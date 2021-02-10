@@ -2,7 +2,7 @@ import React from 'react';
 
 export function Author(props) {
     return (
-        <a className="publication__author author">
+        <a className={props.className + " author"}>
             <div className="author__img-wrapper">
                 <img
                     className="author__img"
@@ -10,7 +10,9 @@ export function Author(props) {
                 </img>
             </div>
 
-            <h2 className="author__name">{props.authorName}</h2>
+            <h2 className="author__name">
+                {props.authorName}
+            </h2>
         </a>
     );
 };

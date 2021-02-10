@@ -29,52 +29,30 @@ export function Page(props) {
                     onLoad={resizeAllGridItems()}
                 >
                     {props.publications.map((p, i) => {
-                        if (props.publications.length === i + 1) {
+                        return <PicGridItem
+                            key={p.id}
 
-                            return <PicGridItem
-                                key={p.id}
+                            src={p.urls.small}
+                            fullImg={p.urls.raw}
+                            placeholder={p.urls.thumb}
+                            color={p.color}
+                            alt={p.alt_description}
 
-                                src={p.urls.small}
-                                fullImg={p.urls.raw}
-                                placeholder={p.urls.thumb}
-                                color={p.color}
-                                alt={p.alt_description}
+                            likes={p.likes}
 
-                                time={p.created_at}
+                            time={p.created_at}
 
-                                authorName={p.user.name}
-                                authorImg={p.user.profile_image.small}
+                            authorName={p.user.name}
+                            authorImg={p.user.profile_image.small}
 
-                                setCurrentAuthorName={props.setCurrentAuthorName}
-                                setCurrentAuthorImg={props.setCurrentAuthorImg}
+                            setCurrentAuthorName={props.setCurrentAuthorName}
+                            setCurrentAuthorImg={props.setCurrentAuthorImg}
 
-                                resizeAllGridItems={resizeAllGridItems}
-                                picContainerHandler={props.picContainerHandler}
-                                ref={props.lastElementRef}
-                            />
-                        } else {
-                            return <PicGridItem
-                                key={p.id}
-
-                                src={p.urls.small}
-                                fullImg={p.urls.full}
-                                placeholder={p.urls.thumb}
-                                color={p.color}
-                                alt={p.alt_description}
-
-                                time={p.created_at}
-
-                                authorName={p.user.name}
-                                authorImg={p.user.profile_image.small}
-
-                                resizeAllGridItems={resizeAllGridItems}
-                                picContainerHandler={props.picContainerHandler}
-
-                                ref={null}
-                            />
-                        }
+                            resizeAllGridItems={resizeAllGridItems}
+                            picContainerHandler={props.picContainerHandler}
+                            ref={(props.publications.length === i + 1) ? props.lastElementRef : null}
+                        />
                     }
-
                     )}
                 </ul>
             </div>

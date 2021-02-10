@@ -21,13 +21,12 @@ export function App() {
     const [currentFullImg, setCurrentFullImg] = useState('');
     const [currentImgPlaceholder, setCurrentImgPlaceholder] = useState('');
     const [currentImgAlt, setCurrentImgAlt] = useState('');
-    const [currentiImgIsLoaded, setCurrentImgIsLoaded] = useState(false);
 
     const observer = useRef()
     const rootEl = document.querySelector('.root');
     const bodyEl = document.querySelector('.js-body');
 
-    const picContainerHandler = (authorName, authorImg, time, fullImg, imgPlaceholder, imgAlt, currentiImgIsLoaded) => {
+    const picContainerHandler = (authorName, authorImg, time, fullImg, imgPlaceholder, imgAlt) => {
 
         if (!picContainerIsOpen) {
             setCurrentAuthorName(authorName);
@@ -36,7 +35,6 @@ export function App() {
             setCurrentFullImg(fullImg)
             setCurrentImgPlaceholder(imgPlaceholder);
             setCurrentImgAlt(imgAlt);
-            setCurrentImgIsLoaded(currentiImgIsLoaded);
 
             bodyEl.classList.add('picture-container-open', 'js-fixed');
             setPicContainerIsOpen(false);
@@ -65,7 +63,7 @@ export function App() {
 
         observer.current = new IntersectionObserver(entries => {
             if (entries[0].isIntersecting && page <= totalPages) {
-                console.log(page + " " + color)
+                
                 setPage(page => page + 1)
             }
         })
@@ -124,7 +122,6 @@ export function App() {
                     currentFullImg={currentFullImg}
                     currentImgPlaceholder={currentImgPlaceholder}
                     currentImgAlt={currentImgAlt}
-                    setCurrentImgIsLoaded={setCurrentImgIsLoaded}
                     picContainerHandler={picContainerHandler}
                 />
 

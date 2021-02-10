@@ -20,7 +20,7 @@ export const PicGridItem = React.forwardRef((props, ref) => {
             onLoad={props.resizeAllGridItems}
             onMouseEnter={toggleHover}
             onMouseLeave={toggleHover}
-            onClick={() => props.picContainerHandler(props.authorName, props.authorImg, props.time, props.fullImg, props.placeholder, props.alt, setIsLoaded)}
+            onClick={() => props.picContainerHandler(props.authorName, props.authorImg, props.time, props.fullImg, props.placeholder, props.alt)}
             ref={ref}
         >
 
@@ -32,15 +32,20 @@ export const PicGridItem = React.forwardRef((props, ref) => {
                         backgroundColor: props.color,
                     }}>
                     <ContentImg
-                        className="content-img"
+                        className="publication__content-img js-picture-container-img"
                         src={props.src}
                         placeholder={props.placeholder}
                         alt={props.alt}
                         setIsLoaded={setIsLoaded}
                     />
 
-                    <LikeBtn />
+                    <LikeBtn
+                        className="publication__like"
+                        likes={props.likes}
+                    />
+
                     <PublicationTime
+                        className="publication__publication-time"
                         time={props.time}
                     />
                 </div>
@@ -48,6 +53,7 @@ export const PicGridItem = React.forwardRef((props, ref) => {
                 {isLoaded ? (
                     <div className="publication__author-wrapper">
                         <Author
+                            className="publication__author"
                             authorName={props.authorName}
                             authorImg={props.authorImg}
                         />

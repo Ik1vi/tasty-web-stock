@@ -8,12 +8,14 @@
         border-radius: 8px;
     }
 
-    &__like-btn {
+    .like {
+        visibility: hidden;
+    }
+
+    &__like {
         position: absolute;
         top: 15px;
-        right: 15px;
-
-        visibility: hidden;
+        right:15px;
     }
 
     &__publication-time {

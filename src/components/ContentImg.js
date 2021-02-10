@@ -18,7 +18,7 @@ export function ContentImg(props) {
     return (
         <img
             onLoad={() => props.setIsLoaded(true)}
-            className={props.className}
+            className={props.className + " content-img"}
             src={currentSrc}
             style={{
                 opacity: loading ? 0.5 : 1,
