@@ -18,13 +18,15 @@ export function LikedContainer(props) {
         fetch('https://api.unsplash.com/users/kuzyema/likes', {
             method: 'get',
             headers: new Headers({
+                'pragma':'no-cache',
+                'cache-control':'no-cache',
                 'Authorization': 'Client-ID IclwidfyuuU2dcaoL9yAu4DQTfW1o8U1Uqx_kjkxrRE'
             }),
         })
             .then(res => res.json())
             .then(
                 (res) => {
-                    setLikedPublications([...likedPublications, ...res]);
+                    setLikedPublications(res);
                     setLoading(false);
                 },
 
