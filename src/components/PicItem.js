@@ -5,7 +5,7 @@ import { LikeBtn } from '../components/LikeBtn.js';
 import { PublicationTime } from '../components/PublicationTime.js';
 import { Author } from '../components/Author.js';
 
-export const PicGridItem = React.forwardRef((props, ref) => {
+export const PicItem = React.forwardRef((props, ref) => {
     const [hovered, setHovered] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
 
@@ -16,17 +16,18 @@ export const PicGridItem = React.forwardRef((props, ref) => {
     window.addEventListener('resize', props.resizeAllGridItems);
 
     return (
-        <li className={"pic-grid__list-item " + (hovered ? "pic-item-hover" : "")}
+        <li className={props.listItemClassName + (hovered ? " pic-item-hover" : "")}
             onLoad={props.resizeAllGridItems}
             onMouseEnter={toggleHover}
             onMouseLeave={toggleHover}
-            onClick={() => props.picContainerHandler(props.authorName, props.authorImg, props.time, props.fullImg, props.placeholder, props.alt)}
+            onClick={() => { 
+                props.setPicContainerIsVisible(true)
+                props.picContainerHandler(props.authorName, props.authorImg, props.time, props.fullImg, props.src, props.placeholder, props.alt)
+            }}
             ref={ref}
         >
 
-            <article
-                className="pic-grid__publication publication js-publication"
-            >
+            <article className={props.publicationClassName + " publication js-publication"}>
                 <div className="publication__points"
                     style={{
                         backgroundColor: props.color,
@@ -37,6 +38,7 @@ export const PicGridItem = React.forwardRef((props, ref) => {
                         placeholder={props.placeholder}
                         alt={props.alt}
                         setIsLoaded={setIsLoaded}
+                        blurHash={props.blurHash}
                     />
 
                     <LikeBtn

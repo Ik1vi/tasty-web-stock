@@ -1,7 +1,6 @@
 
 import React from 'react';
-
-import { PicGridItem } from '../components/PicGridItem.js';
+import { PicItem } from '../components/PicItem.js';
 
 export function Page(props) {
     const allItems = document.getElementsByClassName('pic-grid__list-item');
@@ -26,14 +25,15 @@ export function Page(props) {
             <div className="fixed-container">
                 <ul
                     className="page__pic-grid pic-grid js-pic-grid"
-                    onLoad={resizeAllGridItems()}
                 >
                     {props.publications.map((p, i) => {
-                        return <PicGridItem
+                        return <PicItem
                             key={p.id}
 
-                            src={p.urls.small}
-                            fullImg={p.urls.raw}
+                            blurHash={p.blur_hash}
+
+                            src={p.urls.regular}
+                            fullImg={p.urls.full}
                             placeholder={p.urls.thumb}
                             color={p.color}
                             alt={p.alt_description}
@@ -45,11 +45,14 @@ export function Page(props) {
                             authorName={p.user.name}
                             authorImg={p.user.profile_image.small}
 
-                            setCurrentAuthorName={props.setCurrentAuthorName}
-                            setCurrentAuthorImg={props.setCurrentAuthorImg}
+                            listItemClassName="pic-grid__list-item"
+                            publicationClassName="pic-grid__publication"
 
                             resizeAllGridItems={resizeAllGridItems}
                             picContainerHandler={props.picContainerHandler}
+
+                            setPicContainerIsVisible={props.setPicContainerIsVisible}
+
                             ref={(props.publications.length === i + 1) ? props.lastElementRef : null}
                         />
                     }

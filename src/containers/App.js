@@ -3,6 +3,7 @@ import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { Header } from '../components/Header.js';
 import { Page } from '../components/Page.js';
 import { PictureContainer } from '../components/PictureContainer.js';
+import { LikedContainer } from '../components/LikedContainer.js';
 
 import '../styles/style.scss';
 
@@ -14,42 +15,46 @@ export function App() {
     const [page, setPage] = useState(1);
     const [color, setColor] = useState(null);
     const [picContainerIsOpen, setPicContainerIsOpen] = useState(false);
+    const [picContainerIsVisible, setPicContainerIsVisible] = useState(false);
 
     const [currentAuthorName, setCurrentAuthorName] = useState('');
     const [currentAuthorImg, setCurrentAuthorImg] = useState('');
     const [currentPublicationTime, setCurrentPublicationTime] = useState('');
     const [currentFullImg, setCurrentFullImg] = useState('');
+    const [currentRegularImg, setCurrentRegularImg] = useState('');
     const [currentImgPlaceholder, setCurrentImgPlaceholder] = useState('');
     const [currentImgAlt, setCurrentImgAlt] = useState('');
 
     const observer = useRef()
-    const rootEl = document.querySelector('.root');
     const bodyEl = document.querySelector('.js-body');
 
-    const picContainerHandler = (authorName, authorImg, time, fullImg, imgPlaceholder, imgAlt) => {
+    const picContainerHandler = (authorName, authorImg, time, fullImg, regularImg, imgPlaceholder, imgAlt) => {
 
         if (!picContainerIsOpen) {
             setCurrentAuthorName(authorName);
             setCurrentAuthorImg(authorImg);
             setCurrentPublicationTime(time);
-            setCurrentFullImg(fullImg)
+            setCurrentFullImg(fullImg);
+            setCurrentRegularImg(regularImg);
             setCurrentImgPlaceholder(imgPlaceholder);
             setCurrentImgAlt(imgAlt);
 
             bodyEl.classList.add('picture-container-open', 'js-fixed');
+            bodyEl.classList.remove('liked-container-open');
             setPicContainerIsOpen(false);
 
         } else {
             setCurrentFullImg('');
             bodyEl.classList.remove('picture-container-open', 'js-fixed');
             setPicContainerIsOpen(true);
+            setPicContainerIsVisible(false);
         }
     }
 
     document.addEventListener('mousedown', function (e) {
         if (!e.target.closest('.js-picture-container-wrapper') && !e.target.closest('.js-liked-wrapper')) {
-            setCurrentFullImg('');
             bodyEl.classList.remove('liked-container-open', 'picture-container-open', 'js-fixed');
+            setPicContainerIsVisible(false);
         }
     });
 
@@ -112,21 +117,25 @@ export function App() {
             <div className="body__app app">
 
                 {/* <button
-                    onClick={picContainerHandler}
+                    onClick={() => {bodyEl.classList.add('liked-container-open', 'js-fixed')}}
                 >нажми</button> */}
 
-                <PictureContainer
+                {picContainerIsVisible ? (<PictureContainer
                     currentAuthorName={currentAuthorName}
                     currentAuthorImg={currentAuthorImg}
                     currentPublicationTime={currentPublicationTime}
                     currentFullImg={currentFullImg}
+                    currentRegularImg={currentRegularImg}
                     currentImgPlaceholder={currentImgPlaceholder}
                     currentImgAlt={currentImgAlt}
                     picContainerHandler={picContainerHandler}
-                />
+                />) : null
+                }
 
-                {/* <Liked-Container
-                /> */}
+                <LikedContainer
+                    picContainerHandler={picContainerHandler}
+                    setPicContainerIsVisible={setPicContainerIsVisible}
+                />
 
                 <Header
                     getPublications={getPublications}
@@ -140,7 +149,7 @@ export function App() {
                     publications={publications}
                     lastElementRef={lastElementRef}
                     picContainerHandler={picContainerHandler}
-
+                    setPicContainerIsVisible={setPicContainerIsVisible}
                 />
             </div>
         );

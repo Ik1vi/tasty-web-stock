@@ -43,7 +43,7 @@ export function PictureContainer(props) {
                 <ContentImg
                     className="picture-container__content-img js-picture-container-img"
                     src={props.currentFullImg}
-                    placeholder={props.currentImgPlaceholder}
+                    placeholder={props.currentRegularImg}
                     alt={props.currentImgAlt}
                     setIsLoaded={setIsLoaded}
                 />

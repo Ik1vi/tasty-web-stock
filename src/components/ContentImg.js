@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react';
 
 export function ContentImg(props) {
     const [loading, setLoading] = useState(true);
+    // const [currentSrc, updateSrc] = useState(decodeBlurHash(props.blurHash));
     const [currentSrc, updateSrc] = useState(props.placeholder);
 
     useEffect(() => {
         // start loading original image
+        // console.log(decodeBlurHash(props.blurHash))
         const imageToLoad = new Image();
         imageToLoad.src = props.src;
         imageToLoad.onload = () => {

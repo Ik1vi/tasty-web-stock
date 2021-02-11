@@ -12,7 +12,7 @@ export function Header(props) {
 
         setMenuOpened(!menuOpened);
 
-        if(menuOpened) {
+        if (menuOpened) {
             bodyEl.classList.remove('colors-menu-open');
         } else {
             bodyEl.classList.add('colors-menu-open');
@@ -52,7 +52,14 @@ export function Header(props) {
                                 </li>
 
                                 <li className="header__btn-item">
-                                    <button className="header__btn btn btn--likes js-btn-likes" type="button"></button>
+                                    <button
+                                        className="header__btn btn btn--likes js-btn-likes"
+                                        type="button"
+                                        onClick={() => {
+                                                bodyEl.classList.add('liked-container-open', 'js-fixed');
+                                            }
+                                        }>
+                                    </button>
                                 </li>
                             </ul>
                         </div>
