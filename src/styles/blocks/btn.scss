@@ -24,7 +24,7 @@
         visibility: visible;
 
         @include background-image(url(../img/like.svg), center);
-        background-size: 21px;
+        background-size: 25px;
         opacity: 1;
 
         @include icon-btn();

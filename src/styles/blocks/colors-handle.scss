@@ -1,3 +1,39 @@
 .colors-handle {
-    height: 100%;
+    position: relative;
+    height: 50px;
+    width: 50px;
+
+    transition-property: filter, background-image, transform, width, height, box-shadow;
+    transition-duration: 0.8s, 0.5s, 1s, 0.5s, 0.5s, 0.3s;
+
+    border-radius: 50%;
+
+    &:hover {
+        filter: hue-rotate(310deg) grayscale(0.3);
+    }
+
+    &:focus {
+        box-shadow: 0 0 0px 10px $primary-color-transparent;
+            
+    }
+    &__btn {
+        @include button-reset();
+        width: 100%;
+        position: absolute;
+        left: 0;
+        height: 100%;
+        background-color: transparent;
+    }
+
+    &--menu-opened {
+        width: 35px;
+        height: 35px;
+        // transform: rotate(180deg);
+    }
+
+    &--menu-closed {
+        height: 50px;
+        width: 50px;
+        // transform: rotate(180deg);
+    }
 }

@@ -39,28 +39,6 @@
 
     &__colors-handle{
       display:block;
-
-      height: 50px;
-      width: 50px;
-
-      @include button-reset();
-
-      @include background-image(url(../img/open-colors-btn.svg), center);
-      background-size: 115%;
-
-      transition-property: filter, background-image, transform, width, height, box-shadow;
-      transition-duration: 0.8s, 0.5s, 1s, 0.5s, 0.5s, 0.3s;
-
-      border-radius: 50%;
-
-      &:hover {
-        filter: hue-rotate(310deg) grayscale(0.3);
-      }
-
-      &:focus {
-        box-shadow: 0 0 0px 10px $primary-color-transparent;
-            
-      }
     }
 
     &__btn-list {
