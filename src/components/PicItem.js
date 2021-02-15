@@ -9,20 +9,17 @@ export const PicItem = React.forwardRef((props, ref) => {
     const [hovered, setHovered] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
 
-    const toggleHover = () => {
-        setHovered(!hovered);
-    }
-
     window.addEventListener('resize', props.resizeAllGridItems);
 
     return (
         <li className={props.listItemClassName + (hovered ? " pic-item-hover" : "")}
             onLoad={props.resizeAllGridItems}
-            onMouseEnter={toggleHover}
-            onMouseLeave={toggleHover}
-            onClick={() => { 
-                props.setPicContainerIsVisible(true)
-                props.picContainerHandler(props.authorName, props.authorImg, props.time, props.fullImg, props.src, props.placeholder, props.alt)
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+            onClick={() => {
+                props.setPicContainerIsVisible(true);
+                props.picContainerHandler(props.authorName, props.authorImg, props.time, props.fullImg, props.src, props.placeholder, props.imgHref, props.alt);
+                setHovered(false);
             }}
             ref={ref}
         >

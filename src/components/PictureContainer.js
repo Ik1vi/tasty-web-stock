@@ -10,18 +10,7 @@ export function PictureContainer(props) {
     const [isLoaded, setIsLoaded] = useState(false);
 
     return (
-        <div
-            className="picture-container js-picture-container"
-            // style={isLoaded ? ({
-            //     visibility: "visible",
-            //     opacity: 1
-            // })
-            //     : ({
-            //         visibility: "none",
-            //         opacity: 0
-            //     })}
-                >
-
+        <div className="picture-container js-picture-container" >
             <CloseBtn
                 className="picture-container__btn-close"
                 picContainerHandler={props.picContainerHandler}
@@ -40,13 +29,21 @@ export function PictureContainer(props) {
                     className="picture-container__like-btn"
                 />
 
-                <ContentImg
-                    className="picture-container__content-img js-picture-container-img"
-                    src={props.currentFullImg}
-                    placeholder={props.currentRegularImg}
-                    alt={props.currentImgAlt}
-                    setIsLoaded={setIsLoaded}
-                />
+                {props.picContainerIsVisible ? (
+                    <a
+                        className="picture-container__content-img"
+                        href={props.currentImgHref}
+                        target="_blank">
+                        <ContentImg
+                            className="picture-container__content-img js-picture-container-img"
+                            src={props.currentFullImg}
+                            placeholder={props.currentRegularImg}
+                            alt={props.currentImgAlt}
+                            setIsLoaded={setIsLoaded}
+                        />
+                    </a>
+                ) : null
+                }
 
                 <PublicationTime
                     className="picture-container__publication-time"

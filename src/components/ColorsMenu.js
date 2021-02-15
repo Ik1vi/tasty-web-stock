@@ -4,14 +4,14 @@ import { ColorsMenuItem } from '../components/ColorsMenuItem.js';
 
 export function ColorsMenu(props) {
 
-    const colors = ["white", "black", "yellow", "orange", "red", "purple", "magenta", "green", "teal", "blue", "unsplash"];
+    const colors = ["white", "black", "yellow", "orange", "red", "purple", "magenta", "green", "teal", "blue"];
 
     const selectColor = (color, e) => {
         e.preventDefault();
 
         props.setPublications([]);
         props.setPage(1);
-        
+
         const headerEl = document.querySelector('.js-header');
         let colorClass = "colors-menu-" + color;
 
@@ -39,6 +39,15 @@ export function ColorsMenu(props) {
                             selectColor={selectColor}
                         />
                     )}
+
+                    <li className={"colors-menu__item colors-menu__item--unsplash"}>
+                        <a
+                            className={"colors-menu__btn colors-menu__btn--unsplash"}
+                            type="button"
+                            href="https://unsplash.com/"
+                            target="_blank">
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

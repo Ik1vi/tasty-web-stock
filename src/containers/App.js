@@ -23,12 +23,13 @@ export function App() {
     const [currentFullImg, setCurrentFullImg] = useState('');
     const [currentRegularImg, setCurrentRegularImg] = useState('');
     const [currentImgPlaceholder, setCurrentImgPlaceholder] = useState('');
+    const [currentImgHref, setCurrentImgHref] = useState('');
     const [currentImgAlt, setCurrentImgAlt] = useState('');
 
     const observer = useRef()
     const bodyEl = document.querySelector('.js-body');
 
-    const picContainerHandler = (authorName, authorImg, time, fullImg, regularImg, imgPlaceholder, imgAlt) => {
+    const picContainerHandler = (authorName, authorImg, time, fullImg, regularImg, imgPlaceholder, imgHref, imgAlt) => {
 
         if (!picContainerIsOpen) {
             setCurrentAuthorName(authorName);
@@ -37,16 +38,18 @@ export function App() {
             setCurrentFullImg(fullImg);
             setCurrentRegularImg(regularImg);
             setCurrentImgPlaceholder(imgPlaceholder);
+            setCurrentImgHref(imgHref);
             setCurrentImgAlt(imgAlt);
+
+            setPicContainerIsVisible(true);
+            setPicContainerIsOpen(true);
 
             bodyEl.classList.add('picture-container-open', 'js-fixed');
             bodyEl.classList.remove('liked-container-open');
-            setPicContainerIsOpen(false);
-
+            
         } else {
-            setCurrentFullImg('');
             bodyEl.classList.remove('picture-container-open', 'js-fixed');
-            setPicContainerIsOpen(true);
+            setPicContainerIsOpen(false);
             setPicContainerIsVisible(false);
         }
     }
@@ -55,6 +58,7 @@ export function App() {
         if (!e.target.closest('.js-picture-container-wrapper') && !e.target.closest('.js-liked-wrapper')) {
             bodyEl.classList.remove('liked-container-open', 'picture-container-open', 'js-fixed');
             setPicContainerIsVisible(false);
+            setPicContainerIsOpen(false);
         }
     });
 
@@ -120,7 +124,7 @@ export function App() {
                     onClick={() => {bodyEl.classList.add('liked-container-open', 'js-fixed')}}
                 >нажми</button> */}
 
-                {picContainerIsVisible ? (<PictureContainer
+                <PictureContainer
                     currentAuthorName={currentAuthorName}
                     currentAuthorImg={currentAuthorImg}
                     currentPublicationTime={currentPublicationTime}
@@ -128,9 +132,10 @@ export function App() {
                     currentRegularImg={currentRegularImg}
                     currentImgPlaceholder={currentImgPlaceholder}
                     currentImgAlt={currentImgAlt}
+                    currentImgHref={currentImgHref}
                     picContainerHandler={picContainerHandler}
-                />) : null
-                }
+                    picContainerIsVisible={picContainerIsVisible}
+                />
 
                 <LikedContainer
                     picContainerHandler={picContainerHandler}

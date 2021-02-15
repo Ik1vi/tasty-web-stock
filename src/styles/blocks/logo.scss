@@ -5,6 +5,8 @@
     width: 120px;
 
     &__link {
+        @include button-reset();
+
         display: block;
         height: 100%;
 
@@ -12,6 +14,14 @@
 
         @include background-image(url(../img/logo.svg), center);
         background-size: contain;
+        border-radius: 45px;
+
+        transition: background-color 0.5s, box-shadow 0.5s ;
+
+        &:focus {
+            background-color: rgba(211, 179, 163, 0.15);
+            box-shadow: 0 0 0px 5px rgb(211 179 163 / 15%);
+        }
 
         @media (max-width: 1024px) {
             background-image: url(../img/logo-short.svg);

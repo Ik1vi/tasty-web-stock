@@ -37,13 +37,16 @@ export function Page(props) {
                             placeholder={p.urls.thumb}
                             color={p.color}
                             alt={p.alt_description}
+                            imgHref={p.links.html}
 
                             likes={p.likes}
+                            likedByUser={p.liked_by_user}
 
                             time={p.created_at}
 
                             authorName={p.user.name}
                             authorImg={p.user.profile_image.small}
+                            authorHref={p.user.links.html}
 
                             listItemClassName="pic-grid__list-item"
                             publicationClassName="pic-grid__publication"

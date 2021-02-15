@@ -12,28 +12,23 @@
         filter: hue-rotate(310deg) grayscale(0.3);
     }
 
-    &:focus {
-        box-shadow: 0 0 0px 10px $primary-color-transparent;
-            
-    }
     &__btn {
-        @include button-reset();
-        width: 100%;
         position: absolute;
         left: 0;
+
+        @include button-reset();
+        
+        width: 100%;
         height: 100%;
+        
         background-color: transparent;
-    }
+        border-radius: 50%;
 
-    &--menu-opened {
-        width: 35px;
-        height: 35px;
-        // transform: rotate(180deg);
-    }
+        transition: box-shadow 0.5s;
 
-    &--menu-closed {
-        height: 50px;
-        width: 50px;
-        // transform: rotate(180deg);
+        &:focus {
+            box-shadow: 0 0 0px 10px $primary-color-transparent;
+                
+        }
     }
 }
