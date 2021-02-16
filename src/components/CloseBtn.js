@@ -6,7 +6,11 @@ export function CloseBtn(props) {
             className={props.className + " btn-close js-btn-close"}
             type="button"
             aria-label="Закрыть форму"
-            onClick={props.picContainerHandler}>
+            onClick={() => {
+                props.bodyEl.classList.remove('picture-container-open', 'liked-container-open', 'js-fixed');
+                props.setPicContainerIsOpen(false);
+                props.setPicContainerIsVisible(false)
+            }}>
         </button>
     )
 }

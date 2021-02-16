@@ -8,13 +8,18 @@ export function ContentImg(props) {
     useEffect(() => {
         // start loading original image
         // console.log(decodeBlurHash(props.blurHash))
+        let isSubscribed = true
         const imageToLoad = new Image();
+
         imageToLoad.src = props.src;
         imageToLoad.onload = () => {
-            // When image is loaded replace the src and set loading to false
-            setLoading(false);
-            updateSrc(props.src);
+            if (isSubscribed) {
+                // When image is loaded replace the src and set loading to false
+                setLoading(false);
+                updateSrc(props.src);
+            }
         }
+        return () => isSubscribed = false;
     }, [props.src])
 
     return (

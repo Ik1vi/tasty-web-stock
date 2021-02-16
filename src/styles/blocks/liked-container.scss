@@ -88,6 +88,8 @@
 
     &__item {
         @include list-el-reset();
+
+        margin-bottom: 20px;
     }
 
     .content-img {

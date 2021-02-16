@@ -29,6 +29,7 @@ export function Page(props) {
                     {props.publications.map((p, i) => {
                         return <PicItem
                             key={p.id}
+                            id={p.id}
 
                             blurHash={p.blur_hash}
 

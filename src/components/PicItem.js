@@ -18,7 +18,7 @@ export const PicItem = React.forwardRef((props, ref) => {
             onMouseLeave={() => setHovered(false)}
             onClick={() => {
                 props.setPicContainerIsVisible(true);
-                props.picContainerHandler(props.authorName, props.authorImg, props.time, props.fullImg, props.src, props.placeholder, props.imgHref, props.alt);
+                props.picContainerHandler(props.id, props.authorName, props.authorImg, props.authorHref, props.time, props.fullImg, props.src, props.placeholder, props.imgHref, props.alt, props.likes);
                 setHovered(false);
             }}
             ref={ref}
@@ -41,6 +41,7 @@ export const PicItem = React.forwardRef((props, ref) => {
                     <LikeBtn
                         className="publication__like"
                         likes={props.likes}
+                        id={props.id}
                     />
 
                     <PublicationTime
@@ -55,6 +56,7 @@ export const PicItem = React.forwardRef((props, ref) => {
                             className="publication__author"
                             authorName={props.authorName}
                             authorImg={props.authorImg}
+                            authorHref={props.authorHref}
                         />
                     </div>)
                     : (null)}

@@ -44,7 +44,9 @@ export function LikedContainer(props) {
             <div className="liked-container js-liked-container">
                 <CloseBtn
                     className="liked-container__btn-close"
-                    picContainerHandler={props.picContainerHandler}
+                    bodyEl={props.bodyEl}
+                    setPicContainerIsOpen={props.setPicContainerIsOpen}
+                    setPicContainerIsVisible={props.setPicContainerIsVisible}
                 />
 
                 <div className="liked-container__wrapper js-liked-wrapper">
@@ -68,6 +70,7 @@ export function LikedContainer(props) {
 
                                 authorName={p.user.name}
                                 authorImg={p.user.profile_image.small}
+                                authorHref={p.user.links.html}
 
                                 listItemClassName='liked-container__item'
                                 publicationClassName='liked-container__publication'

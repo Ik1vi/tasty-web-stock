@@ -10,6 +10,7 @@ import '../styles/style.scss';
 export function App() {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+    
     const [publications, setPublications] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
     const [page, setPage] = useState(1);
@@ -17,29 +18,35 @@ export function App() {
     const [picContainerIsOpen, setPicContainerIsOpen] = useState(false);
     const [picContainerIsVisible, setPicContainerIsVisible] = useState(false);
 
+    const [currentId, setCurrentId] = useState('');
     const [currentAuthorName, setCurrentAuthorName] = useState('');
     const [currentAuthorImg, setCurrentAuthorImg] = useState('');
+    const [currentAuthorHref, setCurrentAuthorHref] = useState('');
     const [currentPublicationTime, setCurrentPublicationTime] = useState('');
     const [currentFullImg, setCurrentFullImg] = useState('');
     const [currentRegularImg, setCurrentRegularImg] = useState('');
     const [currentImgPlaceholder, setCurrentImgPlaceholder] = useState('');
     const [currentImgHref, setCurrentImgHref] = useState('');
     const [currentImgAlt, setCurrentImgAlt] = useState('');
+    const [currentLikes, setCurrentLikes] = useState('');
 
     const observer = useRef()
     const bodyEl = document.querySelector('.js-body');
 
-    const picContainerHandler = (authorName, authorImg, time, fullImg, regularImg, imgPlaceholder, imgHref, imgAlt) => {
+    const picContainerHandler = (id, authorName, authorImg, authorHref, time, fullImg, regularImg, imgPlaceholder, imgHref, imgAlt, likes) => {
 
         if (!picContainerIsOpen) {
+            setCurrentId(id);
             setCurrentAuthorName(authorName);
             setCurrentAuthorImg(authorImg);
+            setCurrentAuthorHref(authorHref);
             setCurrentPublicationTime(time);
             setCurrentFullImg(fullImg);
             setCurrentRegularImg(regularImg);
             setCurrentImgPlaceholder(imgPlaceholder);
             setCurrentImgHref(imgHref);
             setCurrentImgAlt(imgAlt);
+            setCurrentLikes(likes);
 
             setPicContainerIsVisible(true);
             setPicContainerIsOpen(true);
@@ -125,21 +132,31 @@ export function App() {
                 >нажми</button> */}
 
                 <PictureContainer
+                    currentId={currentId}
                     currentAuthorName={currentAuthorName}
                     currentAuthorImg={currentAuthorImg}
+                    currentAuthorHref={currentAuthorHref}
                     currentPublicationTime={currentPublicationTime}
                     currentFullImg={currentFullImg}
                     currentRegularImg={currentRegularImg}
                     currentImgPlaceholder={currentImgPlaceholder}
                     currentImgAlt={currentImgAlt}
                     currentImgHref={currentImgHref}
-                    picContainerHandler={picContainerHandler}
+                    currentLikes={currentLikes}
+
                     picContainerIsVisible={picContainerIsVisible}
+                    bodyEl={bodyEl}
+
+                    picContainerHandler={picContainerHandler}
+                    setPicContainerIsOpen={setPicContainerIsOpen}
+                    setPicContainerIsVisible={setPicContainerIsVisible}
                 />
 
                 <LikedContainer
                     picContainerHandler={picContainerHandler}
                     setPicContainerIsVisible={setPicContainerIsVisible}
+                    bodyEl={bodyEl}
+                    setPicContainerIsOpen={setPicContainerIsOpen}
                 />
 
                 <Header

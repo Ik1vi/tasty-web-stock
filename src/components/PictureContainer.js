@@ -13,7 +13,9 @@ export function PictureContainer(props) {
         <div className="picture-container js-picture-container" >
             <CloseBtn
                 className="picture-container__btn-close"
-                picContainerHandler={props.picContainerHandler}
+                bodyEl={props.bodyEl}
+                setPicContainerIsOpen={props.setPicContainerIsOpen}
+                setPicContainerIsVisible={props.setPicContainerIsVisible}
             />
 
             <div className="picture-container__wrapper js-picture-container-wrapper">
@@ -22,11 +24,14 @@ export function PictureContainer(props) {
                         className="picture-container__author"
                         authorName={props.currentAuthorName}
                         authorImg={props.currentAuthorImg}
+                        authorHref={props.currentAuthorHref}
                     />
                 </div>
 
                 <LikeBtn
                     className="picture-container__like-btn"
+                    likes={props.currentLikes}
+                    id={props.currentId}
                 />
 
                 {props.picContainerIsVisible ? (

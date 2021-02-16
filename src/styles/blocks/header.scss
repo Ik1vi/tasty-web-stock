@@ -9,7 +9,7 @@
   padding-bottom: 0;
 
   background-color: $white-like-transparent;
-  transition: background-color 0.8s, padding 0.8s, filter 0.8s, height 0.8s;
+  transition: background-color 0.8s, padding 0.8s, filter 0.1s, height 0.8s;
 
     &__bar-container {
       z-index: 10;
