@@ -6,8 +6,9 @@
         display: flex;
         justify-content: space-between;
         align-items: stretch;
-        visibility: hidden;
+        flex-wrap: wrap;
 
+        visibility: hidden;
         opacity: 0;
 
         max-height: 20px;
@@ -15,8 +16,12 @@
         @include list-reset();
 
         transform: translateY(-10px);
-
         transition: transform 0.6s, opacity 0.6s, visibility 0.6s;
+
+        @media(max-width: 768px) {
+            max-height: unset;
+            min-height: 45px;
+        }
     }
 
     &__item {
@@ -31,6 +36,16 @@
 
         &:hover {
             transform: translateY(-2px) scaleY(1.2);
+        }
+
+        @media (max-width: 1024px){
+            min-width: 8%;
+        }
+
+        @media (max-width: 480px){
+            min-width: 15%;
+            height: 50px;
+            margin-bottom: 10px;
         }
 
         &:first-child {
@@ -92,6 +107,14 @@
             &:hover {
                 min-width: 13%;
                 transform: translateY(0) 
+            }
+
+            @media (max-width: 768px){
+                min-width: 8%;
+            }
+
+            @media(max-width: 480px) {
+                min-width: 32%;
             }
         }
     }
@@ -157,6 +180,12 @@
             }
             &:active {
                 background-position: center;
+            }
+
+            @media (max-width: 768px){
+                background-image: url(../img/unsplash_logo--short.svg);
+                background-position: center;
+                background-size: 25px;
             }
         }
     }

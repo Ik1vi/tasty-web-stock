@@ -5,6 +5,10 @@
     .header {
         padding-bottom: 15px;
         height: 130px;
+
+        @media(max-width: 480px) {
+            height: 195px;
+        }
     }
 
     .colors-menu {

@@ -4,6 +4,11 @@
     height: 100%;
     width: 120px;
 
+    @media (max-width: 768px) {
+        height: 95%;
+        width: 75px;
+    }
+
     &__link {
         @include button-reset();
 

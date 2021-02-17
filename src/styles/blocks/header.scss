@@ -31,6 +31,10 @@
     &__bar {
       height: 65px;
       @include flex-container(space-between, center);
+
+      @media (max-width: 768px) {
+        height: 45px;
+      }
     }
 
     &__colors-handle{
@@ -44,6 +48,10 @@
       width: 10%;
 
       @include list-reset();
+
+      @media (max-width: 768px) {
+        width: 75px;
+      }
     }
 
     &__btn-item {

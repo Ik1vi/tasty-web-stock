@@ -7,8 +7,20 @@
         opacity: 1;
 
         &__wrapper {
-            width: 37%;
+            width: 45%;
             padding: 35px 6%;
+
+            @media (max-width: 1170px) {
+                width: 37%;
+            }
+
+            @media (max-width: 1024px) {
+                width: 40%;
+            }
+
+            @media (max-width: 768px) {
+                width: 100%;
+            }
         }
 
         &__title {
@@ -21,6 +33,13 @@
 
                 transform: scale(1);
             }
+
+            @media (max-width: 768px) {
+                text-align: center;
+                font-size: 16px;
+                max-width: 300px;
+                margin: 0 auto 25px;
+            } 
         }
         
         .content-img  {

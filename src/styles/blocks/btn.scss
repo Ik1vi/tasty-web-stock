@@ -1,15 +1,19 @@
 .btn {
     @include button-reset();
+    @include icon-btn();
 
     display: block;
 
     height: 100%;
+
+    
+
+    @media (max-width: 768px) {
+        background-size: 20px;
+      }
     
     &--color-scheme {
         @include background-image(url(../img/color-scheme.svg), center);
-        background-size: 25px;
-
-        @include icon-btn();
 
         &:hover {
             box-shadow: 0 0 0px 10px $primary-color-transparent;
@@ -24,10 +28,8 @@
         visibility: visible;
 
         @include background-image(url(../img/like.svg), center);
-        background-size: 25px;
         opacity: 1;
-
-        @include icon-btn();
+        
         transform: translate(0) scale(1);
 
         transition: box-shadow 0.3s, background-color 0.3s, transform 0.7s, visibility 1s ;

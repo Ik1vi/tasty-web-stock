@@ -4,4 +4,16 @@
     &__pic-grid {
         @include list-reset();
     }
+
+    .fixed-container {
+        max-width: unset;
+  
+        @media (max-width: 1170px) {
+            max-width: 1024px;
+        }
+        @media (max-width: 1024px) {
+            min-width: 320px;
+            max-width: 768px;
+        }
+    }
 }

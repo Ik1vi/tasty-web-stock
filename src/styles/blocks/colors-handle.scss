@@ -8,6 +8,11 @@
 
     border-radius: 50%;
 
+    @media (max-width: 768px) {
+        height: 45px;
+        width: 45px;
+    }
+
     &:hover {
         filter: hue-rotate(310deg) grayscale(0.3);
     }
