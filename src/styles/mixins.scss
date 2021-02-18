@@ -43,3 +43,32 @@
 
   transition: box-shadow 0.3s, background-color 0.3s, background-image 0.8s, transform 0.8s, opacity 0.6s;
 }
+
+@mixin selected-color-item {
+  .colors-menu {
+    &__item {
+      min-width: 6.8%;
+
+      @media (max-width: 480px){
+        min-width: 15%;
+    }
+
+      &:last-child {
+        min-width: 20px;
+
+        @media (max-width: 768px){
+            min-width: 6.8%;
+        }
+
+        @media (max-width: 480px){
+          min-width: 15%;
+      }
+
+        &:hover {
+            min-width: 13%;
+            transform: translateY(0) 
+        }
+      }
+    }
+  }
+}

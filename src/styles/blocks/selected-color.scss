@@ -3,26 +3,14 @@
     .header__bg-color {
         background-color: $white-bg;
     }
-    .colors-menu {
-        &__item {
-            min-width: 6.8%;
 
-            &:last-child {
-                min-width: 20px;
+    @include selected-color-item;
 
-                @media (max-width: 768px){
-                    min-width: 6.8%;
-                }
-    
-                &:hover {
-                    min-width: 13%;
-                    transform: translateY(0) 
-                }
-            }
-            
-            &--white {
-                min-width: 17%;
-            }
+    .colors-menu__item--white {
+        min-width: 17%;
+
+        @media (max-width: 480px){
+            min-width: 32%;
         }
     }
 }
@@ -31,27 +19,13 @@
     .header__bg-color {
         background-color: $black-bg;
     }
-    .colors-menu {
-        &__item {
-            min-width: 6.8%;
 
-            &:last-child {
-                min-width: 20px;
+    @include selected-color-item;
 
-                @media (max-width: 768px){
-                    min-width: 6.8%;
-                }
-    
-                &:hover {
-                    min-width: 13%;
-                    transform: translateY(0) 
-                }
-            }
-
-            
-            &--black {
-                min-width: 17%;
-            }
+    .colors-menu__item--black {
+        min-width: 17%;
+        @media (max-width: 480px){
+            min-width: 32%;
         }
     }
 }
@@ -60,222 +34,169 @@
     .header__bg-color {
         background-color: $yellow-bg;
     }
-    .colors-menu {
-        &__item {
-            min-width: 6.8%;
 
-            &:last-child {
-                min-width: 20px;
-
-                @media (max-width: 768px){
-                    min-width: 6.8%;
-                }
+    @include selected-color-item;
     
-                &:hover {
-                    min-width: 13%;
-                    transform: translateY(0) 
-                }
-            }
-            
-            &--yellow {
-                min-width: 17%;
-            }
+    .colors-menu__item--yellow {
+        min-width: 17%;
+        @media (max-width: 480px){
+            min-width: 32%;
         }
     }
-}
+
+    }
 
 .colors-menu-orange {
     .header__bg-color {
         background-color: $orange-bg;
     }
-    .colors-menu {
-        &__item {
-            min-width: 6.8%;
 
-            &:last-child {
-                min-width: 20px;
+    @include selected-color-item;
 
-                @media (max-width: 768px){
-                    min-width: 6.8%;
-                }
-    
-                &:hover {
-                    min-width: 13%;
-                    transform: translateY(0) 
-                }
-            }
-        
-            &--orange {
-                min-width: 17%;
-            }
+    .colors-menu__item--orange {
+        min-width: 17%;
+        @media (max-width: 480px){
+            min-width: 32%;
         }
     }
-}
+
+    }
 
 .colors-menu-red {
     .header__bg-color {
         background-color: $red-bg;
     }
-    .colors-menu {
-            &__item {
-                min-width: 6.8%;
 
-            &:last-child {
-                min-width: 20px;
+    @include selected-color-item;
 
-                @media (max-width: 768px){
-                    min-width: 6.8%;
-                }
-    
-                &:hover {
-                    min-width: 13%;
-                    transform: translateY(0) 
-                }
-            }
-            
-            &--red {
-                min-width: 17%;
-            }
+    .colors-menu__item--red {
+        min-width: 17%;
+        @media (max-width: 480px){
+            min-width: 32%;
         }
     }
-}
+
+    }
 
 .colors-menu-purple {
     .header__bg-color {
         background-color: $purple-bg;
     }
-    .colors-menu {
-        &__item{
-            min-width: 6.8%;
 
-            &:last-child {
-                min-width: 20px;
+    @include selected-color-item;
 
-                @media (max-width: 768px){
-                    min-width: 6.8%;
-                }
-    
-                &:hover {
-                    min-width: 13%;
-                    transform: translateY(0) 
-                }
-            }
-            
-            &--purple {
-                min-width: 17%;
-            }
+    .colors-menu__item--purple {
+        min-width: 17%;
+        
+        @media (max-width: 480px){
+            min-width: 32%;
         }
     }
-}
+
+    @media (max-width: 480px){
+        .colors-menu__item--white {
+            min-width: 11%;
+        }
+
+        .colors-menu__item--black {
+            min-width: 11%;
+        }
+
+        .colors-menu__item--yellow {
+            min-width: 11%;
+        }
+
+        .colors-menu__item--orange {
+            min-width: 11%;
+        }
+
+        .colors-menu__item--red {
+            min-width: 11%;
+        }
+
+        .colors-menu__item--magenta {
+            min-width: 15%;
+        }
+
+        .colors-menu__item--green {
+            min-width: 15%;
+        }
+
+        .colors-menu__item--teal {
+            min-width: 15%;
+        }
+
+        .colors-menu__item--blue {
+            min-width: 15%;
+        }
+
+        .colors-menu:last-child {
+            min-width: 32%;
+        }
+    }
+
+    }
 
 .colors-menu-magenta {
     .header__bg-color {
         background-color: $magenta-bg;
     }
-    .colors-menu {
-        &__item{
-            min-width: 6.8%;
 
-            &:last-child {
-                min-width: 20px;
+    @include selected-color-item;
 
-                @media (max-width: 768px){
-                    min-width: 6.8%;
-                }
-    
-                &:hover {
-                    min-width: 13%;
-                    transform: translateY(0) 
-                }
-            }
-            
-            &--magenta {
-                min-width: 17%;
-            }
+    .colors-menu__item--magenta {
+        min-width: 17%;
+        @media (max-width: 480px){
+            min-width: 32%;
         }
     }
-}
+
+    }
 
 .colors-menu-green {
     .header__bg-color {
         background-color: $green-bg;
     }
-    .colors-menu {
-        &__item{
-            min-width: 6.8%;
 
-            &:last-child {
-                min-width: 20px;
+    @include selected-color-item;
 
-                @media (max-width: 768px){
-                    min-width: 6.8%;
-                }
-    
-                &:hover {
-                    min-width: 13%;
-                    transform: translateY(0) 
-                }
-            }
-            
-            &--green {
-                min-width: 17%;
-            }
+    .colors-menu__item--green {
+        min-width: 17%;
+        @media (max-width: 480px){
+            min-width: 32%;
         }
     }
-}
+
+    }
 
 .colors-menu-teal {
     .header__bg-color {
         background-color: $teal-bg;
     }
-    .colors-menu {
-        &__item{
-            min-width: 6.8%;
 
-            &:last-child {
-                min-width: 20px;
+    @include selected-color-item;
 
-                @media (max-width: 768px){
-                    min-width: 6.8%;
-                }
-    
-                &:hover {
-                    min-width: 13%;
-                    transform: translateY(0) 
-                }
-            }
-            
-            &--teal {
-                min-width: 17%;
-            }
+    .colors-menu__item--teal {
+        min-width: 17%;
+        @media (max-width: 480px){
+            min-width: 32%;
         }
     }
-}
+
+    }
 
 .colors-menu-blue {
     .header__bg-color {
         background-color: $blue-bg;
     }
-    .colors-menu {
-        &__item{
-            min-width: 6.8%;
 
-            &:last-child {
-                min-width: 20px;
+    @include selected-color-item;
 
-                @media (max-width: 768px){
-                    min-width: 6.8%;
-                }
-    
-                &:hover {
-                    min-width: 13%;
-                    transform: translateY(0) 
-                }
-            }
-            
-            &--blue {
-                min-width: 17%;
-            }
+    .colors-menu__item--blue {
+        min-width: 17%;
+        @media (max-width: 480px){
+            min-width: 32%;
         }
     }
-}
+
+    }

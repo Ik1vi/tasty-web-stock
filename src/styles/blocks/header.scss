@@ -11,6 +11,10 @@
   background-color: $white-like-transparent;
   transition: background-color 0.8s, padding 0.8s, filter 0.1s, height 0.8s;
 
+  @media(max-width: 768px) {
+    height: 73px;
+  }
+
     &__bar-container {
       z-index: 10;
 

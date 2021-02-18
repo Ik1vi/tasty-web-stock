@@ -4,6 +4,8 @@
     height: 100%;
     width: 120px;
 
+    transition: height 0.5s, width 0.5s ;
+
     @media (max-width: 768px) {
         height: 95%;
         width: 75px;
@@ -15,13 +17,11 @@
         display: block;
         height: 100%;
 
-        transition: background-image 0.5s;
-
         @include background-image(url(../img/logo.svg), center);
         background-size: contain;
         border-radius: 45px;
 
-        transition: background-color 0.5s, box-shadow 0.5s ;
+        transition: transform 1s, background-image 0.2s, background-color 0.5s, box-shadow 0.5s ;
 
         &:focus {
             background-color: rgba(211, 179, 163, 0.15);
@@ -30,6 +30,7 @@
 
         @media (max-width: 1024px) {
             background-image: url(../img/logo-short.svg);
+            transform: rotateY(360deg);
         }
     }
 }

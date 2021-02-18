@@ -36,8 +36,7 @@
 
             @media (max-width: 768px) {
                 text-align: center;
-                font-size: 16px;
-                max-width: 300px;
+                max-width: 200px;
                 margin: 0 auto 25px;
             } 
         }
@@ -64,7 +63,16 @@
     .btn {
         &--likes {
             visibility: hidden;
-            transform: translate(-1200%) scale(0.3);
+            transform: translate(-280px) scale(0.3);
+
+            @media (max-width: 1024px) {
+                transform: translate(-150px) scale(0.3);
+            }
+
+            @media (max-width: 768px) {
+                visibility: visible;
+                transform: translate(0) scale(1);
+            }
         }
     }
 }

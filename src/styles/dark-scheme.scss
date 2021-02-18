@@ -19,6 +19,10 @@
 
     .btn-close {
         background-image: url(../img/icons/btn-close-dark.svg);
+
+        @media (max-width: 768px) {
+            background-image: url(../img/icons/btn-close.svg);
+        }
     }
 
     .logo {

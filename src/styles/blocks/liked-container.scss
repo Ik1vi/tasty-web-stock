@@ -11,6 +11,7 @@
 
     width: 100vw;
     height: 100vh;
+    min-width: 320px;
 
     opacity: 0;
 
@@ -36,6 +37,10 @@
 
         transition: width 0.8s, padding 0.8s;
         cursor: auto;
+
+        @media(max-width: 768px) {
+            width: 100%;
+        }
     }
     
 
@@ -56,6 +61,17 @@
 
         transition: opacity 0.5s, transform 0.8s, font-size 1s;
         transition-delay: 0s;
+
+        @media (max-width: 768px) {
+            
+            max-width: 200px;
+            padding-left: 0;
+            margin: 0 auto 25px;
+            
+            font-size: 14px;
+
+            transform: translate(0, 0);
+        } 
 
         &::before {
             position: absolute;
