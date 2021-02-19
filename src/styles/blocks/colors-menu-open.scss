@@ -1,7 +1,4 @@
 .colors-menu-open {
-    position: relative;
-    transition: all 0.6s;
-
     .header {
         padding-bottom: 15px;
         height: 130px;
@@ -12,8 +9,6 @@
     }
 
     .colors-menu {
-        position: relative;
-        margin-top: 10px;
 
         &__list {
             visibility: visible;

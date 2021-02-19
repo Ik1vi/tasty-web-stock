@@ -16,10 +16,9 @@
 
     background-color:$black-bg;
     color: $WHITE;
+    cursor: zoom-out;
 
     transition: opacity 0.5s, visibility 0.5s;
-
-    cursor: zoom-out;
 
     @media (max-width: 768px) {
         padding-top: 0;
@@ -36,12 +35,11 @@
 
         background-color: $dark-shades-transparent;
         border-radius: 10px;
-
-        transform: translateY(30px);
-
-        transition: transform 0.4s;
         cursor: auto;
 
+        transform: translateY(30px);
+        transition: transform 0.4s;
+        
         @media (max-width: 768px) {
             width: 100%;
             padding: 45px 10px 20px;

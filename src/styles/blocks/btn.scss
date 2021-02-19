@@ -5,6 +5,7 @@
     display: block;
 
     height: 100%;
+
     background-size: 21px;
 
     @media (max-width: 768px) {
@@ -28,12 +29,12 @@
 
         @include background-image(url(../img/like.svg), center);
         opacity: 1;
+
+        background-size: 22px;
         
         transform: translate(0) scale(1);
-
         transition: box-shadow 0.3s, background-color 0.3s, transform 0.7s, visibility 1s ;
         transition-delay: 0s, 0s, 0.1s, 0.1s;
-        background-size: 22px;
 
         @media (max-width: 768px) {
             background-size: 20px;

@@ -32,7 +32,6 @@
     }
 
     .btn-close {
-        opacity: 1;
-        transform: translateY(0);
+        @include btn-close-position;
     }
 }

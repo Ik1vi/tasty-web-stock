@@ -21,7 +21,6 @@
       width: 100%;
 
       background-color: $background-secondary-color;
-
       transition: background-color 0.8s;
     }
 
@@ -60,13 +59,15 @@
 
     &__btn-item {
       @include list-el-reset();
+
       max-height: 45px;
       max-width: 45px;
       padding: 5px;
+
       border-radius: 50%;
     }
 
     &__colors-menu {
-      margin-top: 0;
+      margin-top: 10px;
     }
 }

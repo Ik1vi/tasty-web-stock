@@ -1,18 +1,13 @@
 .colors-menu {
-    transition: all 0.6s;
 
     &__list {
-        display: flex;
-        justify-content: space-between;
-        align-items: stretch;
-        flex-wrap: wrap;
+        @include flex-container(space-between, $align-items: stretch);
+        @include list-reset();
 
         visibility: hidden;
         opacity: 0;
 
         max-height: 20px;
-
-        @include list-reset();
 
         transform: translateY(-10px);
         transition: transform 0.6s, opacity 0.6s, visibility 0.6s;
@@ -26,8 +21,6 @@
     &__item {
         min-width: 8.5%;
 
-        @include list-el-reset();
-
         opacity: 0;
         transform: rotate(-20deg) translate(30px, -50px) scaleY(0);
 
@@ -35,10 +28,6 @@
 
         &:hover {
             transform: translateY(-2px) scaleY(1.2);
-
-            @media (max-width: 480px){
-                transform: translateY(0) scaleY(1);
-            }
         }
 
         @media (max-width: 1024px){
@@ -57,9 +46,11 @@
 
             transform: rotate(0deg) translate(0, 40px) scaleY(0);
             transition: transform 0.8s, opacity 0.6s, min-width 0.4s;
+
+            &:hover {
+                transform: translateY(0) scaleY(1);
+            }
         }
-
-
 
         &:first-child {
             z-index: 11;
@@ -218,18 +209,19 @@
 
             @include background-image(url(../img/unsplash_logo.svg), -6%);
             background-size: 70px;
+
             transition: background-position 0.2s;
 
             &:hover {
                 background-position: center;
             }
+
             &:active {
                 background-position: center;
             }
 
             @media (max-width: 768px){
-                background-image: url(../img/unsplash_logo--short.svg);
-                background-position: center;
+                @include background-image(url(../img/unsplash_logo--short.svg), center);
                 background-size: 25px;
             }
         }

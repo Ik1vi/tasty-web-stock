@@ -47,6 +47,22 @@
     }
 }
 
+@mixin btn-close-position {
+  position: fixed;
+  left: 40px;
+  top:40px;
+  opacity: 1;
+
+  transform: translate(0);
+
+  @media (max-width: 768px) {
+      position: absolute;
+      z-index: 1000;
+      left: 15px;
+      top: 15px;
+  } 
+}
+
 @mixin selected-color-first-raw {
   .colors-menu {
     &__item {

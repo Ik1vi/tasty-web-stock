@@ -1,5 +1,6 @@
 .colors-handle {
     position: relative;
+
     height: 50px;
     width: 50px;
 
@@ -37,8 +38,7 @@
         transition: box-shadow 0.5s;
 
         &:focus {
-            box-shadow: 0 0 0px 10px $primary-color-transparent;
-                
+            box-shadow: 0 0 0px 10px $primary-color-transparent;    
         }
     }
 }

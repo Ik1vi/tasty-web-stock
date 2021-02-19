@@ -15,6 +15,7 @@
         @include button-reset();
 
         display: block;
+        
         height: 100%;
 
         @include background-image(url(../img/logo.svg), center);

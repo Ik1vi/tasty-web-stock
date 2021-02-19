@@ -1,5 +1,13 @@
 .pic-item-hover {
     .publication { 
+        &__publication-time {
+            visibility: visible;
+
+            @media(max-width: 768px) {
+                visibility: hidden;
+            }
+        }
+
         .content-img {
             filter: brightness(0.5);
 
@@ -7,17 +15,9 @@
                 filter: none;
             }
         }
-    
+
         .like {
             visibility: visible;
-        }
-    
-        &__publication-time {
-            visibility: visible;
-
-            @media(max-width: 768px) {
-                visibility: hidden;
-            }
         }
     }
 

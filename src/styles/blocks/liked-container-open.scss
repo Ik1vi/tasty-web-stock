@@ -3,8 +3,9 @@
 
     .liked-container {
         visibility: visible;
-
         opacity: 1;
+
+        height: 100%;
 
         &__wrapper {
             width: 45%;
@@ -24,9 +25,11 @@
         }
 
         &__title {
-            transform: translate(0);
-            font-size: 14px;
             opacity: 1;
+            
+            font-size: 14px;
+            
+            transform: translate(0);
 
             &::before {
                 opacity: 1;
@@ -53,7 +56,6 @@
         
         .content-img  {
             opacity: 1;
-
         }
     }
 
@@ -66,8 +68,7 @@
     }
 
     .btn-close {
-        opacity: 1;
-        transform: translate(0);
+        @include btn-close-position;
     }
 
     .btn {
