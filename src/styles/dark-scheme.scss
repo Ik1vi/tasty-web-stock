@@ -6,7 +6,7 @@
         background-color: $dark-shades-transparent;
         
         &__bar-container {
-            background-color: $white-like;
+            background-color: #2d2c32;
         }
     }
 
@@ -14,24 +14,6 @@
         &--color-scheme {
             background-image: url(../img/color-scheme-dark.svg);
             transform: rotate(360deg);
-        }
-    }
-
-    .btn-close {
-        background-image: url(../img/icons/btn-close-dark.svg);
-
-        @media (max-width: 768px) {
-            background-image: url(../img/icons/btn-close.svg);
-        }
-    }
-
-    .logo {
-        &__link {
-            background-image: url(../img/logo-light.svg);
-
-            @media (max-width: 1024px) {
-                background-image: url(../img/logo-light-short.svg);
-            }
         }
     }
 }

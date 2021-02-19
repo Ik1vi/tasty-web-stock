@@ -1,14 +1,13 @@
-
 .colors-menu-white {
     .header__bg-color {
         background-color: $white-bg;
     }
 
-    @include selected-color-item;
+    @include selected-color-first-raw;
 
     .colors-menu__item--white {
         min-width: 17%;
-
+        
         @media (max-width: 480px){
             min-width: 32%;
         }
@@ -20,10 +19,11 @@
         background-color: $black-bg;
     }
 
-    @include selected-color-item;
+    @include selected-color-first-raw;
 
     .colors-menu__item--black {
         min-width: 17%;
+        
         @media (max-width: 480px){
             min-width: 32%;
         }
@@ -35,55 +35,55 @@
         background-color: $yellow-bg;
     }
 
-    @include selected-color-item;
-    
+    @include selected-color-first-raw;
+
     .colors-menu__item--yellow {
         min-width: 17%;
+        
         @media (max-width: 480px){
             min-width: 32%;
         }
     }
-
-    }
+}
 
 .colors-menu-orange {
     .header__bg-color {
         background-color: $orange-bg;
     }
 
-    @include selected-color-item;
+    @include selected-color-first-raw;
 
     .colors-menu__item--orange {
         min-width: 17%;
+        
         @media (max-width: 480px){
             min-width: 32%;
         }
     }
-
-    }
+}
 
 .colors-menu-red {
     .header__bg-color {
         background-color: $red-bg;
     }
 
-    @include selected-color-item;
+    @include selected-color-first-raw;
 
     .colors-menu__item--red {
         min-width: 17%;
+        
         @media (max-width: 480px){
             min-width: 32%;
         }
     }
-
-    }
+}
 
 .colors-menu-purple {
     .header__bg-color {
         background-color: $purple-bg;
     }
 
-    @include selected-color-item;
+    @include selected-color-first-raw;
 
     .colors-menu__item--purple {
         min-width: 17%;
@@ -92,57 +92,14 @@
             min-width: 32%;
         }
     }
-
-    @media (max-width: 480px){
-        .colors-menu__item--white {
-            min-width: 11%;
-        }
-
-        .colors-menu__item--black {
-            min-width: 11%;
-        }
-
-        .colors-menu__item--yellow {
-            min-width: 11%;
-        }
-
-        .colors-menu__item--orange {
-            min-width: 11%;
-        }
-
-        .colors-menu__item--red {
-            min-width: 11%;
-        }
-
-        .colors-menu__item--magenta {
-            min-width: 15%;
-        }
-
-        .colors-menu__item--green {
-            min-width: 15%;
-        }
-
-        .colors-menu__item--teal {
-            min-width: 15%;
-        }
-
-        .colors-menu__item--blue {
-            min-width: 15%;
-        }
-
-        .colors-menu:last-child {
-            min-width: 32%;
-        }
-    }
-
-    }
+}
 
 .colors-menu-magenta {
     .header__bg-color {
         background-color: $magenta-bg;
     }
 
-    @include selected-color-item;
+    @include selected-color-second-raw;
 
     .colors-menu__item--magenta {
         min-width: 17%;
@@ -150,47 +107,44 @@
             min-width: 32%;
         }
     }
-
-    }
+}
 
 .colors-menu-green {
     .header__bg-color {
         background-color: $green-bg;
     }
 
-    @include selected-color-item;
+    @include selected-color-second-raw;
 
     .colors-menu__item--green {
         min-width: 17%;
         @media (max-width: 480px){
             min-width: 32%;
         }
-    }
-
-    }
+    }   
+}
 
 .colors-menu-teal {
     .header__bg-color {
         background-color: $teal-bg;
     }
 
-    @include selected-color-item;
+    @include selected-color-second-raw;
 
     .colors-menu__item--teal {
         min-width: 17%;
         @media (max-width: 480px){
             min-width: 32%;
         }
-    }
-
-    }
+    } 
+}
 
 .colors-menu-blue {
     .header__bg-color {
         background-color: $blue-bg;
     }
 
-    @include selected-color-item;
+    @include selected-color-second-raw;
 
     .colors-menu__item--blue {
         min-width: 17%;
@@ -198,5 +152,4 @@
             min-width: 32%;
         }
     }
-
-    }
+}

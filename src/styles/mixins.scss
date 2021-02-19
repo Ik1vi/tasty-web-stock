@@ -38,35 +38,143 @@
 }
 
 @mixin icon-btn { 
-  padding: 12px;
+  padding: 10.5px;
   border-radius: 50%;
 
   transition: box-shadow 0.3s, background-color 0.3s, background-image 0.8s, transform 0.8s, opacity 0.6s;
+    @media (max-width: 768px) {
+      padding: 9.5px;
+    }
 }
 
-@mixin selected-color-item {
+@mixin selected-color-first-raw {
   .colors-menu {
     &__item {
       min-width: 6.8%;
 
+      &:last-child {
+        min-width: 20px;
+
+        &:hover {
+          min-width: 13%;
+          transform: translateY(0) 
+        }
+
+        @media (max-width: 768px){
+          min-width: 6.8%;
+        }
+      }
+
       @media (max-width: 480px){
-        min-width: 15%;
+        &--white {
+          min-width: 11%;
+        }
+    
+        &--black {
+          min-width: 11%;
+        }
+    
+        &--yellow {
+          min-width: 11%;
+        }
+    
+        &--orange {
+          min-width: 11%;
+        }
+    
+        &--red {
+          min-width: 11%;
+        }
+    
+        &--purple {
+          min-width: 11%;
+        }
+    
+        &--magenta {
+          min-width: 15%;
+        }
+    
+        &--green {
+          min-width: 15%;
+        }
+    
+        &--teal {
+          min-width: 15%;
+        }
+    
+        &--blue {
+          min-width: 15%;
+        }
+    
+        &:last-child {
+          min-width: 32%;
+        }
+      }
     }
+  }
+}
+
+@mixin selected-color-second-raw {
+  .colors-menu {
+    &__item {
+      min-width: 6.8%;
 
       &:last-child {
         min-width: 20px;
 
-        @media (max-width: 768px){
-            min-width: 6.8%;
+        &:hover {
+          min-width: 13%;
+          transform: translateY(0) 
         }
 
-        @media (max-width: 480px){
-          min-width: 15%;
+        @media (max-width: 768px){
+          min-width: 6.8%;
+        }
       }
 
-        &:hover {
-            min-width: 13%;
-            transform: translateY(0) 
+      @media (max-width: 480px){
+        &--white {
+          min-width: 15%;
+        }
+    
+        &--black {
+          min-width: 15%;
+        }
+    
+        &--yellow {
+          min-width: 15%;
+        }
+    
+        &--orange {
+          min-width: 15%;
+        }
+    
+        &--red {
+          min-width: 15%;
+        }
+    
+        &--purple {
+          min-width: 15%;
+        }
+    
+        &--magenta {
+          min-width: 15%;
+        }
+    
+        &--green {
+          min-width: 15%;
+        }
+    
+        &--teal {
+          min-width: 15%;
+        }
+    
+        &--blue {
+          min-width: 15%;
+        }
+    
+        &:last-child {
+          min-width: 15%;
         }
       }
     }

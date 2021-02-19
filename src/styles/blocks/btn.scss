@@ -5,12 +5,11 @@
     display: block;
 
     height: 100%;
-
-    
+    background-size: 21px;
 
     @media (max-width: 768px) {
-        background-size: 20px;
-      }
+        background-size: 18px;
+    }
     
     &--color-scheme {
         @include background-image(url(../img/color-scheme.svg), center);
@@ -34,6 +33,11 @@
 
         transition: box-shadow 0.3s, background-color 0.3s, transform 0.7s, visibility 1s ;
         transition-delay: 0s, 0s, 0.1s, 0.1s;
+        background-size: 22px;
+
+        @media (max-width: 768px) {
+            background-size: 20px;
+        }
 
         &:hover {
             box-shadow: 0 0 0px 10px $primary-color-transparent;
