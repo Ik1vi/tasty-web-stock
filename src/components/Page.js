@@ -23,9 +23,7 @@ export function Page(props) {
     return (
         <main className="page">
             <div className="fixed-container">
-                <ul
-                    className="page__pic-grid pic-grid js-pic-grid"
-                >
+                <ul className="page__pic-grid pic-grid js-pic-grid">
                     {props.publications.map((p, i) => {
                         return <PicItem
                             key={p.id}
@@ -62,6 +60,12 @@ export function Page(props) {
                     }
                     )}
                 </ul>
+
+                {props.loading ? (
+                    <div className="page__loading loading">
+                        ...loading
+                    </div>
+                ) : (null)}
             </div>
         </main>
     );

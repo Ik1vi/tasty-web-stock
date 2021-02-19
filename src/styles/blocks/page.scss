@@ -16,4 +16,15 @@
             max-width: 768px;
         }
     }
+
+    &__loading {
+        max-width: 76px;
+        padding: 10px;
+        margin: 0 auto;
+
+        opacity: 0.5;
+        
+        @include background-image(url(../img/bite.svg), center);
+        background-size: 35px;
+    }
 }

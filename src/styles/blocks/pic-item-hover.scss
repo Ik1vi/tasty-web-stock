@@ -2,6 +2,10 @@
     .publication { 
         .content-img {
             filter: brightness(0.5);
+
+            @media(max-width: 768px) {
+                filter: none;
+            }
         }
     
         .like {
@@ -10,6 +14,10 @@
     
         &__publication-time {
             visibility: visible;
+
+            @media(max-width: 768px) {
+                visibility: hidden;
+            }
         }
     }
 

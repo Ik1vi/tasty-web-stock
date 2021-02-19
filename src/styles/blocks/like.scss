@@ -8,6 +8,10 @@
 
         color: $white-like;
         font-size: 12px;
+
+        @media(max-width: 768px) {
+            visibility: hidden;  
+        }
     }
 
     &__btn {
@@ -25,6 +29,16 @@
         border-radius: 8px;
 
         transition: background-image 1s;
+
+        @media(max-width: 768px) {
+            width:40px;
+            height: 40px;
+            margin-left: 0;
+
+            background-size: 22px;
+
+            background-color: $dark-shades-transparent;
+        }
 
         &--dislike {
             background-image: url(../img/like--dislike.svg);

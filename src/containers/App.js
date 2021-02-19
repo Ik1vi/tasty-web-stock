@@ -126,11 +126,6 @@ export function App() {
     } else {
         return (
             <div className="body__app app">
-
-                {/* <button
-                    onClick={() => {bodyEl.classList.add('liked-container-open', 'js-fixed')}}
-                >нажми</button> */}
-
                 <PictureContainer
                     currentId={currentId}
                     currentAuthorName={currentAuthorName}
@@ -172,6 +167,7 @@ export function App() {
                     lastElementRef={lastElementRef}
                     picContainerHandler={picContainerHandler}
                     setPicContainerIsVisible={setPicContainerIsVisible}
+                    loading={loading}
                 />
             </div>
         );

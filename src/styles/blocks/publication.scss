@@ -10,6 +10,10 @@
 
     .like {
         visibility: hidden;
+
+        @media(max-width: 768px) {
+            visibility: visible;  
+        }
     }
 
     &__like {
@@ -24,6 +28,10 @@
         right: 15px;
 
         visibility: hidden;
+
+        @media(max-width: 768px) {
+            visibility: hidden;  
+        }
     }
 
     .author {
