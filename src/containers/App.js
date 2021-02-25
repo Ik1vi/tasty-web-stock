@@ -1,5 +1,7 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 
+import Unsplash, { toJson } from 'unsplash-js';
+
 import { Header } from '../components/Header.js';
 import { Page } from '../components/Page.js';
 import { PictureContainer } from '../components/PictureContainer.js';
@@ -10,7 +12,7 @@ import '../styles/style.scss';
 export function App() {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-    
+
     const [publications, setPublications] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
     const [page, setPage] = useState(1);
@@ -33,6 +35,13 @@ export function App() {
     const observer = useRef()
     const bodyEl = document.querySelector('.js-body');
 
+    const unsplash = new Unsplash({
+        accessKey: 'IclwidfyuuU2dcaoL9yAu4DQTfW1o8U1Uqx_kjkxrRE',
+        secret: 'ZDBdnP7xrjJKAdtVNO88NfGPZi3l2KZPI581KmXhfqM',
+        callbackUrl: 'http://localhost:8080',
+    });
+    const [unsplashCode, setUnsplashCode] = useState('');
+
     const picContainerHandler = (id, authorName, authorImg, authorHref, time, fullImg, regularImg, imgPlaceholder, imgHref, imgAlt, likes) => {
 
         if (!picContainerIsOpen) {
@@ -53,7 +62,7 @@ export function App() {
 
             bodyEl.classList.add('picture-container-open', 'js-fixed');
             bodyEl.classList.remove('liked-container-open');
-            
+
         } else {
             bodyEl.classList.remove('picture-container-open', 'js-fixed');
             setPicContainerIsOpen(false);
@@ -70,6 +79,19 @@ export function App() {
     });
 
     useEffect(() => {
+        // const code = location.search.split('code=')[1]
+        // if (code) {
+        //     console.log(code)
+        //     setUnsplashCode(code);
+        // }
+
+        // if (unsplashCode) {
+        //     getPublications(page, color);
+        // } else {
+        //     // const authenticationUrl = unsplash.auth.getAuthenticationUrl();
+        //     // location.assign(authenticationUrl);
+        //     location.assign('http://localhost:8080?code=123')
+        // }
         getPublications(page, color);
     }, [page, color])
 
@@ -79,7 +101,7 @@ export function App() {
 
         observer.current = new IntersectionObserver(entries => {
             if (entries[0].isIntersecting && page <= totalPages) {
-                
+
                 setPage(page => page + 1)
             }
         })
@@ -91,7 +113,7 @@ export function App() {
         setLoading(true);
 
         let params = {
-            query: 'html5 js javascript php coder programming programmer computers coworking internet git github website',
+            query: 'programming electronic tech javascript laptop html',
             per_page: 10,
             page: page
         }
@@ -100,25 +122,55 @@ export function App() {
             params.color = color;
         }
 
-        fetch('https://api.unsplash.com/search/photos/?' + new URLSearchParams(params), {
-            method: 'get',
-            headers: new Headers({
-                'Authorization': 'Client-ID IclwidfyuuU2dcaoL9yAu4DQTfW1o8U1Uqx_kjkxrRE'
-            }),
-        })
-            .then(res => res.json())
-            .then(
-                (res) => {
-                    setPublications([...publications, ...res.results]);
-                    setTotalPages(res.total_pages)
-                    setLoading(false);
-                },
+        // fetch('https://api.unsplash.com/search/photos/?' + new URLSearchParams(params), {
+        //     method: 'get',
+        //     headers: new Headers({
+        //         'Authorization': 'Client-ID IclwidfyuuU2dcaoL9yAu4DQTfW1o8U1Uqx_kjkxrRE'
+        //     }),
+        // })
+        //     .then(res => res.json())
+        //     .then(
+        //         (res) => {
+        //             setPublications([...publications, ...res.results]);
+        //             setTotalPages(res.total_pages)
+        //             setLoading(false);
+        //         },
 
-                (error) => {
-                    setError(error);
+        //         (error) => {
+        //             setError(error);
+        //             setLoading(false);
+        //         }
+        //     )
+
+        unsplash.search.photos(params.query, params.per_page, params.page, color ? { color: color } : {})
+            .then(toJson)
+            .then(res => {
+                if (res.errors) {
+                    setError(res.errors[0]);
+                    setLoading(false);
+                } else {
+                    const feed = res;
+                    const { total, results } = feed;
+
+                    setPublications([...publications, ...results]);
+                    setTotalPages(total)
                     setLoading(false);
                 }
-            )
+            });
+        // .then(res => {
+        //     if (res.errors) {
+        //         setError(res.error[0]);
+        //         setLoading(false);
+        //     } else {
+        //         const feed = res.response;
+        //         const { total, results } = feed;
+
+        //         setPublications([...publications, ...results]);
+        //         setTotalPages(total)
+        //         setLoading(false);
+        //     }
+        // }
+        // )
     }
 
     if (error) {
@@ -152,6 +204,7 @@ export function App() {
                     setPicContainerIsVisible={setPicContainerIsVisible}
                     bodyEl={bodyEl}
                     setPicContainerIsOpen={setPicContainerIsOpen}
+                    unsplash={unsplash}
                 />
 
                 <Header

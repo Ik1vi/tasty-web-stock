@@ -207,7 +207,7 @@
         &--unsplash {
             z-index: 1;
 
-            @include background-image(url(../img/unsplash_logo.svg), -6%);
+            @include background-image(url(../img/unsplash_logo.svg), -7% 3.5px);
             background-size: 70px;
 
             transition: background-position 0.2s;

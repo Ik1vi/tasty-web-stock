@@ -4,6 +4,11 @@ export function LikeBtn(props) {
 
     const [likedByUser, updateLikedByUser] = useState('false');
 
+    // const unsplash = createApi({
+    //     accessKey: 'IclwidfyuuU2dcaoL9yAu4DQTfW1o8U1Uqx_kjkxrRE',
+    //     //...other fetch options
+    // });
+
     const updateLikeState = () => {
         if(likedByUser==false) {
             fetch('https://api.unsplash.com/photos/' + props.id + '/like', {

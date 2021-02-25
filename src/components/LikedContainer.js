@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+import { toJson } from 'unsplash-js';
+
 import { PicItem } from '../components/PicItem.js';
 import { CloseBtn } from '../components/CloseBtn.js'
 
@@ -15,30 +17,22 @@ export function LikedContainer(props) {
     const getLikedPublications = () => {
         setLoading(true);
 
-        fetch('https://api.unsplash.com/users/kuzyema/likes', {
-            method: 'get',
-            headers: new Headers({
-                'pragma':'no-cache',
-                'cache-control':'no-cache',
-                'Authorization': 'Client-ID IclwidfyuuU2dcaoL9yAu4DQTfW1o8U1Uqx_kjkxrRE'
-            }),
-        })
-            .then(res => res.json())
-            .then(
-                (res) => {
+        props.unsplash.users.likes('kuzyema')
+            .then(toJson)
+            .then(res => {
+                if (res.errors) {
+                    setError(res.errors[0]);
+                    setLoading(false);
+                } else {
                     setLikedPublications(res);
                     setLoading(false);
-                },
-
-                (error) => {
-                    setError(error);
-                    setLoading(false);
                 }
-            )
+            })
     }
 
     if (error) {
-        return (<div>Ошибка: {error.message}</div>);
+        return (<div>Ошибка: {error}</div>);
+
     } else {
         return (
             <div className="liked-container js-liked-container">
@@ -58,7 +52,7 @@ export function LikedContainer(props) {
                             return <PicItem
                                 key={p.id}
 
-                                src={p.urls.small}
+                                src={p.urls.regular}
                                 fullImg={p.urls.full}
                                 placeholder={p.urls.thumb}
                                 color={p.color}
@@ -83,6 +77,12 @@ export function LikedContainer(props) {
                         }
                         )}
                     </ul>
+
+                    {props.loading ? (
+                        <div className="page__loading loading">
+                            ...loading
+                        </div>
+                    ) : (null)}
                 </div>
             </div>
         );
