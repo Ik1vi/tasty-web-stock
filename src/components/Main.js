@@ -9,7 +9,7 @@ import { LikedContainer } from './LikedContainer.js';
 
 import '../styles/style.scss';
 
-export function Main() {
+export function Main(props) {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
 
@@ -35,11 +35,6 @@ export function Main() {
     const observer = useRef()
     const bodyEl = document.querySelector('.js-body');
 
-    const unsplash = new Unsplash({
-        accessKey: 'IclwidfyuuU2dcaoL9yAu4DQTfW1o8U1Uqx_kjkxrRE',
-        secret: 'ZDBdnP7xrjJKAdtVNO88NfGPZi3l2KZPI581KmXhfqM',
-        callbackUrl: 'http://localhost:8080',
-    });
     const [unsplashCode, setUnsplashCode] = useState('');
 
     const picContainerHandler = (id, authorName, authorImg, authorHref, time, fullImg, regularImg, imgPlaceholder, imgHref, imgAlt, likes) => {
@@ -79,19 +74,20 @@ export function Main() {
     });
 
     useEffect(() => {
-        // const code = location.search.split('code=')[1]
-        // if (code) {
-        //     console.log(code)
-        //     setUnsplashCode(code);
-        // }
+        const code = location.search.split('code=')[1]
+        if (code) {
+            console.log(code)
+            setUnsplashCode(code);
+        }
 
-        // if (unsplashCode) {
-        //     getPublications(page, color);
-        // } else {
-        //     // const authenticationUrl = unsplash.auth.getAuthenticationUrl();
-        //     // location.assign(authenticationUrl);
-        //     location.assign('http://localhost:8080?code=123')
-        // }
+        if (unsplashCode) {
+            getPublications(page, color);
+        } else {
+            const authenticationUrl = props.unsplash.auth.getAuthenticationUrl([
+                "public"
+               ]);
+            location.assign(authenticationUrl);
+        }
         getPublications(page, color);
     }, [page, color])
 
@@ -122,27 +118,7 @@ export function Main() {
             params.color = color;
         }
 
-        // fetch('https://api.unsplash.com/search/photos/?' + new URLSearchParams(params), {
-        //     method: 'get',
-        //     headers: new Headers({
-        //         'Authorization': 'Client-ID IclwidfyuuU2dcaoL9yAu4DQTfW1o8U1Uqx_kjkxrRE'
-        //     }),
-        // })
-        //     .then(res => res.json())
-        //     .then(
-        //         (res) => {
-        //             setPublications([...publications, ...res.results]);
-        //             setTotalPages(res.total_pages)
-        //             setLoading(false);
-        //         },
-
-        //         (error) => {
-        //             setError(error);
-        //             setLoading(false);
-        //         }
-        //     )
-
-        unsplash.search.photos(params.query, params.per_page, params.page, color ? { color: color } : {})
+        props.unsplash.search.photos(params.query, params.per_page, params.page, color ? { color: color } : {})
             .then(toJson)
             .then(res => {
                 if (res.errors) {
@@ -157,20 +133,6 @@ export function Main() {
                     setLoading(false);
                 }
             });
-        // .then(res => {
-        //     if (res.errors) {
-        //         setError(res.error[0]);
-        //         setLoading(false);
-        //     } else {
-        //         const feed = res.response;
-        //         const { total, results } = feed;
-
-        //         setPublications([...publications, ...results]);
-        //         setTotalPages(total)
-        //         setLoading(false);
-        //     }
-        // }
-        // )
     }
 
     if (error) {
@@ -204,7 +166,7 @@ export function Main() {
                     setPicContainerIsVisible={setPicContainerIsVisible}
                     bodyEl={bodyEl}
                     setPicContainerIsOpen={setPicContainerIsOpen}
-                    unsplash={unsplash}
+                    unsplash={props.unsplash}
                 />
 
                 <Header
