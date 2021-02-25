@@ -4,6 +4,10 @@ const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
+    devServer: {
+        historyApiFallback: true,
+    },
+    
     entry: {
         index: path.resolve(__dirname, "src", "index.js")
     },
