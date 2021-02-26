@@ -35,8 +35,6 @@ export function Main(props) {
     const observer = useRef()
     const bodyEl = document.querySelector('.js-body');
 
-    const [unsplashCode, setUnsplashCode] = useState('');
-
     const picContainerHandler = (id, authorName, authorImg, authorHref, time, fullImg, regularImg, imgPlaceholder, imgHref, imgAlt, likes) => {
 
         if (!picContainerIsOpen) {
@@ -74,21 +72,18 @@ export function Main(props) {
     });
 
     useEffect(() => {
-        const code = location.search.split('code=')[1]
-        if (code) {
-            console.log(code)
-            setUnsplashCode(code);
-        }
-
-        if (unsplashCode) {
+        console.log(props.authorized)
+        if (props.authorized) {
             getPublications(page, color);
+            console.log('все ок');
         } else {
             const authenticationUrl = props.unsplash.auth.getAuthenticationUrl([
-                "public"
-               ]);
+                "public",
+                "write_likes"
+            ]);
             location.assign(authenticationUrl);
+            console.log('над авторизоваться');
         }
-        getPublications(page, color);
     }, [page, color])
 
     const lastElementRef = useCallback((element) => {

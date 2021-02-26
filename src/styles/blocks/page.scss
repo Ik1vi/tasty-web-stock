@@ -18,13 +18,15 @@
     }
 
     &__loading {
+        margin: 0 auto; 
+    }
+
+    .loading {
+        min-width: unset;
+        min-height: unset;
         max-width: 76px;
         padding: 10px;
-        margin: 0 auto;
 
-        opacity: 0.5;
-        
-        @include background-image(url(../img/bite.svg), center);
         background-size: 35px;
     }
 }

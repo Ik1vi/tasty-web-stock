@@ -24,6 +24,34 @@
         }
     }
 
+    &--login {
+        visibility: visible;
+
+        padding: 11px;
+
+        @include background-image(url(../img/login.svg), center);
+
+        background-size: 22px;
+
+        @media (max-width: 768px) {
+            background-size: 22px;
+        }
+
+        &:hover {
+            box-shadow: 0 0 0px 10px $primary-color-transparent;
+            background-color: $primary-color-transparent;
+        }
+
+        &:focus {
+            box-shadow: 0 0 0px 10px $primary-color-transparent;
+            background-color: $primary-color-transparent;
+        }
+    }
+
+    &--authorized {
+        background-image: url(../img/authorized.svg);
+    }
+
     &--likes {
         visibility: visible;
 

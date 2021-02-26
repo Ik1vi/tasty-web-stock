@@ -1,0 +1,9 @@
+.loading {
+    opacity: 0.5;
+
+    min-width: 100vw;
+    min-height: 100vh;
+
+    @include background-image(url(../img/bite.svg), center);
+    background-size: 122px;
+}

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Unsplash, { toJson } from 'unsplash-js';
@@ -13,11 +13,26 @@ const unsplash = new Unsplash({
     callbackUrl: 'http://localhost:8080/auth',
 });
 
+if (localStorage.getItem('bearerToken')) {
+    unsplash.auth.setBearerToken(localStorage.getItem('bearerToken'));
+}
+
 export function App() {
+    const [authorized, setAuthorized] = useState(JSON.parse(localStorage.getItem('authorized') || false));
+
     return (
         <Switch>
-            <Route exact path="/" component={() => <Main unsplash={unsplash} />} />
-            <Route exact path="/auth" component={() => <Auth unsplash={unsplash} />} />
+            <Route exact path="/" component={() =>
+                <Main
+                    unsplash={unsplash}
+                    authorized={authorized}
+                />
+            } />
+            <Route exact path="/auth" component={() =>
+                <Auth
+                    unsplash={unsplash}
+                />
+            } />
             <Route component={Error} />
         </Switch>
     )

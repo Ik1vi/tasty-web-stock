@@ -6,7 +6,7 @@ export function ColorsHandle(props) {
             <path className="st0" fill="#B33F7E" d="M107.78,107.56L61.29,61.07c-9.84,9.82-18.2,21.13-24.69,33.57c-9.87,18.9-15.46,40.4-15.46,63.2h65.75
                                         c0-4.06,0.34-8.04,1-11.91C90.4,131.05,97.54,117.76,107.78,107.56z">
                 <animate
-                         className="colors-handle-animate__open-colors open-colors"               
+                    className="colors-handle-animate__open-colors open-colors"               
                     dur="0.5s"
                     repeatCount="1"
                     attributeName="d"

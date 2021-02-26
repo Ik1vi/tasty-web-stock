@@ -8,6 +8,7 @@ export function Header(props) {
     const bodyEl = document.querySelector('.js-body');
     const closeBtnAnimation = document.querySelectorAll('.close-colors');
     const openBtnAnimation = document.querySelectorAll('.open-colors');
+    const loginBtnEl = document.querySelector('.btn--login');
 
     const [menuOpened, setMenuOpened] = useState(false);
 
@@ -36,6 +37,10 @@ export function Header(props) {
 
         bodyEl.classList.toggle('dark-scheme');
     };
+
+    const authorizeUser = () => {
+        loginBtnEl.classList.add('btn--authorized');
+    }
 
     return (
         <header className="header js-header">
@@ -67,6 +72,17 @@ export function Header(props) {
                                         className="header__btn btn btn--color-scheme js-btn-color-scheme"
                                         type="button"
                                         onClick={changeColorScheme}>
+                                    </button>
+                                </li>
+
+                                <li className="header__btn-item">
+                                    <button
+                                        className="header__btn btn btn--login"
+                                        type="button"
+                                        onClick={() => {
+                                                authorizeUser();
+                                            }
+                                        }>
                                     </button>
                                 </li>
 
