@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
 import { ColorsMenu } from '../components/ColorsMenu.js';
 import { ColorsHandle } from '../components/ColorsHandleSvg.js';
@@ -8,7 +8,6 @@ export function Header(props) {
     const bodyEl = document.querySelector('.js-body');
     const closeBtnAnimation = document.querySelectorAll('.close-colors');
     const openBtnAnimation = document.querySelectorAll('.open-colors');
-    const loginBtnEl = document.querySelector('.btn--login');
 
     const [menuOpened, setMenuOpened] = useState(false);
 
@@ -19,13 +18,13 @@ export function Header(props) {
 
         if (menuOpened) {
             bodyEl.classList.remove('colors-menu-open');
-            
+
             for (let i = 0; i < openBtnAnimation.length; i++) {
-            openBtnAnimation[i].beginElement();
+                openBtnAnimation[i].beginElement();
             }
         } else {
             bodyEl.classList.add('colors-menu-open');
-            
+
             for (let i = 0; i < closeBtnAnimation.length; i++) {
                 closeBtnAnimation[i].beginElement();
             }
@@ -37,10 +36,6 @@ export function Header(props) {
 
         bodyEl.classList.toggle('dark-scheme');
     };
-
-    const authorizeUser = () => {
-        loginBtnEl.classList.add('btn--authorized');
-    }
 
     return (
         <header className="header js-header">
@@ -65,8 +60,30 @@ export function Header(props) {
                                     onClick={toggleMenu}>
                                 </button>
                             </div>
-                                
-                            <ul className="header__btn-list">
+
+                            <ul className={"header__btn-list" + (props.authorized ? " header__btn-list--authorized" : '')}>
+                                <li className="header__btn-item">
+                                    <a
+                                        className="header__btn btn btn--personal"
+                                        type="button"
+                                        href={"https://unsplash.com/" + props.currentUsername}
+                                        target="_blank"
+                                        >
+                                    </a>
+                                </li>
+
+                                <li className="header__btn-item">
+                                    <button
+                                        className="header__btn btn btn--login"
+                                        type="button"
+                                        title={(props.authorized ? "Сменить профиль" : "Авторизоваться")}
+                                        onClick={() => {
+                                                props.authorizeUser();
+                                            }
+                                        }>
+                                    </button>
+                                </li>
+
                                 <li className="header__btn-item">
                                     <button
                                         className="header__btn btn btn--color-scheme js-btn-color-scheme"
@@ -77,22 +94,11 @@ export function Header(props) {
 
                                 <li className="header__btn-item">
                                     <button
-                                        className="header__btn btn btn--login"
-                                        type="button"
-                                        onClick={() => {
-                                                authorizeUser();
-                                            }
-                                        }>
-                                    </button>
-                                </li>
-
-                                <li className="header__btn-item">
-                                    <button
                                         className="header__btn btn btn--likes js-btn-likes"
                                         type="button"
                                         onClick={() => {
-                                                bodyEl.classList.add('liked-container-open', 'js-fixed');
-                                            }
+                                            bodyEl.classList.add('liked-container-open', 'js-fixed');
+                                        }
                                         }>
                                     </button>
                                 </li>

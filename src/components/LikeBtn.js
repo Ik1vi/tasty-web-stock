@@ -1,37 +1,32 @@
 import React, { useState } from 'react';
 
+import { toJson } from 'unsplash-js';
+
 export function LikeBtn(props) {
 
-    const [likedByUser, updateLikedByUser] = useState('false');
-
-    // const unsplash = createApi({
-    //     accessKey: 'IclwidfyuuU2dcaoL9yAu4DQTfW1o8U1Uqx_kjkxrRE',
-    //     //...other fetch options
-    // });
+    const [likeState, setLikeState] = useState(props.likedByUser)
 
     const updateLikeState = () => {
-        if(likedByUser==false) {
-            fetch('https://api.unsplash.com/photos/' + props.id + '/like', {
-            method: 'POST',
-            headers: new Headers({
-                'Authorization': 'Client-ID IclwidfyuuU2dcaoL9yAu4DQTfW1o8U1Uqx_kjkxrRE'
-            })})
-            .then((res) => {
-                updateLikedByUser(true);
-                console.log(likedByUser);
-            })
-            .catch(err => console.error(err))
+        if (!props.authorized) {
+            props.authorizeUser();
         } else {
-            fetch('https://api.unsplash.com/photos/' + props.id + '/like', {
-            method: 'DELETE',
-            headers: new Headers({
-                'Authorization': 'Client-ID IclwidfyuuU2dcaoL9yAu4DQTfW1o8U1Uqx_kjkxrRE'
-            })})
-            .then((res) => {
-                updateLikedByUser(false);
-                console.log(likedByUser);
-            })
-            .catch(err => console.error(err))
+            if (likeState) {
+                props.unsplash.photos.unlikePhoto(props.id)
+                    .then(toJson)
+                    .then(json => {
+                        console.log(json);
+                        setLikeState(false)
+                    });
+                
+            } else {
+                props.unsplash.photos.likePhoto(props.id)
+                    .then(toJson)
+                    .then(json => {
+                        console.log(json)
+                        setLikeState(true)
+                    });
+                
+            }
         }
     }
 

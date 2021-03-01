@@ -17,6 +17,7 @@ export function Auth(props) {
                     localStorage.setItem('authorized', true);
                     location.assign('/');
                 });
+                
         } else {
             console.error('No token from unsplash')
         }

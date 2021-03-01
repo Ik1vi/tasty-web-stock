@@ -20,6 +20,8 @@ export function Main(props) {
     const [picContainerIsOpen, setPicContainerIsOpen] = useState(false);
     const [picContainerIsVisible, setPicContainerIsVisible] = useState(false);
 
+    const [currentUsername, setCurrentUsername] = useState('');
+
     const [currentId, setCurrentId] = useState('');
     const [currentAuthorName, setCurrentAuthorName] = useState('');
     const [currentAuthorImg, setCurrentAuthorImg] = useState('');
@@ -71,18 +73,36 @@ export function Main(props) {
         }
     });
 
-    useEffect(() => {
-        console.log(props.authorized)
-        if (props.authorized) {
-            getPublications(page, color);
-            console.log('все ок');
-        } else {
+    const authorizeUser = () => {
+        localStorage.removeItem('authorized');
+        localStorage.removeItem('bearerToken');
+        props.setAuthorized(false);
+
+        if (!props.authorized) {
+            console.log('авторизовываемся')
             const authenticationUrl = props.unsplash.auth.getAuthenticationUrl([
                 "public",
                 "write_likes"
             ]);
             location.assign(authenticationUrl);
-            console.log('над авторизоваться');
+        }
+    }
+
+    const getCurrentUser = () => {
+        props.unsplash.currentUser.profile()
+            .then(toJson)
+            .then(json => {
+            setCurrentUsername(json.username);
+            console.log("https://unsplash.com/" + currentUsername)
+    
+        });
+    }
+
+    useEffect(() => {
+        getPublications(page, color);
+
+        if (props.authorized && !currentUsername) {
+            getCurrentUser();
         }
     }, [page, color])
 
@@ -105,7 +125,7 @@ export function Main(props) {
 
         let params = {
             query: 'programming electronic tech javascript laptop html',
-            per_page: 10,
+            per_page: 50,
             page: page
         }
 
@@ -113,7 +133,7 @@ export function Main(props) {
             params.color = color;
         }
 
-        props.unsplash.search.photos(params.query, params.per_page, params.page, color ? { color: color } : {})
+        props.unsplash.search.photos(params.query, params.page, params.per_page, color ? { color: color } : {})
             .then(toJson)
             .then(res => {
                 if (res.errors) {
@@ -170,6 +190,11 @@ export function Main(props) {
                     setPublications={setPublications}
                     setPage={setPage}
                     page={page}
+
+                    authorizeUser={authorizeUser}
+                    authorized={props.authorized}
+                    setAuthorized={props.setAuthorized}
+                    currentUsername={currentUsername}
                 />
 
                 <Page
@@ -178,6 +203,10 @@ export function Main(props) {
                     picContainerHandler={picContainerHandler}
                     setPicContainerIsVisible={setPicContainerIsVisible}
                     loading={loading}
+
+                    authorized={props.authorized}
+                    authorizeUser={authorizeUser}
+                    unsplash={props.unsplash}
                 />
             </div>
         );

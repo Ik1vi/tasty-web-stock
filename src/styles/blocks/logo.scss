@@ -2,17 +2,13 @@
     display: block;
 
     height: 100%;
-    width: 12%;
+    min-width: 20%;
 
     transition: height 0.5s, width 0.5s ;
 
-    @media (max-width: 1024px) {
-        width: 17%;
-    }
-
     @media (max-width: 768px) {
         height: 95%;
-        width: 100px;
+        min-width: 25%
     }
 
     &__link {

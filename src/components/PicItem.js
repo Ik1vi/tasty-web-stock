@@ -16,11 +16,11 @@ export const PicItem = React.forwardRef((props, ref) => {
             onLoad={props.resizeAllGridItems}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
-            onClick={() => {
-                props.setPicContainerIsVisible(true);
-                props.picContainerHandler(props.id, props.authorName, props.authorImg, props.authorHref, props.time, props.fullImg, props.src, props.placeholder, props.imgHref, props.alt, props.likes);
-                setHovered(false);
-            }}
+            // onClick={() => {
+            //     props.setPicContainerIsVisible(true);
+            //     props.picContainerHandler(props.id, props.authorName, props.authorImg, props.authorHref, props.time, props.fullImg, props.src, props.placeholder, props.imgHref, props.alt, props.likes);
+            //     setHovered(false);
+            // }}
             ref={ref}
         >
 
@@ -42,6 +42,11 @@ export const PicItem = React.forwardRef((props, ref) => {
                         className="publication__like"
                         likes={props.likes}
                         id={props.id}
+                        likedByUser={props.likedByUser}
+
+                        authorized={props.authorized}
+                        authorizeUser={props.authorizeUser}
+                        unsplash={props.unsplash}
                     />
 
                     <PublicationTime

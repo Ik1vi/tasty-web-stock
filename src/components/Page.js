@@ -50,6 +50,11 @@ export function Page(props) {
                             listItemClassName="pic-grid__list-item"
                             publicationClassName="pic-grid__publication"
 
+                            authorized={props.authorized}
+                            authorizeUser={props.authorizeUser}
+
+                            unsplash={props.unsplash}
+
                             resizeAllGridItems={resizeAllGridItems}
                             picContainerHandler={props.picContainerHandler}
 

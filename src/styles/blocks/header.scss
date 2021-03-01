@@ -47,18 +47,25 @@
     &__btn-list {
       @include flex-container(space-between, center);
 
-      height: 100%;
-      width: 12%;
+      min-height: 100%;
+      min-width: 20%;
 
       @include list-reset();
 
-      @media (max-width: 1024px) {
-        width: 17%;
+      &--authorized{
+        .btn--login {
+          @include background-image(url(../img/logout.svg), center);
+        }
+
+        .btn--personal {
+          display: block;
+        }
       }
 
       @media (max-width: 768px) {
-        width: 100px;
+        min-width: 25%
       }
+
     }
 
     &__btn-item {

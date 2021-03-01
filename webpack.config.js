@@ -6,6 +6,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
     devServer: {
         historyApiFallback: true,
+        hot: false,
     },
     
     entry: {

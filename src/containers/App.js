@@ -26,6 +26,7 @@ export function App() {
                 <Main
                     unsplash={unsplash}
                     authorized={authorized}
+                    setAuthorized={setAuthorized}
                 />
             } />
             <Route exact path="/auth" component={() =>
