@@ -39,6 +39,10 @@
             background-color: $dark-shades-transparent;
         }
 
+        &--liked {
+            background-image: url(../img/like--liked.svg);
+        }
+
         &--dislike {
             background-image: url(../img/like--dislike.svg);
         }

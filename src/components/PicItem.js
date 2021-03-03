@@ -11,16 +11,39 @@ export const PicItem = React.forwardRef((props, ref) => {
 
     window.addEventListener('resize', props.resizeAllGridItems);
 
+
+    const openContainer = (e) => {
+        if (!e.target.closest('.js-like')) {
+            const newCurrentPublication = {
+                'id': props.id,
+                'authorName': props.authorName,
+                'authorImg': props.authorImg,
+                'authorHref': props.authorHref,
+                'time': props.time,
+                'fullImg': props.fullImg,
+                'src': props.src,
+                'placeholder': props.placeholder,
+                'imgHref': props.imgHref,
+                'alt': props.alt,
+                'likes': props.likes,
+                'likedByUser': props.likedByUser
+            }
+
+            props.setPicContainerIsVisible(true);
+            props.picContainerHandler(newCurrentPublication);
+            setHovered(false);
+        }
+    }
+
+
     return (
         <li className={props.listItemClassName + (hovered ? " pic-item-hover" : "")}
             onLoad={props.resizeAllGridItems}
             onMouseEnter={() => setHovered(true)}
             onMouseLeave={() => setHovered(false)}
-            // onClick={() => {
-            //     props.setPicContainerIsVisible(true);
-            //     props.picContainerHandler(props.id, props.authorName, props.authorImg, props.authorHref, props.time, props.fullImg, props.src, props.placeholder, props.imgHref, props.alt, props.likes);
-            //     setHovered(false);
-            // }}
+            onClick={
+                openContainer
+            }
             ref={ref}
         >
 
@@ -35,7 +58,6 @@ export const PicItem = React.forwardRef((props, ref) => {
                         placeholder={props.placeholder}
                         alt={props.alt}
                         setIsLoaded={setIsLoaded}
-                        blurHash={props.blurHash}
                     />
 
                     <LikeBtn

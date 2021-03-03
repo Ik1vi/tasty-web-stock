@@ -22,28 +22,30 @@ export function PictureContainer(props) {
                 <div className="picture-container__author-wrapper">
                     <Author
                         className="picture-container__author"
-                        authorName={props.currentAuthorName}
-                        authorImg={props.currentAuthorImg}
-                        authorHref={props.currentAuthorHref}
+                        authorName={props.currentPublication.authorName}
+                        authorImg={props.currentPublication.authorImg}
+                        authorHref={props.currentPublication.authorHref}
                     />
                 </div>
 
-                <LikeBtn
-                    className="picture-container__like-btn"
-                    likes={props.currentLikes}
-                    id={props.currentId}
-                />
+                <div className="picture-container__like-btn like">
+                    <p className="like__total-likes">{props.currentPublication.likes}</p>
+
+                    <button
+                        className={"picture-container__like" + (props.currentPublication.likedByUser ? " picture-container__like--liked" : '')}
+                    ></button>
+                </div>
 
                 {props.picContainerIsVisible ? (
                     <a
                         className="picture-container__content-img"
-                        href={props.currentImgHref}
+                        href={props.currentPublication.href}
                         target="_blank">
                         <ContentImg
                             className="picture-container__content-img js-picture-container-img"
-                            src={props.currentFullImg}
-                            placeholder={props.currentRegularImg}
-                            alt={props.currentImgAlt}
+                            src={props.currentPublication.src}
+                            placeholder={props.currentPublication.placeholder}
+                            alt={props.currentPublication.alt}
                             setIsLoaded={setIsLoaded}
                         />
                     </a>
@@ -52,7 +54,7 @@ export function PictureContainer(props) {
 
                 <PublicationTime
                     className="picture-container__publication-time"
-                    time={props.currentPublicationTime}
+                    time={props.currentPublication.time}
                 />
             </div>
         </div>

@@ -12,22 +12,23 @@ export function LikedContainer(props) {
 
     useEffect(() => {
         getLikedPublications();
-    }, [])
+    }, [props.currentUserName])
 
     const getLikedPublications = () => {
-        setLoading(true);
-
-        props.unsplash.users.likes('kuzyema')
-            .then(toJson)
-            .then(res => {
-                if (res.errors) {
-                    setError(res.errors[0]);
-                    setLoading(false);
-                } else {
-                    setLikedPublications(res);
-                    setLoading(false);
-                }
-            })
+        if (props.currentUserName) {
+            setLoading(true);
+            props.unsplash.users.likes(props.currentUserName)
+                .then(toJson)
+                .then(res => {
+                    if (res.errors) {
+                        setError(res.errors[0]);
+                        setLoading(false);
+                    } else {
+                        setLikedPublications(res);
+                        setLoading(false);
+                    }
+                })
+        }
     }
 
     if (error) {
@@ -59,6 +60,7 @@ export function LikedContainer(props) {
                                 alt={p.alt_description}
 
                                 likes={p.likes}
+                                likedByUser={p.liked_by_user}
 
                                 time={p.created_at}
 
@@ -71,6 +73,11 @@ export function LikedContainer(props) {
 
                                 picContainerHandler={props.picContainerHandler}
                                 setPicContainerIsVisible={props.setPicContainerIsVisible}
+
+                                authorized={props.authorized}
+                                authorizeUser={props.authorizeUser}
+
+                                unsplash={props.unsplash}
 
                                 ref={null}
                             />

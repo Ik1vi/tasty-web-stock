@@ -66,7 +66,7 @@ export function Header(props) {
                                     <a
                                         className="header__btn btn btn--personal"
                                         type="button"
-                                        href={"https://unsplash.com/" + props.currentUsername}
+                                        href={"https://unsplash.com/" + props.currentUserName}
                                         target="_blank"
                                         >
                                     </a>

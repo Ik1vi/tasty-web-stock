@@ -60,6 +60,8 @@ export function Page(props) {
 
                             setPicContainerIsVisible={props.setPicContainerIsVisible}
 
+                            updateLikeState={props.updateLikeState}
+
                             ref={(props.publications.length === i + 1) ? props.lastElementRef : null}
                         />
                     }

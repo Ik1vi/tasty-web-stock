@@ -4,7 +4,8 @@ import { toJson } from 'unsplash-js';
 
 export function LikeBtn(props) {
 
-    const [likeState, setLikeState] = useState(props.likedByUser)
+    const [likeState, setLikeState] = useState(props.likedByUser);
+    const [totalLikes, setTotalLikes] = useState(props.likes);
 
     const updateLikeState = () => {
         if (!props.authorized) {
@@ -14,28 +15,27 @@ export function LikeBtn(props) {
                 props.unsplash.photos.unlikePhoto(props.id)
                     .then(toJson)
                     .then(json => {
-                        console.log(json);
-                        setLikeState(false)
+                        setLikeState(false);
+                        setTotalLikes(totalLikes - 1);
                     });
                 
             } else {
                 props.unsplash.photos.likePhoto(props.id)
                     .then(toJson)
                     .then(json => {
-                        console.log(json)
-                        setLikeState(true)
+                        setLikeState(true);
+                        setTotalLikes(totalLikes + 1);
                     });
-                
             }
         }
     }
 
     return (
         <div className={props.className + " like"}>
-            <p className="like__total-likes">{props.likes}</p>
+            <p className="like__total-likes">{totalLikes}</p>
 
             <button
-                className="like__btn"
+                className = {"like__btn js-like" + (likeState ? " like__btn--liked" : '')}
                 onClick={() => {
                     updateLikeState()
                 }}

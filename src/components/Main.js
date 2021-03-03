@@ -20,37 +20,32 @@ export function Main(props) {
     const [picContainerIsOpen, setPicContainerIsOpen] = useState(false);
     const [picContainerIsVisible, setPicContainerIsVisible] = useState(false);
 
-    const [currentUsername, setCurrentUsername] = useState('');
+    const [currentUserName, setCurrentUserName] = useState('');
 
-    const [currentId, setCurrentId] = useState('');
-    const [currentAuthorName, setCurrentAuthorName] = useState('');
-    const [currentAuthorImg, setCurrentAuthorImg] = useState('');
-    const [currentAuthorHref, setCurrentAuthorHref] = useState('');
-    const [currentPublicationTime, setCurrentPublicationTime] = useState('');
-    const [currentFullImg, setCurrentFullImg] = useState('');
-    const [currentRegularImg, setCurrentRegularImg] = useState('');
-    const [currentImgPlaceholder, setCurrentImgPlaceholder] = useState('');
-    const [currentImgHref, setCurrentImgHref] = useState('');
-    const [currentImgAlt, setCurrentImgAlt] = useState('');
-    const [currentLikes, setCurrentLikes] = useState('');
+    const [currentPublication, setCurrentPublication] = useState(
+        {
+            'id' : '',
+            'authorName': '',
+            'authorImg' : '',
+            'authorHref' : '',
+            'time' : '',
+            'fullImg' : '',
+            'src' : '',
+            'placeholder' : '',
+            'imgHref' : '',
+            'alt' : '',
+            'likes' : '',
+            'likedByUser': false
+        }
+    )
 
     const observer = useRef()
     const bodyEl = document.querySelector('.js-body');
 
-    const picContainerHandler = (id, authorName, authorImg, authorHref, time, fullImg, regularImg, imgPlaceholder, imgHref, imgAlt, likes) => {
+    const picContainerHandler = (newCurrentPublication) => {
 
         if (!picContainerIsOpen) {
-            setCurrentId(id);
-            setCurrentAuthorName(authorName);
-            setCurrentAuthorImg(authorImg);
-            setCurrentAuthorHref(authorHref);
-            setCurrentPublicationTime(time);
-            setCurrentFullImg(fullImg);
-            setCurrentRegularImg(regularImg);
-            setCurrentImgPlaceholder(imgPlaceholder);
-            setCurrentImgHref(imgHref);
-            setCurrentImgAlt(imgAlt);
-            setCurrentLikes(likes);
+            setCurrentPublication(newCurrentPublication);
 
             setPicContainerIsVisible(true);
             setPicContainerIsOpen(true);
@@ -92,16 +87,15 @@ export function Main(props) {
         props.unsplash.currentUser.profile()
             .then(toJson)
             .then(json => {
-            setCurrentUsername(json.username);
-            console.log("https://unsplash.com/" + currentUsername)
-    
+            setCurrentUserName(json.username);
+            console.log(json.username)
         });
     }
 
     useEffect(() => {
         getPublications(page, color);
 
-        if (props.authorized && !currentUsername) {
+        if (props.authorized && !currentUserName) {
             getCurrentUser();
         }
     }, [page, color])
@@ -133,7 +127,7 @@ export function Main(props) {
             params.color = color;
         }
 
-        props.unsplash.search.photos(params.query, params.page, params.per_page, color ? { color: color } : {})
+        props.unsplash.search.photos(params.query, params.per_page, params.page, color ? { color: color } : {})
             .then(toJson)
             .then(res => {
                 if (res.errors) {
@@ -156,17 +150,7 @@ export function Main(props) {
         return (
             <div className="body__app app">
                 <PictureContainer
-                    currentId={currentId}
-                    currentAuthorName={currentAuthorName}
-                    currentAuthorImg={currentAuthorImg}
-                    currentAuthorHref={currentAuthorHref}
-                    currentPublicationTime={currentPublicationTime}
-                    currentFullImg={currentFullImg}
-                    currentRegularImg={currentRegularImg}
-                    currentImgPlaceholder={currentImgPlaceholder}
-                    currentImgAlt={currentImgAlt}
-                    currentImgHref={currentImgHref}
-                    currentLikes={currentLikes}
+                    currentPublication={currentPublication}
 
                     picContainerIsVisible={picContainerIsVisible}
                     bodyEl={bodyEl}
@@ -174,6 +158,10 @@ export function Main(props) {
                     picContainerHandler={picContainerHandler}
                     setPicContainerIsOpen={setPicContainerIsOpen}
                     setPicContainerIsVisible={setPicContainerIsVisible}
+
+                    unsplash={props.unsplash}
+                    authorizeUser={authorizeUser}
+                    authorized={props.authorized}
                 />
 
                 <LikedContainer
@@ -181,7 +169,12 @@ export function Main(props) {
                     setPicContainerIsVisible={setPicContainerIsVisible}
                     bodyEl={bodyEl}
                     setPicContainerIsOpen={setPicContainerIsOpen}
+                    
                     unsplash={props.unsplash}
+                    authorizeUser={authorizeUser}
+                    authorized={props.authorized}
+
+                    currentUserName={currentUserName}
                 />
 
                 <Header
@@ -194,7 +187,7 @@ export function Main(props) {
                     authorizeUser={authorizeUser}
                     authorized={props.authorized}
                     setAuthorized={props.setAuthorized}
-                    currentUsername={currentUsername}
+                    currentUserName={currentUserName}
                 />
 
                 <Page
