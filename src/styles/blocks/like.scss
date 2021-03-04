@@ -28,7 +28,7 @@
         background-color:  rgba(234, 234, 234, 0.3);
         border-radius: 8px;
 
-        transition: background-image 1s;
+        transition: background-image 0.3s;
 
         @media(max-width: 768px) {
             width:40px;
@@ -48,7 +48,6 @@
         }
 
         &:hover {
-            background-image: url(../img/like--hovered.svg);
             animation: pulse 1.5s ease-in-out 1;
         }
 

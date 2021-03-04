@@ -122,6 +122,30 @@
         }
     }
 
+    &__total-likes {
+        visibility: hidden;
+        position: absolute;
+        right: 0;
+        bottom: -31px;
+
+        margin: 0;
+
+        &:before {
+            position: absolute;
+            left: -20px;
+            top: 2px;
+
+            height: 10px;
+            width: 18px;
+
+            content: url(../img/like--liked.svg);
+        }
+
+        @media(max-width: 768px) {
+            visibility: visible;
+        }
+    }
+
     .content-img {
         opacity: 0;
 

@@ -67,6 +67,26 @@
         }
     }
 
+    &__total-likes {
+        position: relative;
+        &:before {
+            position: absolute;
+            left: -20px;
+            top: 2px;
+
+            height: 10px;
+            width: 18px;
+
+            content: url(../img/like.svg);
+        }
+
+        &--liked {
+            &:before {
+                content: url(../img/like--liked.svg);
+            }
+        }
+    }
+
     .author {
         opacity: 1;
     
@@ -82,16 +102,6 @@
     
         &__img {
             filter: none;
-        }
-    }
-
-    .like__btn {
-        width: 40px;
-        height: 40px;
-        padding: 12px 9px;
-
-        @media(max-width: 768px) {
-            background-color:  rgba(234, 234, 234, 0.3);
         }
     }
 }

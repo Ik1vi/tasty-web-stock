@@ -97,7 +97,7 @@ export function Header(props) {
                                         className="header__btn btn btn--likes js-btn-likes"
                                         type="button"
                                         onClick={() => {
-                                            props.getLikedPublications;
+                                            props.getLikedPublications();
                                             bodyEl.classList.add('liked-container-open', 'js-fixed');
                                         }
                                         }>

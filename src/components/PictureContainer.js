@@ -28,12 +28,11 @@ export function PictureContainer(props) {
                     />
                 </div>
 
-                <div className="picture-container__like-btn like">
-                    <p className="like__total-likes">{props.currentPublication.likes}</p>
-
-                    <button
-                        className={"picture-container__like" + (props.currentPublication.likedByUser ? " picture-container__like--liked" : '')}
-                    ></button>
+                <div className="picture-container__like-info">
+                    <p
+                        className={"picture-container__total-likes" + (props.currentPublication.likedByUser ? " picture-container__total-likes--liked" : " ")}>
+                        {props.currentPublication.likes}
+                    </p>
                 </div>
 
                 {props.picContainerIsVisible ? (

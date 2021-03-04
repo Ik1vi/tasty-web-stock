@@ -9,11 +9,16 @@ export const PicItem = React.forwardRef((props, ref) => {
     const [hovered, setHovered] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
 
+    const [likeState, setLikeState] = useState(props.likedByUser);
+    const [totalLikes, setTotalLikes] = useState(props.likes);
+
+    const [itIsLikedContainer, setItIsLikedContainer] = useState(props.checkLikedContainer);
+
     window.addEventListener('resize', props.resizeAllGridItems);
 
 
     const openContainer = (e) => {
-        if (!e.target.closest('.js-like')) {
+        if (!e.target.closest('.js-like') && !e.target.closest('.publication__author-wrapper')) {
             const newCurrentPublication = {
                 'id': props.id,
                 'authorName': props.authorName,
@@ -25,8 +30,8 @@ export const PicItem = React.forwardRef((props, ref) => {
                 'placeholder': props.placeholder,
                 'imgHref': props.imgHref,
                 'alt': props.alt,
-                'likes': props.likes,
-                'likedByUser': props.likedByUser
+                'likes': totalLikes,
+                'likedByUser': likeState
             }
 
             props.setPicContainerIsVisible(true);
@@ -59,17 +64,28 @@ export const PicItem = React.forwardRef((props, ref) => {
                         alt={props.alt}
                         setIsLoaded={setIsLoaded}
                     />
+                    
+                    {isLoaded ? (itIsLikedContainer ? (
+                        <div className="liked-container__like-info">
+                            <p
+                                className="liked-container__total-likes">
+                                {totalLikes}
+                            </p>
+                        </div>)
+                    : (
+                        <LikeBtn
+                            className="publication__like"
+                            id={props.id}
+                            totalLikes={totalLikes}
+                            likeState={likeState}
+                            setLikeState={setLikeState}
+                            setTotalLikes={setTotalLikes}
 
-                    <LikeBtn
-                        className="publication__like"
-                        likes={props.likes}
-                        id={props.id}
-                        likedByUser={props.likedByUser}
-
-                        authorized={props.authorized}
-                        authorizeUser={props.authorizeUser}
-                        unsplash={props.unsplash}
-                    />
+                            authorized={props.authorized}
+                            authorizeUser={props.authorizeUser}
+                            unsplash={props.unsplash}
+                        />
+                    )) : (null)}
 
                     <PublicationTime
                         className="publication__publication-time"

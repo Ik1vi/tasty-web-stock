@@ -3,28 +3,24 @@ import React, { useState } from 'react';
 import { toJson } from 'unsplash-js';
 
 export function LikeBtn(props) {
-
-    const [likeState, setLikeState] = useState(props.likedByUser);
-    const [totalLikes, setTotalLikes] = useState(props.likes);
-
     const updateLikeState = () => {
         if (!props.authorized) {
             props.authorizeUser();
         } else {
-            if (likeState) {
+            if (props.likeState) {
                 props.unsplash.photos.unlikePhoto(props.id)
                     .then(toJson)
                     .then(json => {
-                        setLikeState(false);
-                        setTotalLikes(totalLikes - 1);
+                        props.setLikeState(false);
+                        props.setTotalLikes(props.totalLikes - 1);
                     });
                 
             } else {
                 props.unsplash.photos.likePhoto(props.id)
                     .then(toJson)
                     .then(json => {
-                        setLikeState(true);
-                        setTotalLikes(totalLikes + 1);
+                        props.setLikeState(true);
+                        props.setTotalLikes(props.totalLikes + 1);
                     });
             }
         }
@@ -32,10 +28,10 @@ export function LikeBtn(props) {
 
     return (
         <div className={props.className + " like"}>
-            <p className="like__total-likes">{totalLikes}</p>
+            <p className="like__total-likes">{props.totalLikes}</p>
 
             <button
-                className = {"like__btn js-like" + (likeState ? " like__btn--liked" : '')}
+                className = {"like__btn js-like" + (props.likeState ? " like__btn--liked" : '')}
                 onClick={() => {
                     updateLikeState()
                 }}

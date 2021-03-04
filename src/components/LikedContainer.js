@@ -48,6 +48,8 @@ export function LikedContainer(props) {
 
                             unsplash={props.unsplash}
 
+                            checkLikedContainer = {true}
+
                             ref={null}
                         />
                     }
