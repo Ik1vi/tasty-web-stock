@@ -14,6 +14,8 @@ export function Main(props) {
     const [loading, setLoading] = useState(false);
 
     const [publications, setPublications] = useState([]);
+    const [likedPublications, setLikedPublications] = useState([]);
+
     const [totalPages, setTotalPages] = useState(0);
     const [page, setPage] = useState(1);
     const [color, setColor] = useState(null);
@@ -114,20 +116,33 @@ export function Main(props) {
         if (element) observer.current.observe(element);
     }, [loading, page, color]);
 
+    const getLikedPublications = () => {
+        if (currentUserName) {
+            setLoading(true);
+            props.unsplash.users.likes(currentUserName)
+                .then(toJson)
+                .then(res => {
+                    if (res.errors) {
+                        setError(res.errors[0]);
+                        setLoading(false);
+                    } else {
+                        setLikedPublications(res);
+                        setLoading(false);
+                    }
+                })
+        }
+    }
+
     const getPublications = (page, color) => {
         setLoading(true);
 
         let params = {
             query: 'programming electronic tech javascript laptop html',
-            per_page: 50,
+            per_page: 10,
             page: page
         }
 
-        if (color) {
-            params.color = color;
-        }
-
-        props.unsplash.search.photos(params.query, params.per_page, params.page, color ? { color: color } : {})
+        props.unsplash.search.photos(params.query, params.page, params.per_page, color ? { color: color } : {})
             .then(toJson)
             .then(res => {
                 if (res.errors) {
@@ -174,7 +189,7 @@ export function Main(props) {
                     authorizeUser={authorizeUser}
                     authorized={props.authorized}
 
-                    currentUserName={currentUserName}
+                    likedPublications={likedPublications}
                 />
 
                 <Header
@@ -187,7 +202,9 @@ export function Main(props) {
                     authorizeUser={authorizeUser}
                     authorized={props.authorized}
                     setAuthorized={props.setAuthorized}
+
                     currentUserName={currentUserName}
+                    getLikedPublications={getLikedPublications}
                 />
 
                 <Page
