@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 
-import Unsplash, { toJson } from 'unsplash-js';
+import { toJson } from 'unsplash-js';
 
 import { Header } from './Header.js';
 import { Page } from './Page.js';
@@ -15,28 +15,28 @@ export function Main(props) {
 
     const [publications, setPublications] = useState([]);
     const [likedPublications, setLikedPublications] = useState([]);
+    const [currentUserName, setCurrentUserName] = useState('');
 
     const [totalPages, setTotalPages] = useState(0);
     const [page, setPage] = useState(1);
     const [color, setColor] = useState(null);
+
     const [picContainerIsOpen, setPicContainerIsOpen] = useState(false);
     const [picContainerIsVisible, setPicContainerIsVisible] = useState(false);
 
-    const [currentUserName, setCurrentUserName] = useState('');
-
     const [currentPublication, setCurrentPublication] = useState(
         {
-            'id' : '',
+            'id': '',
             'authorName': '',
-            'authorImg' : '',
-            'authorHref' : '',
-            'time' : '',
-            'fullImg' : '',
-            'src' : '',
-            'placeholder' : '',
-            'imgHref' : '',
-            'alt' : '',
-            'likes' : '',
+            'authorImg': '',
+            'authorHref': '',
+            'time': '',
+            'fullImg': '',
+            'src': '',
+            'placeholder': '',
+            'imgHref': '',
+            'alt': '',
+            'likes': '',
             'likedByUser': false
         }
     )
@@ -45,7 +45,6 @@ export function Main(props) {
     const bodyEl = document.querySelector('.js-body');
 
     const picContainerHandler = (newCurrentPublication) => {
-
         if (!picContainerIsOpen) {
             setCurrentPublication(newCurrentPublication);
 
@@ -89,9 +88,9 @@ export function Main(props) {
         props.unsplash.currentUser.profile()
             .then(toJson)
             .then(json => {
-            setCurrentUserName(json.username);
-            console.log(json.username)
-        });
+                setCurrentUserName(json.username);
+                console.log(json.username)
+            });
     }
 
     useEffect(() => {
@@ -184,7 +183,7 @@ export function Main(props) {
                     setPicContainerIsVisible={setPicContainerIsVisible}
                     bodyEl={bodyEl}
                     setPicContainerIsOpen={setPicContainerIsOpen}
-                    
+
                     unsplash={props.unsplash}
                     authorizeUser={authorizeUser}
                     authorized={props.authorized}
@@ -198,6 +197,8 @@ export function Main(props) {
                     setPublications={setPublications}
                     setPage={setPage}
                     page={page}
+
+                    bodyEl={bodyEl}
 
                     authorizeUser={authorizeUser}
                     authorized={props.authorized}

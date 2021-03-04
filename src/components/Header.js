@@ -3,38 +3,46 @@ import React, { useState } from 'react';
 import { ColorsMenu } from '../components/ColorsMenu.js';
 import { ColorsHandle } from '../components/ColorsHandleSvg.js';
 
-
 export function Header(props) {
-    const bodyEl = document.querySelector('.js-body');
     const closeBtnAnimation = document.querySelectorAll('.close-colors');
     const openBtnAnimation = document.querySelectorAll('.open-colors');
 
     const [menuOpened, setMenuOpened] = useState(false);
 
+    const closeMenu = () => {
+        setMenuOpened(true);
+
+        props.bodyEl.classList.remove('colors-menu-open');
+
+        for (let i = 0; i < openBtnAnimation.length; i++) {
+            openBtnAnimation[i].beginElement();
+        }
+    }
+
+    const openMenu = () => {
+        setMenuOpened(false);
+
+        props.bodyEl.classList.add('colors-menu-open');
+
+        for (let i = 0; i < closeBtnAnimation.length; i++) {
+            closeBtnAnimation[i].beginElement();
+        }
+    }
+
     const toggleMenu = (ev) => {
         ev.preventDefault();
 
-        setMenuOpened(!menuOpened);
-
         if (menuOpened) {
-            bodyEl.classList.remove('colors-menu-open');
-
-            for (let i = 0; i < openBtnAnimation.length; i++) {
-                openBtnAnimation[i].beginElement();
-            }
+            closeMenu();
         } else {
-            bodyEl.classList.add('colors-menu-open');
-
-            for (let i = 0; i < closeBtnAnimation.length; i++) {
-                closeBtnAnimation[i].beginElement();
-            }
+            openMenu();
         }
     }
 
     const changeColorScheme = ev => {
         ev.preventDefault();
 
-        bodyEl.classList.toggle('dark-scheme');
+        props.bodyEl.classList.toggle('dark-scheme');
     };
 
     return (
@@ -46,7 +54,11 @@ export function Header(props) {
                     <div className="fixed-container">
                         <div className="header__bar">
                             <div className="header__logo logo">
-                                <a className="logo__link" href="#"></a>
+                                <a
+                                    className="logo__link"
+                                    aria-label="Перейти к странице frontend разработчика Веселовой Ирины"
+                                    href="http://tasty-web.ru.fozzyhost.com"
+                                ></a>
                             </div>
                             <div
                                 className="header__colors-handle colors-handle js-colors-handle">
@@ -56,6 +68,7 @@ export function Header(props) {
                                 <button
                                     id="startButton"
                                     className="colors-handle__btn"
+                                    aria-label={(menuOpened ? "Закрыть цветовое меню" : "Открыть цветовое меню")}
                                     type="button"
                                     onClick={toggleMenu}>
                                 </button>
@@ -65,21 +78,24 @@ export function Header(props) {
                                 <li className="header__btn-item">
                                     <a
                                         className="header__btn btn btn--personal"
-                                        type="button"
+                                        aria-label="Перейти к вашему профилю на сайте unsplash.com"
+                                        title="Перейти к вашему профилю"
                                         href={"https://unsplash.com/" + props.currentUserName}
                                         target="_blank"
-                                        >
+                                    >
                                     </a>
                                 </li>
 
                                 <li className="header__btn-item">
                                     <button
                                         className="header__btn btn btn--login"
+                                        aria-label={(props.authorized ? "Сменить профиль" : "Авторизоваться")}
                                         type="button"
                                         title={(props.authorized ? "Сменить профиль" : "Авторизоваться")}
                                         onClick={() => {
-                                                props.authorizeUser();
-                                            }
+                                            closeMenu();
+                                            props.authorizeUser();
+                                        }
                                         }>
                                     </button>
                                 </li>
@@ -87,6 +103,7 @@ export function Header(props) {
                                 <li className="header__btn-item">
                                     <button
                                         className="header__btn btn btn--color-scheme js-btn-color-scheme"
+                                        aria-label="Сменить цветовой режим"
                                         type="button"
                                         onClick={changeColorScheme}>
                                     </button>
@@ -95,10 +112,11 @@ export function Header(props) {
                                 <li className="header__btn-item">
                                     <button
                                         className="header__btn btn btn--likes js-btn-likes"
+                                        aria-label="Перейти к отмеченным публикациям"
                                         type="button"
                                         onClick={() => {
                                             props.getLikedPublications();
-                                            bodyEl.classList.add('liked-container-open', 'js-fixed');
+                                            props.bodyEl.classList.add('liked-container-open', 'js-fixed');
                                         }
                                         }>
                                     </button>

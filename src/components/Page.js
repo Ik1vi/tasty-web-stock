@@ -60,7 +60,7 @@ export function Page(props) {
 
                             setPicContainerIsVisible={props.setPicContainerIsVisible}
 
-                            checkLikedContainer = {false}
+                            checkLikedContainer={false}
 
                             ref={(props.publications.length === i + 1) ? props.lastElementRef : null}
                         />

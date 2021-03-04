@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 import { ContentImg } from '../components/ContentImg.js';
-import { LikeBtn } from '../components/LikeBtn.js';
 import { PublicationTime } from '../components/PublicationTime.js';
 import { Author } from '../components/Author.js';
 import { CloseBtn } from '../components/CloseBtn.js'
@@ -38,7 +37,7 @@ export function PictureContainer(props) {
                 {props.picContainerIsVisible ? (
                     <a
                         className="picture-container__content-img"
-                        href={props.currentPublication.href}
+                        href={props.currentPublication.imgHref}
                         target="_blank">
                         <ContentImg
                             className="picture-container__content-img js-picture-container-img"

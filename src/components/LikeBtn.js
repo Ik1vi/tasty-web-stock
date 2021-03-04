@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import { toJson } from 'unsplash-js';
 
@@ -14,7 +14,7 @@ export function LikeBtn(props) {
                         props.setLikeState(false);
                         props.setTotalLikes(props.totalLikes - 1);
                     });
-                
+
             } else {
                 props.unsplash.photos.likePhoto(props.id)
                     .then(toJson)
@@ -31,11 +31,13 @@ export function LikeBtn(props) {
             <p className="like__total-likes">{props.totalLikes}</p>
 
             <button
-                className = {"like__btn js-like" + (props.likeState ? " like__btn--liked" : '')}
+                className={"like__btn js-like" + (props.likeState ? " like__btn--liked" : '')}
+                aria-label={(props.likeState ? "Отметить публикацию" : 'Снять отметку с публикации')}
+                type="button"
                 onClick={() => {
                     updateLikeState()
                 }}
             ></button>
         </div>
     );
-};
+}

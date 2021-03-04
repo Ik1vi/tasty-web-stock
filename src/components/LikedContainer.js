@@ -14,7 +14,6 @@ export function LikedContainer(props) {
             />
 
             <div className="liked-container__wrapper js-liked-wrapper">
-
                 <h2 className="liked-container__title">Вы отметили эти публикации:</h2>
 
                 <ul className="liked-container__list">
@@ -27,6 +26,7 @@ export function LikedContainer(props) {
                             placeholder={p.urls.thumb}
                             color={p.color}
                             alt={p.alt_description}
+                            imgHref={p.links.html}
 
                             likes={p.likes}
                             likedByUser={p.liked_by_user}
@@ -48,7 +48,7 @@ export function LikedContainer(props) {
 
                             unsplash={props.unsplash}
 
-                            checkLikedContainer = {true}
+                            checkLikedContainer={true}
 
                             ref={null}
                         />

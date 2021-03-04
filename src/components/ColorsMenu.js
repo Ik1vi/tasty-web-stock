@@ -3,7 +3,6 @@ import React from 'react';
 import { ColorsMenuItem } from '../components/ColorsMenuItem.js';
 
 export function ColorsMenu(props) {
-
     const colors = ["white", "black", "yellow", "orange", "red", "purple", "magenta", "green", "teal", "blue"];
 
     const selectColor = (color, e) => {
@@ -43,7 +42,7 @@ export function ColorsMenu(props) {
                     <li className={"colors-menu__item colors-menu__item--unsplash"}>
                         <a
                             className={"colors-menu__btn colors-menu__btn--unsplash"}
-                            type="button"
+                            aria-label="Перейти на сайт unsplash.com"
                             href="https://unsplash.com/"
                             target="_blank">
                         </a>
@@ -52,4 +51,4 @@ export function ColorsMenu(props) {
             </div>
         </div>
     );
-};
+}

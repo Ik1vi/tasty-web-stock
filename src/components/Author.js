@@ -19,4 +19,4 @@ export function Author(props) {
             </h2>
         </a>
     );
-};
+}

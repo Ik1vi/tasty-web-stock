@@ -16,7 +16,6 @@ export const PicItem = React.forwardRef((props, ref) => {
 
     window.addEventListener('resize', props.resizeAllGridItems);
 
-
     const openContainer = (e) => {
         if (!e.target.closest('.js-like') && !e.target.closest('.publication__author-wrapper')) {
             const newCurrentPublication = {
@@ -33,13 +32,11 @@ export const PicItem = React.forwardRef((props, ref) => {
                 'likes': totalLikes,
                 'likedByUser': likeState
             }
-
             props.setPicContainerIsVisible(true);
             props.picContainerHandler(newCurrentPublication);
             setHovered(false);
         }
     }
-
 
     return (
         <li className={props.listItemClassName + (hovered ? " pic-item-hover" : "")}
@@ -64,7 +61,7 @@ export const PicItem = React.forwardRef((props, ref) => {
                         alt={props.alt}
                         setIsLoaded={setIsLoaded}
                     />
-                    
+
                     {isLoaded ? (itIsLikedContainer ? (
                         <div className="liked-container__like-info">
                             <p
@@ -72,20 +69,20 @@ export const PicItem = React.forwardRef((props, ref) => {
                                 {totalLikes}
                             </p>
                         </div>)
-                    : (
-                        <LikeBtn
-                            className="publication__like"
-                            id={props.id}
-                            totalLikes={totalLikes}
-                            likeState={likeState}
-                            setLikeState={setLikeState}
-                            setTotalLikes={setTotalLikes}
+                        : (
+                            <LikeBtn
+                                className="publication__like"
+                                id={props.id}
+                                totalLikes={totalLikes}
+                                likeState={likeState}
+                                setLikeState={setLikeState}
+                                setTotalLikes={setTotalLikes}
 
-                            authorized={props.authorized}
-                            authorizeUser={props.authorizeUser}
-                            unsplash={props.unsplash}
-                        />
-                    )) : (null)}
+                                authorized={props.authorized}
+                                authorizeUser={props.authorizeUser}
+                                unsplash={props.unsplash}
+                            />
+                        )) : (null)}
 
                     <PublicationTime
                         className="publication__publication-time"
@@ -106,4 +103,4 @@ export const PicItem = React.forwardRef((props, ref) => {
             </article>
         </li>
     );
-});
+})
