@@ -1,6 +1,7 @@
 import React from 'react';
 
 export function ColorsMenuItem(props) {
+    
     return (
         <li className={"colors-menu__item colors-menu__item--" + props.color}>
             <button

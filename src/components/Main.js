@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useCallback } from 'react';
+import React, { useRef, useState, useEffect, useCallback} from 'react';
 
 import { toJson } from 'unsplash-js';
 
@@ -6,6 +6,8 @@ import { Header } from './Header.js';
 import { Page } from './Page.js';
 import { PictureContainer } from './PictureContainer.js';
 import { LikedContainer } from './LikedContainer.js';
+
+import { ColorContext } from '../context/index.js';
 
 import '../styles/style.scss';
 
@@ -162,64 +164,63 @@ export function Main(props) {
         return (<div>Ошибка: {error.message}</div>);
     } else {
         return (
-            <div className="body__app app">
-                <PictureContainer
-                    currentPublication={currentPublication}
+            <ColorContext.Provider value={[color, setColor]}>
+                <div className="body__app app">
+                    <PictureContainer
+                        currentPublication={currentPublication}
 
-                    picContainerIsVisible={picContainerIsVisible}
-                    bodyEl={bodyEl}
+                        picContainerIsVisible={picContainerIsVisible}
+                        bodyEl={bodyEl}
 
-                    picContainerHandler={picContainerHandler}
-                    setPicContainerIsOpen={setPicContainerIsOpen}
-                    setPicContainerIsVisible={setPicContainerIsVisible}
+                        picContainerHandler={picContainerHandler}
+                        setPicContainerIsOpen={setPicContainerIsOpen}
+                        setPicContainerIsVisible={setPicContainerIsVisible}
 
-                    unsplash={props.unsplash}
-                    authorizeUser={authorizeUser}
-                    authorized={props.authorized}
-                />
+                        unsplash={props.unsplash}
+                        authorizeUser={authorizeUser}
+                        authorized={props.authorized}
+                    />
 
-                <LikedContainer
-                    picContainerHandler={picContainerHandler}
-                    setPicContainerIsVisible={setPicContainerIsVisible}
-                    bodyEl={bodyEl}
-                    setPicContainerIsOpen={setPicContainerIsOpen}
+                    <LikedContainer
+                        picContainerHandler={picContainerHandler}
+                        setPicContainerIsVisible={setPicContainerIsVisible}
+                        bodyEl={bodyEl}
+                        setPicContainerIsOpen={setPicContainerIsOpen}
 
-                    unsplash={props.unsplash}
-                    authorizeUser={authorizeUser}
-                    authorized={props.authorized}
+                        unsplash={props.unsplash}
+                        authorizeUser={authorizeUser}
+                        authorized={props.authorized}
 
-                    likedPublications={likedPublications}
-                />
+                        likedPublications={likedPublications}
+                    />
 
-                <Header
-                    getPublications={getPublications}
-                    setColor={setColor}
-                    setPublications={setPublications}
-                    setPage={setPage}
-                    page={page}
+                    <Header
+                        setPublications={setPublications}
+                        setPage={setPage}
 
-                    bodyEl={bodyEl}
+                        bodyEl={bodyEl}
 
-                    authorizeUser={authorizeUser}
-                    authorized={props.authorized}
-                    setAuthorized={props.setAuthorized}
+                        authorizeUser={authorizeUser}
+                        authorized={props.authorized}
+                        setAuthorized={props.setAuthorized}
 
-                    currentUserName={currentUserName}
-                    getLikedPublications={getLikedPublications}
-                />
+                        currentUserName={currentUserName}
+                        getLikedPublications={getLikedPublications}
+                    />
 
-                <Page
-                    publications={publications}
-                    lastElementRef={lastElementRef}
-                    picContainerHandler={picContainerHandler}
-                    setPicContainerIsVisible={setPicContainerIsVisible}
-                    loading={loading}
+                    <Page
+                        publications={publications}
+                        lastElementRef={lastElementRef}
+                        picContainerHandler={picContainerHandler}
+                        setPicContainerIsVisible={setPicContainerIsVisible}
+                        loading={loading}
 
-                    authorized={props.authorized}
-                    authorizeUser={authorizeUser}
-                    unsplash={props.unsplash}
-                />
-            </div>
+                        authorized={props.authorized}
+                        authorizeUser={authorizeUser}
+                        unsplash={props.unsplash}
+                    />
+                </div>
+            </ColorContext.Provider>
         );
     }
 }

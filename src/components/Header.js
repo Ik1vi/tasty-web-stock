@@ -1,13 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
 import { ColorsMenu } from '../components/ColorsMenu.js';
 import { ColorsHandle } from '../components/ColorsHandleSvg.js';
+
+import { ColorContext } from '../context/index.js';
 
 export function Header(props) {
     const closeBtnAnimation = document.querySelectorAll('.close-colors');
     const openBtnAnimation = document.querySelectorAll('.open-colors');
 
     const [menuOpened, setMenuOpened] = useState(false);
+
+    const [colorContext, setColorContext] = useContext(ColorContext);
 
     const closeMenu = () => {
         setMenuOpened(false);
@@ -46,7 +50,7 @@ export function Header(props) {
     };
 
     return (
-        <header className="header js-header">
+        <header className={"header js-header" + (colorContext ? " colors-menu-" + colorContext : "") }>
             <h1 className="visually-hidden">Красивые картинки на тему программирования</h1>
 
             <div className="header__bar-container">
@@ -63,7 +67,7 @@ export function Header(props) {
                             <div
                                 className="header__colors-handle colors-handle js-colors-handle">
 
-                                <ColorsHandle></ColorsHandle>
+                                <ColorsHandle/>
 
                                 <button
                                     id="startButton"
@@ -128,11 +132,8 @@ export function Header(props) {
             </div>
 
             <ColorsMenu
-                getPublications={props.getPublications}
-                setColor={props.setColor}
                 setPublications={props.setPublications}
                 setPage={props.setPage}
-                page={props.page}
             />
         </header>
     );
