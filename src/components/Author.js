@@ -10,7 +10,8 @@ export function Author(props) {
             <div className="author__img-wrapper">
                 <img
                     className="author__img"
-                    src={props.authorImg}>
+                    src={props.authorImg}
+                    alt={'Go to ' + props.authorName + '\'s profile' }>
                 </img>
             </div>
 

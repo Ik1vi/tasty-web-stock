@@ -10,7 +10,7 @@ export function Header(props) {
     const [menuOpened, setMenuOpened] = useState(false);
 
     const closeMenu = () => {
-        setMenuOpened(true);
+        setMenuOpened(false);
 
         props.bodyEl.classList.remove('colors-menu-open');
 
@@ -20,7 +20,7 @@ export function Header(props) {
     }
 
     const openMenu = () => {
-        setMenuOpened(false);
+        setMenuOpened(true);
 
         props.bodyEl.classList.add('colors-menu-open');
 
