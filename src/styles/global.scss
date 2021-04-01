@@ -13,10 +13,12 @@ body {
 	margin: 0; /* убирает внешние отступы */
 
 	background-color: $background-color; /* задает цвет фона */
+	
 	font-family: "Roboto", "Helvetica", "Arial", sans-serif; /* задает семейство шрифта */
 	font-size: 14px; /* задает размер шрифта */
 	line-height: 1.5;/* задает межстрочное расстояние */
 	color: $text-primary-color; /* задает цвет шрифта */
+
 	transition: color, background-color 0.8s;
 }
 

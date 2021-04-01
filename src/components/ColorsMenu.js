@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 
 import { ColorsMenuItem } from '../components/ColorsMenuItem.js';
 import { ColorContext } from '../context/index.js';
@@ -14,24 +14,10 @@ export function ColorsMenu(props) {
         props.setPublications([]);
         props.setPage(1);
 
-        (colorContext === color 
-        ? setColorContext(null)
-        : setColorContext(color))
-
-        // const headerEl = document.querySelector('.js-header');
-        // let colorClass = "colors-menu-" + color;
-
-        // if (headerEl.classList.contains(colorClass)) {
-        //     headerEl.classList.remove(colorClass);
-        //     setContext(null);
-        // } else {
-        //     for (let i = 0; i < colors.length; i++) {
-        //         let headerColorClass = "colors-menu-" + colors[i];
-        //         headerEl.classList.remove(headerColorClass);
-        //         setContext(color);
-        //     }
-        //     headerEl.classList.add(colorClass);
-        // }
+        (colorContext === color
+            ? setColorContext(null)
+            : setColorContext(color)
+        )
     };
 
     return (

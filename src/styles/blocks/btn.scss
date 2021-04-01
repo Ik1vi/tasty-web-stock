@@ -12,8 +12,8 @@
         background-size: 18px;
     }
     
-    &--color-scheme {
-        @include background-image(url(../img/color-scheme.svg), center);
+    &--color-theme {
+        @include background-image(url(../img/color-theme.svg), center);
 
         &:hover {
             box-shadow: 0 0 0px 10px $primary-color-transparent;

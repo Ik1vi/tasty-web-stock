@@ -1,5 +1,7 @@
 .liked-container-open {
 
+    transition: all 0.3s;
+
     .liked-container {
         visibility: visible;
         opacity: 1;

@@ -205,6 +205,7 @@
         }
 
         &--unsplash {
+            position: absolute;
             z-index: 1;
 
             @include background-image(url(../img/unsplash_logo.svg), -7% 3.5px);

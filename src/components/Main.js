@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect, useCallback} from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 
 import { toJson } from 'unsplash-js';
 
@@ -7,7 +7,7 @@ import { Page } from './Page.js';
 import { PictureContainer } from './PictureContainer.js';
 import { LikedContainer } from './LikedContainer.js';
 
-import { ColorContext } from '../context/index.js';
+import { ColorContext, } from '../context/index.js';
 
 import '../styles/style.scss';
 
@@ -21,10 +21,15 @@ export function Main(props) {
 
     const [totalPages, setTotalPages] = useState(0);
     const [page, setPage] = useState(1);
+
     const [color, setColor] = useState(null);
+
+    const [menuOpened, setMenuOpened] = useState(false);
 
     const [picContainerIsOpen, setPicContainerIsOpen] = useState(false);
     const [picContainerIsVisible, setPicContainerIsVisible] = useState(false);
+
+    const [likedContainerIsOpen, setLikedContainerIsOpen] = useState(false);
 
     const [currentPublication, setCurrentPublication] = useState(
         {
@@ -44,7 +49,6 @@ export function Main(props) {
     )
 
     const observer = useRef()
-    const bodyEl = document.querySelector('.js-body');
 
     const picContainerHandler = (newCurrentPublication) => {
         if (!picContainerIsOpen) {
@@ -53,11 +57,11 @@ export function Main(props) {
             setPicContainerIsVisible(true);
             setPicContainerIsOpen(true);
 
-            bodyEl.classList.add('picture-container-open', 'js-fixed');
-            bodyEl.classList.remove('liked-container-open');
+            document.body.classList.add('js-fixed');
+            setLikedContainerIsOpen(false);
 
         } else {
-            bodyEl.classList.remove('picture-container-open', 'js-fixed');
+            document.body.classList.remove('js-fixed');
             setPicContainerIsOpen(false);
             setPicContainerIsVisible(false);
         }
@@ -65,7 +69,9 @@ export function Main(props) {
 
     document.addEventListener('mousedown', function (e) {
         if (!e.target.closest('.js-picture-container-wrapper') && !e.target.closest('.js-liked-wrapper')) {
-            bodyEl.classList.remove('liked-container-open', 'picture-container-open', 'js-fixed');
+            document.body.classList.remove('js-fixed');
+
+            setLikedContainerIsOpen(false);
             setPicContainerIsVisible(false);
             setPicContainerIsOpen(false);
         }
@@ -77,7 +83,6 @@ export function Main(props) {
         props.setAuthorized(false);
 
         if (!props.authorized) {
-            console.log('авторизовываемся')
             const authenticationUrl = props.unsplash.auth.getAuthenticationUrl([
                 "public",
                 "write_likes"
@@ -91,7 +96,6 @@ export function Main(props) {
             .then(toJson)
             .then(json => {
                 setCurrentUserName(json.username);
-                console.log(json.username)
             });
     }
 
@@ -165,16 +169,20 @@ export function Main(props) {
     } else {
         return (
             <ColorContext.Provider value={[color, setColor]}>
-                <div className="body__app app">
+                <div className={'body__app app'
+                    + (menuOpened ? ' colors-menu-open' : '')
+                    + (likedContainerIsOpen ? ' liked-container-open' : '')
+                    + (picContainerIsOpen ? ' picture-container-open' : '')}>
                     <PictureContainer
                         currentPublication={currentPublication}
 
-                        picContainerIsVisible={picContainerIsVisible}
-                        bodyEl={bodyEl}
-
                         picContainerHandler={picContainerHandler}
+
+                        picContainerIsVisible={picContainerIsVisible}
                         setPicContainerIsOpen={setPicContainerIsOpen}
                         setPicContainerIsVisible={setPicContainerIsVisible}
+
+                        setLikedContainerIsOpen={setLikedContainerIsOpen}
 
                         unsplash={props.unsplash}
                         authorizeUser={authorizeUser}
@@ -183,22 +191,27 @@ export function Main(props) {
 
                     <LikedContainer
                         picContainerHandler={picContainerHandler}
+
                         setPicContainerIsVisible={setPicContainerIsVisible}
-                        bodyEl={bodyEl}
                         setPicContainerIsOpen={setPicContainerIsOpen}
+
+                        setLikedContainerIsOpen={setLikedContainerIsOpen}
+                        likedPublications={likedPublications}
 
                         unsplash={props.unsplash}
                         authorizeUser={authorizeUser}
                         authorized={props.authorized}
-
-                        likedPublications={likedPublications}
                     />
 
                     <Header
                         setPublications={setPublications}
                         setPage={setPage}
 
-                        bodyEl={bodyEl}
+                        menuOpened={menuOpened}
+                        setMenuOpened={setMenuOpened}
+
+                        likedContainerIsOpen={likedContainerIsOpen}
+                        setLikedContainerIsOpen={setLikedContainerIsOpen}
 
                         authorizeUser={authorizeUser}
                         authorized={props.authorized}

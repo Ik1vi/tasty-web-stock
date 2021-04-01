@@ -10,7 +10,7 @@ export function LikeBtn(props) {
             if (props.likeState) {
                 props.unsplash.photos.unlikePhoto(props.id)
                     .then(toJson)
-                    .then(json => {
+                    .then( () => {
                         props.setLikeState(false);
                         props.setTotalLikes(props.totalLikes - 1);
                     });
@@ -18,7 +18,7 @@ export function LikeBtn(props) {
             } else {
                 props.unsplash.photos.likePhoto(props.id)
                     .then(toJson)
-                    .then(json => {
+                    .then( () => {
                         props.setLikeState(true);
                         props.setTotalLikes(props.totalLikes + 1);
                     });

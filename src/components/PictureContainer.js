@@ -12,9 +12,10 @@ export function PictureContainer(props) {
         <div className="picture-container js-picture-container" >
             <CloseBtn
                 className="picture-container__btn-close"
-                bodyEl={props.bodyEl}
+                
                 setPicContainerIsOpen={props.setPicContainerIsOpen}
                 setPicContainerIsVisible={props.setPicContainerIsVisible}
+                setLikedContainerIsOpen={props.setLikedContainerIsOpen}
             />
 
             <div className="picture-container__wrapper js-picture-container-wrapper">

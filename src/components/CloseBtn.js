@@ -7,7 +7,9 @@ export function CloseBtn(props) {
             type="button"
             aria-label="Закрыть форму"
             onClick={() => {
-                props.bodyEl.classList.remove('picture-container-open', 'liked-container-open', 'js-fixed');
+                document.body.classList.remove('js-fixed');
+                
+                props.setLikedContainerIsOpen(false);
                 props.setPicContainerIsOpen(false);
                 props.setPicContainerIsVisible(false)
             }}>

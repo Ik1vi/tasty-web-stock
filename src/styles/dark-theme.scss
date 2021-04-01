@@ -1,4 +1,4 @@
-.dark-scheme {
+.dark-theme {
     background-color: $dark-shades;
     color: $WHITE;
 
@@ -11,8 +11,8 @@
     }
 
     .btn {
-        &--color-scheme {
-            background-image: url(../img/color-scheme-dark.svg);
+        &--color-theme {
+            background-image: url(../img/color-theme-dark.svg);
             transform: rotate(360deg);
         }
     }

@@ -1,4 +1,8 @@
 .btn-close {
+    position: absolute;
+    left: 40px;
+    top:40px;
+
     @include button-reset();
 
     height: 20px;
@@ -8,9 +12,15 @@
     border-radius: 50%;
 
     opacity: 0;
-    transform: translateY(-40px);
+    transform: translateY(-60px);
 
     transition: transform 0.7s, opacity 0.3s, box-shadow 0.3s, background-color 0.3s;
+
+    @media (max-width: 768px) {
+        z-index: 1000;
+        left: 15px;
+        top: 15px;
+    } 
 
     &:hover {
         box-shadow: 0 0 0px 10px $primary-color-transparent;

@@ -8,9 +8,10 @@ export function LikedContainer(props) {
         <div className="liked-container js-liked-container">
             <CloseBtn
                 className="liked-container__btn-close"
-                bodyEl={props.bodyEl}
+                
                 setPicContainerIsOpen={props.setPicContainerIsOpen}
                 setPicContainerIsVisible={props.setPicContainerIsVisible}
+                setLikedContainerIsOpen={props.setLikedContainerIsOpen}
             />
 
             <div className="liked-container__wrapper js-liked-wrapper">

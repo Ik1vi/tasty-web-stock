@@ -1,22 +1,18 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 
 import { ColorsMenu } from '../components/ColorsMenu.js';
 import { ColorsHandle } from '../components/ColorsHandleSvg.js';
 
-import { ColorContext } from '../context/index.js';
+import { ColorContext} from '../context/index.js';
 
 export function Header(props) {
     const closeBtnAnimation = document.querySelectorAll('.close-colors');
     const openBtnAnimation = document.querySelectorAll('.open-colors');
 
-    const [menuOpened, setMenuOpened] = useState(false);
-
     const [colorContext, setColorContext] = useContext(ColorContext);
 
     const closeMenu = () => {
-        setMenuOpened(false);
-
-        props.bodyEl.classList.remove('colors-menu-open');
+        props.setMenuOpened(false);
 
         for (let i = 0; i < openBtnAnimation.length; i++) {
             openBtnAnimation[i].beginElement();
@@ -24,9 +20,7 @@ export function Header(props) {
     }
 
     const openMenu = () => {
-        setMenuOpened(true);
-
-        props.bodyEl.classList.add('colors-menu-open');
+        props.setMenuOpened(true);
 
         for (let i = 0; i < closeBtnAnimation.length; i++) {
             closeBtnAnimation[i].beginElement();
@@ -36,21 +30,17 @@ export function Header(props) {
     const toggleMenu = (ev) => {
         ev.preventDefault();
 
-        if (menuOpened) {
+        if (props.menuOpened) {
             closeMenu();
         } else {
             openMenu();
         }
     }
 
-    const changeColorScheme = ev => {
-        ev.preventDefault();
-
-        props.bodyEl.classList.toggle('dark-scheme');
-    };
-
     return (
-        <header className={"header js-header" + (colorContext ? " colors-menu-" + colorContext : "") }>
+        <header className={"header js-header" 
+        + (colorContext ? " colors-menu-" + colorContext : "")
+        }>
             <h1 className="visually-hidden">Красивые картинки на тему программирования</h1>
 
             <div className="header__bar-container">
@@ -72,7 +62,7 @@ export function Header(props) {
                                 <button
                                     id="startButton"
                                     className="colors-handle__btn"
-                                    aria-label={(menuOpened ? "Закрыть цветовое меню" : "Открыть цветовое меню")}
+                                    aria-label={(props.menuOpened ? "Закрыть цветовое меню" : "Открыть цветовое меню")}
                                     type="button"
                                     onClick={toggleMenu}>
                                 </button>
@@ -106,10 +96,10 @@ export function Header(props) {
 
                                 <li className="header__btn-item">
                                     <button
-                                        className="header__btn btn btn--color-scheme js-btn-color-scheme"
+                                        className="header__btn btn btn--color-theme js-btn-color-theme"
                                         aria-label="Сменить цветовой режим"
                                         type="button"
-                                        onClick={changeColorScheme}>
+                                        onClick={() => document.body.classList.toggle('dark-theme')}>
                                     </button>
                                 </li>
 
@@ -120,7 +110,8 @@ export function Header(props) {
                                         type="button"
                                         onClick={() => {
                                             props.getLikedPublications();
-                                            props.bodyEl.classList.add('liked-container-open', 'js-fixed');
+                                            props.setLikedContainerIsOpen(true);
+                                            document.body.classList.add('js-fixed');
                                         }
                                         }>
                                     </button>
