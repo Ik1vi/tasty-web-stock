@@ -9,7 +9,7 @@ import { LikedContainer } from './LikedContainer.js';
 
 import { ColorContext, } from '../context/index.js';
 
-import '../styles/style.scss';
+import '../../styles/style.scss';
 
 export function Main(props) {
     const [error, setError] = useState(null);
