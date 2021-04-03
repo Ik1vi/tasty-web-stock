@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
+import { connect } from 'react-redux';
+import { clearPublications } from '../actions/publications.js';
 
 import { ColorsMenuItem } from '../components/ColorsMenuItem.js';
 import { ColorContext } from '../context/index.js';
 
-export function ColorsMenu(props) {
+const ConnectedColorsMenu = (props) => {
     const colors = ["white", "black", "yellow", "orange", "red", "purple", "magenta", "green", "teal", "blue"];
 
     const [colorContext, setColorContext] = useContext(ColorContext);
@@ -11,7 +13,7 @@ export function ColorsMenu(props) {
     const selectColor = (color, e) => {
         e.preventDefault();
 
-        props.setPublications([]);
+        props.clearPublications();
         props.setPage(1);
 
         (colorContext === color
@@ -45,3 +47,12 @@ export function ColorsMenu(props) {
         </div>
     );
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        clearPublications: () => dispatch(clearPublications())
+    }
+}
+
+export const ColorsMenu = connect(null, mapDispatchToProps)(ConnectedColorsMenu);
+

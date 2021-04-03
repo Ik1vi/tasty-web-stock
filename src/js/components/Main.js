@@ -10,16 +10,13 @@ import { LikedContainer } from './LikedContainer.js';
 import { ColorContext, } from '../context/index.js';
 
 import '../../styles/style.scss';
+import { connect } from 'react-redux';
+import { getPublications } from '../actions/publications.js';
 
-export function Main(props) {
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
-
-    const [publications, setPublications] = useState([]);
+const ConnectedMain = (props) => {
     const [likedPublications, setLikedPublications] = useState([]);
     const [currentUserName, setCurrentUserName] = useState('');
 
-    const [totalPages, setTotalPages] = useState(0);
     const [page, setPage] = useState(1);
 
     const [color, setColor] = useState(null);
@@ -100,7 +97,7 @@ export function Main(props) {
     }
 
     useEffect(() => {
-        getPublications(page, color);
+        props.getPublications(page, color);
 
         if (props.authorized && !currentUserName) {
             getCurrentUser();
@@ -108,18 +105,18 @@ export function Main(props) {
     }, [page, color])
 
     const lastElementRef = useCallback((element) => {
-        if (loading) return;
+        if (props.isLoading) return;
         if (observer.current) observer.current.disconnect();
 
         observer.current = new IntersectionObserver(entries => {
-            if (entries[0].isIntersecting && page <= totalPages) {
+            if (entries[0].isIntersecting && page <= props.totalPages) {
 
                 setPage(page => page + 1)
             }
         })
 
         if (element) observer.current.observe(element);
-    }, [loading, page, color]);
+    }, [props.isLoading, page, color]);
 
     const getLikedPublications = () => {
         if (currentUserName) {
@@ -138,34 +135,8 @@ export function Main(props) {
         }
     }
 
-    const getPublications = (page, color) => {
-        setLoading(true);
-
-        let params = {
-            query: 'programming electronic tech javascript laptop html',
-            per_page: 10,
-            page: page
-        }
-
-        props.unsplash.search.photos(params.query, params.page, params.per_page, color ? { color: color } : {})
-            .then(toJson)
-            .then(res => {
-                if (res.errors) {
-                    setError(res.errors[0]);
-                    setLoading(false);
-                } else {
-                    const feed = res;
-                    const { total, results } = feed;
-
-                    setPublications([...publications, ...results]);
-                    setTotalPages(total)
-                    setLoading(false);
-                }
-            });
-    }
-
-    if (error) {
-        return (<div>Ошибка: {error.message}</div>);
+    if (props.error) {
+        return (<div>Ошибка: {props.error.message}</div>);
     } else {
         return (
             <ColorContext.Provider value={[color, setColor]}>
@@ -204,7 +175,6 @@ export function Main(props) {
                     />
 
                     <Header
-                        setPublications={setPublications}
                         setPage={setPage}
 
                         menuOpened={menuOpened}
@@ -222,11 +192,11 @@ export function Main(props) {
                     />
 
                     <Page
-                        publications={publications}
+                        publications={props.publications}
                         lastElementRef={lastElementRef}
                         picContainerHandler={picContainerHandler}
                         setPicContainerIsVisible={setPicContainerIsVisible}
-                        loading={loading}
+                        loading={props.isLoading}
 
                         authorized={props.authorized}
                         authorizeUser={authorizeUser}
@@ -237,3 +207,20 @@ export function Main(props) {
         );
     }
 }
+
+const mapStateToProps = state => {
+    return {
+        publications: state.publicationsReducer.publications,
+        totalPages: state.publicationsReducer.totalPages,
+        isLoading: state.publicationsReducer.isLoading,
+        error: state.publicationsReducer.error,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getPublications: (page, color) => dispatch(getPublications(page, color))
+    }
+}
+
+export const Main = connect(mapStateToProps, mapDispatchToProps)(ConnectedMain);

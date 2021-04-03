@@ -123,7 +123,6 @@ export function Header(props) {
             </div>
 
             <ColorsMenu
-                setPublications={props.setPublications}
                 setPage={props.setPage}
             />
         </header>
