@@ -8,6 +8,7 @@ import { ColorsHandle } from '../components/ColorsHandleSvg.js';
 import { ColorContext } from '../context/index.js';
 
 import { clearLikedPublications, getLikedPublications } from '../actions/likedPublications.js';
+import { clearCurrentUser } from '../actions/currentUser.js';
 
 const ConnectedHeader = (props) => {
     const closeBtnAnimation = document.querySelectorAll('.close-colors');
@@ -80,7 +81,7 @@ const ConnectedHeader = (props) => {
                                         className="header__btn btn btn--personal"
                                         aria-label="Перейти к вашему профилю на сайте unsplash.com"
                                         title="Перейти к вашему профилю"
-                                        href={"https://unsplash.com/" + props.currentUserName}
+                                        href={"https://unsplash.com/" + props.currentUser}
                                         target="_blank"
                                     >
                                     </a>
@@ -94,6 +95,7 @@ const ConnectedHeader = (props) => {
                                         title={(props.authorized ? "Сменить профиль" : "Авторизоваться")}
                                         onClick={() => {
                                             closeMenu();
+                                            props.clearCurrentUser();
                                             props.clearLikedPublications();
                                             props.authorizeUser();
                                         }
@@ -116,7 +118,7 @@ const ConnectedHeader = (props) => {
                                         aria-label="Перейти к отмеченным публикациям"
                                         type="button"
                                         onClick={() => {
-                                            props.getLikedPublications(props.currentUserName);
+                                            props.getLikedPublications(props.currentUser);
                                             props.setLikedContainerIsOpen(true);
                                             document.body.classList.add('js-fixed');
                                         }
@@ -141,13 +143,16 @@ const mapStateToProps = state => {
         likedPublications: state.likedPublicationsReducer.likedPublications,
         isLoading: state.likedPublicationsReducer.isLoading,
         error: state.likedPublicationsReducer.error,
+
+        currentUser: state.currentUserReducer.currentUser,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        getLikedPublications: (currentUserName) => dispatch(getLikedPublications(currentUserName)),
-        clearLikedPublications: () => dispatch(clearLikedPublications())
+        getLikedPublications: (currentUser) => dispatch(getLikedPublications(currentUser)),
+        clearLikedPublications: () => dispatch(clearLikedPublications()),
+        clearCurrentUser: () => dispatch(clearCurrentUser())
     }
 }
 

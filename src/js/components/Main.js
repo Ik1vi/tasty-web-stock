@@ -15,10 +15,9 @@ import { PictureContainer } from './PictureContainer.js';
 import { LikedContainer } from './LikedContainer.js';
 
 import { getPublications } from '../actions/publications.js';
+import { getCurrentUser } from '../actions/currentUser.js';
 
 const ConnectedMain = (props) => {
-    const [currentUserName, setCurrentUserName] = useState('');
-
     const [page, setPage] = useState(1);
 
     const [color, setColor] = useState(null);
@@ -90,19 +89,11 @@ const ConnectedMain = (props) => {
         }
     }
 
-    const getCurrentUser = () => {
-        unsplash.currentUser.profile()
-            .then(toJson)
-            .then(json => {
-                setCurrentUserName(json.username);
-            });
-    }
-
     useEffect(() => {
         props.getPublications(page, color);
 
-        if (props.authorized && !currentUserName) {
-            getCurrentUser();
+        if (props.authorized && !props.currentUser) {
+            props.getCurrentUser();
         }
     }, [page, color])
 
@@ -168,8 +159,6 @@ const ConnectedMain = (props) => {
                         authorizeUser={authorizeUser}
                         authorized={props.authorized}
                         setAuthorized={props.setAuthorized}
-
-                        currentUserName={currentUserName}
                     />
 
                     <Page
@@ -194,12 +183,15 @@ const mapStateToProps = state => {
         totalPages: state.publicationsReducer.totalPages,
         isLoading: state.publicationsReducer.isLoading,
         error: state.publicationsReducer.error,
+
+        currentUser: state.currentUserReducer.currentUser,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        getPublications: (page, color) => dispatch(getPublications(page, color))
+        getPublications: (page, color) => dispatch(getPublications(page, color)),
+        getCurrentUser: () => dispatch(getCurrentUser())
     }
 }
 

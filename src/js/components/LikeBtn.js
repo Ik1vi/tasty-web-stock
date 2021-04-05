@@ -22,6 +22,7 @@ export function LikeBtn(props) {
                     .then( () => {
                         props.setLikeState(true);
                         props.setTotalLikes(props.totalLikes + 1);
+                        dispatch({type: "LIKE_EVENT", pubId: props.id})
                     });
             }
         }

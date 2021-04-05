@@ -14,14 +14,12 @@ export function App() {
         <Switch>
             <Route exact path="/" component={() =>
                 <Main
-                    unsplash={unsplash}
                     authorized={authorized}
                     setAuthorized={setAuthorized}
                 />
             } />
             <Route exact path="/auth" component={() =>
                 <Auth
-                    unsplash={unsplash}
                 />
             } />
             <Route component={Error} />

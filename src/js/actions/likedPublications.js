@@ -3,14 +3,13 @@ import { CLEAR_LIKED_PUBLICATIONS, ERROR, IS_LOADING, LIKED_PUBLICATIONS_REQUEST
 import unsplash from '../api/index.js';
 import { toJson } from 'unsplash-js';
 
-export const getLikedPublications = (currentUserName) => {
+export const getLikedPublications = (currentUser) => {
     return function (dispatch) {
-        if (currentUserName) {
+        if (currentUser) {
             dispatch(setLoading(true))
-            unsplash.users.likes(currentUserName)
+            unsplash.users.likes(currentUser)
                 .then(toJson)
                 .then(res => {
-                    console.log(res);
                     if (res.errors) {
                         dispatch({ type: ERROR, value: res.errors[0] });
                         dispatch(setLoading(false))

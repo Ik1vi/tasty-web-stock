@@ -1,12 +1,14 @@
 import React, { useEffect } from 'react';
 
+import unsplash from '../api/index.js';
+
 export function Auth(props) {
 
     useEffect(() => {
         const code = location.search.split('code=')[1];
 
         if (code) {
-            props.unsplash.auth.userAuthentication(code)
+            unsplash.auth.userAuthentication(code)
                 .then(res =>
                     res.json())
                 .then(json => {
