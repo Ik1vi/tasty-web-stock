@@ -80,7 +80,6 @@ export const PicItem = React.forwardRef((props, ref) => {
 
                                 authorized={props.authorized}
                                 authorizeUser={props.authorizeUser}
-                                unsplash={props.unsplash}
                             />
                         )) : (null)}
 

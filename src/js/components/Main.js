@@ -1,20 +1,22 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 
+import unsplash from '../api/index.js';
 import { toJson } from 'unsplash-js';
+
+import { connect } from 'react-redux';
+
+import '../../styles/style.scss';
+
+import { ColorContext, } from '../context/index.js';
 
 import { Header } from './Header.js';
 import { Page } from './Page.js';
 import { PictureContainer } from './PictureContainer.js';
 import { LikedContainer } from './LikedContainer.js';
 
-import { ColorContext, } from '../context/index.js';
-
-import '../../styles/style.scss';
-import { connect } from 'react-redux';
 import { getPublications } from '../actions/publications.js';
 
 const ConnectedMain = (props) => {
-    const [likedPublications, setLikedPublications] = useState([]);
     const [currentUserName, setCurrentUserName] = useState('');
 
     const [page, setPage] = useState(1);
@@ -80,7 +82,7 @@ const ConnectedMain = (props) => {
         props.setAuthorized(false);
 
         if (!props.authorized) {
-            const authenticationUrl = props.unsplash.auth.getAuthenticationUrl([
+            const authenticationUrl = unsplash.auth.getAuthenticationUrl([
                 "public",
                 "write_likes"
             ]);
@@ -89,7 +91,7 @@ const ConnectedMain = (props) => {
     }
 
     const getCurrentUser = () => {
-        props.unsplash.currentUser.profile()
+        unsplash.currentUser.profile()
             .then(toJson)
             .then(json => {
                 setCurrentUserName(json.username);
@@ -118,23 +120,6 @@ const ConnectedMain = (props) => {
         if (element) observer.current.observe(element);
     }, [props.isLoading, page, color]);
 
-    const getLikedPublications = () => {
-        if (currentUserName) {
-            setLoading(true);
-            props.unsplash.users.likes(currentUserName)
-                .then(toJson)
-                .then(res => {
-                    if (res.errors) {
-                        setError(res.errors[0]);
-                        setLoading(false);
-                    } else {
-                        setLikedPublications(res);
-                        setLoading(false);
-                    }
-                })
-        }
-    }
-
     if (props.error) {
         return (<div>Ошибка: {props.error.message}</div>);
     } else {
@@ -155,7 +140,6 @@ const ConnectedMain = (props) => {
 
                         setLikedContainerIsOpen={setLikedContainerIsOpen}
 
-                        unsplash={props.unsplash}
                         authorizeUser={authorizeUser}
                         authorized={props.authorized}
                     />
@@ -167,9 +151,7 @@ const ConnectedMain = (props) => {
                         setPicContainerIsOpen={setPicContainerIsOpen}
 
                         setLikedContainerIsOpen={setLikedContainerIsOpen}
-                        likedPublications={likedPublications}
 
-                        unsplash={props.unsplash}
                         authorizeUser={authorizeUser}
                         authorized={props.authorized}
                     />
@@ -188,7 +170,6 @@ const ConnectedMain = (props) => {
                         setAuthorized={props.setAuthorized}
 
                         currentUserName={currentUserName}
-                        getLikedPublications={getLikedPublications}
                     />
 
                     <Page
@@ -200,7 +181,6 @@ const ConnectedMain = (props) => {
 
                         authorized={props.authorized}
                         authorizeUser={authorizeUser}
-                        unsplash={props.unsplash}
                     />
                 </div>
             </ColorContext.Provider>

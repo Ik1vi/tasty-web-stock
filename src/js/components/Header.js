@@ -1,11 +1,15 @@
 import React, { useContext } from 'react';
 
+import { connect } from 'react-redux';
+
 import { ColorsMenu } from '../components/ColorsMenu.js';
 import { ColorsHandle } from '../components/ColorsHandleSvg.js';
 
-import { ColorContext} from '../context/index.js';
+import { ColorContext } from '../context/index.js';
 
-export function Header(props) {
+import { clearLikedPublications, getLikedPublications } from '../actions/likedPublications.js';
+
+const ConnectedHeader = (props) => {
     const closeBtnAnimation = document.querySelectorAll('.close-colors');
     const openBtnAnimation = document.querySelectorAll('.open-colors');
 
@@ -14,8 +18,10 @@ export function Header(props) {
     const closeMenu = () => {
         props.setMenuOpened(false);
 
-        for (let i = 0; i < openBtnAnimation.length; i++) {
-            openBtnAnimation[i].beginElement();
+        if (props.menuOpened) {
+            for (let i = 0; i < openBtnAnimation.length; i++) {
+                openBtnAnimation[i].beginElement();
+            }
         }
     }
 
@@ -38,8 +44,8 @@ export function Header(props) {
     }
 
     return (
-        <header className={"header js-header" 
-        + (colorContext ? " colors-menu-" + colorContext : "")
+        <header className={"header js-header"
+            + (colorContext ? " colors-menu-" + colorContext : "")
         }>
             <h1 className="visually-hidden">Красивые картинки на тему программирования</h1>
 
@@ -57,7 +63,7 @@ export function Header(props) {
                             <div
                                 className="header__colors-handle colors-handle js-colors-handle">
 
-                                <ColorsHandle/>
+                                <ColorsHandle />
 
                                 <button
                                     id="startButton"
@@ -88,6 +94,7 @@ export function Header(props) {
                                         title={(props.authorized ? "Сменить профиль" : "Авторизоваться")}
                                         onClick={() => {
                                             closeMenu();
+                                            props.clearLikedPublications();
                                             props.authorizeUser();
                                         }
                                         }>
@@ -109,7 +116,7 @@ export function Header(props) {
                                         aria-label="Перейти к отмеченным публикациям"
                                         type="button"
                                         onClick={() => {
-                                            props.getLikedPublications();
+                                            props.getLikedPublications(props.currentUserName);
                                             props.setLikedContainerIsOpen(true);
                                             document.body.classList.add('js-fixed');
                                         }
@@ -128,3 +135,20 @@ export function Header(props) {
         </header>
     );
 }
+
+const mapStateToProps = state => {
+    return {
+        likedPublications: state.likedPublicationsReducer.likedPublications,
+        isLoading: state.likedPublicationsReducer.isLoading,
+        error: state.likedPublicationsReducer.error,
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        getLikedPublications: (currentUserName) => dispatch(getLikedPublications(currentUserName)),
+        clearLikedPublications: () => dispatch(clearLikedPublications())
+    }
+}
+
+export const Header = connect(mapStateToProps, mapDispatchToProps)(ConnectedHeader);

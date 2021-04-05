@@ -1,5 +1,6 @@
 import React from 'react';
 
+import unsplash from '../api/index.js';
 import { toJson } from 'unsplash-js';
 
 export function LikeBtn(props) {
@@ -8,7 +9,7 @@ export function LikeBtn(props) {
             props.authorizeUser();
         } else {
             if (props.likeState) {
-                props.unsplash.photos.unlikePhoto(props.id)
+                unsplash.photos.unlikePhoto(props.id)
                     .then(toJson)
                     .then( () => {
                         props.setLikeState(false);
@@ -16,7 +17,7 @@ export function LikeBtn(props) {
                     });
 
             } else {
-                props.unsplash.photos.likePhoto(props.id)
+                unsplash.photos.likePhoto(props.id)
                     .then(toJson)
                     .then( () => {
                         props.setLikeState(true);

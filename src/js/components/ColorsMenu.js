@@ -55,4 +55,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export const ColorsMenu = connect(null, mapDispatchToProps)(ConnectedColorsMenu);
-

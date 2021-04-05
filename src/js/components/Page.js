@@ -53,8 +53,6 @@ export function Page(props) {
                             authorized={props.authorized}
                             authorizeUser={props.authorizeUser}
 
-                            unsplash={props.unsplash}
-
                             resizeAllGridItems={resizeAllGridItems}
                             picContainerHandler={props.picContainerHandler}
 

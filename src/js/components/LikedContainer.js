@@ -1,9 +1,11 @@
 import React from 'react';
 
+import { connect } from 'react-redux';
+
 import { PicItem } from '../components/PicItem.js';
 import { CloseBtn } from '../components/CloseBtn.js'
 
-export function LikedContainer(props) {
+const connectedLikedContainer = (props) => {
     return (
         <div className="liked-container js-liked-container">
             <CloseBtn
@@ -47,8 +49,6 @@ export function LikedContainer(props) {
                             authorized={props.authorized}
                             authorizeUser={props.authorizeUser}
 
-                            unsplash={props.unsplash}
-
                             checkLikedContainer={true}
 
                             ref={null}
@@ -60,3 +60,12 @@ export function LikedContainer(props) {
         </div>
     );
 }
+
+const mapStateToProps = state => {
+    return {
+        likedPublications: state.likedPublicationsReducer.likedPublications,
+    }
+}
+
+export const LikedContainer = connect(mapStateToProps)(connectedLikedContainer);
+
