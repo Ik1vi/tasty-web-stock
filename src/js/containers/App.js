@@ -1,5 +1,5 @@
-import React, { Component, useState } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Route, Switch } from 'react-router-dom';
 
 import { Main } from '../components/Main.js';
 import { Auth } from '../components/Auth.js';
