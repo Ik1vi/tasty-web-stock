@@ -28,23 +28,6 @@ const ConnectedMain = (props) => {
     const [picContainerIsVisible, setPicContainerIsVisible] = useState(false);
     const [likedContainerIsOpen, setLikedContainerIsOpen] = useState(false);
 
-    // const [currentPublication, setCurrentPublication] = useState(
-    //     {
-    //         'id': '',
-    //         'authorName': '',
-    //         'authorImg': '',
-    //         'authorHref': '',
-    //         'time': '',
-    //         'fullImg': '',
-    //         'src': '',
-    //         'placeholder': '',
-    //         'imgHref': '',
-    //         'alt': '',
-    //         'likes': '',
-    //         'likedByUser': false
-    //     }
-    // )
-
     const observer = useRef()
 
     const picContainerHandler = (newCurrentPublication) => {
@@ -120,7 +103,6 @@ const ConnectedMain = (props) => {
                     + (likedContainerIsOpen ? ' liked-container-open' : '')
                     + (picContainerIsOpen ? ' picture-container-open' : '')}>
                     <PictureContainer
-                        // currentPublication={currentPublication}
 
                         picContainerHandler={picContainerHandler}
 
