@@ -23,6 +23,7 @@ const connectedLikedContainer = (props) => {
                     {props.likedPublications.map((p) => {
                         return <PicItem
                             key={p.id}
+                            id={p.id}
 
                             src={p.urls.regular}
                             fullImg={p.urls.full}
