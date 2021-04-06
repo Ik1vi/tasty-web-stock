@@ -8,7 +8,6 @@ export const getCurrentUser = () => {
         unsplash.currentUser.profile()
         .then(toJson)
         .then(json => {
-            console.log(json.username);
             dispatch({ type: CURRENT_USER_REQUESTED, currentUser: json.username })
         });
     }

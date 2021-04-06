@@ -1,4 +1,4 @@
-import { ERROR, IS_LOADING, PUBLICATIONS_REQUESTED, CLEAR_PUBLICATIONS } from "../constants/action-types";
+import { ERROR, IS_LOADING, PUBLICATIONS_REQUESTED, CLEAR_PUBLICATIONS, DISLIKE, LIKE } from "../constants/action-types";
 
 const initialState = {
     publications: [],
@@ -23,7 +23,25 @@ function publicationsReducer(state = initialState, action) {
             return { ...state, error: action.value }
 
         case CLEAR_PUBLICATIONS:
-            return { ...state, publications: []}
+            return { ...state, publications: [] }
+
+        case LIKE:
+            return {
+                ...state,
+                publications: state.publications.map(pub => pub.id == action.pubId ?
+                    { ...pub, liked_by_user: action.liked, likes: pub.likes + 1 } :
+                    pub
+                )
+            }
+
+        case DISLIKE:
+            return {
+                ...state,
+                publications: state.publications.map(pub => pub.id == action.pubId ?
+                    { ...pub, liked_by_user: action.liked, likes: pub.likes - 1 } :
+                    pub
+                )
+            }
 
         default: return state;
     }

@@ -1,29 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import { dislike, like } from '../actions/publications';
 
-import unsplash from '../api/index.js';
-import { toJson } from 'unsplash-js';
-
-export function LikeBtn(props) {
+export function ConnectedLikeBtn(props) {
     const updateLikeState = () => {
         if (!props.authorized) {
             props.authorizeUser();
         } else {
             if (props.likeState) {
-                unsplash.photos.unlikePhoto(props.id)
-                    .then(toJson)
-                    .then( () => {
-                        props.setLikeState(false);
-                        props.setTotalLikes(props.totalLikes - 1);
-                    });
-
+                props.dislike(props.id, props.totalLikes)
             } else {
-                unsplash.photos.likePhoto(props.id)
-                    .then(toJson)
-                    .then( () => {
-                        props.setLikeState(true);
-                        props.setTotalLikes(props.totalLikes + 1);
-                        dispatch({type: "LIKE_EVENT", pubId: props.id})
-                    });
+                props.like(props.id, props.totalLikes)
             }
         }
     }
@@ -43,3 +30,13 @@ export function LikeBtn(props) {
         </div>
     );
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        like: (id, totalLikes) => dispatch(like(id, totalLikes)),
+        dislike: (id, totalLikes) => dispatch(dislike(id, totalLikes))
+    }
+}
+
+export const LikeBtn = connect(null, mapDispatchToProps)(ConnectedLikeBtn);
+

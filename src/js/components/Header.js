@@ -8,7 +8,6 @@ import { ColorsHandle } from '../components/ColorsHandleSvg.js';
 import { ColorContext } from '../context/index.js';
 
 import { clearLikedPublications, getLikedPublications } from '../actions/likedPublications.js';
-import { clearCurrentUser } from '../actions/currentUser.js';
 
 const ConnectedHeader = (props) => {
     const closeBtnAnimation = document.querySelectorAll('.close-colors');
@@ -42,6 +41,12 @@ const ConnectedHeader = (props) => {
         } else {
             openMenu();
         }
+    }
+
+    const logOut = () => {
+        localStorage.removeItem('authorized');
+        localStorage.removeItem('bearerToken');
+        location.reload()
     }
 
     return (
@@ -90,14 +95,14 @@ const ConnectedHeader = (props) => {
                                 <li className="header__btn-item">
                                     <button
                                         className="header__btn btn btn--login"
-                                        aria-label={(props.authorized ? "Сменить профиль" : "Авторизоваться")}
+                                        aria-label={(props.authorized ? "Выйти из профиля" : "Авторизоваться")}
                                         type="button"
-                                        title={(props.authorized ? "Сменить профиль" : "Авторизоваться")}
+                                        title={(props.authorized ? "Выйти из профиля" : "Авторизоваться")}
                                         onClick={() => {
                                             closeMenu();
-                                            props.clearCurrentUser();
-                                            props.clearLikedPublications();
-                                            props.authorizeUser();
+                                            (props.authorized
+                                                ? logOut()
+                                                : props.authorizeUser())
                                         }
                                         }>
                                     </button>
@@ -118,6 +123,7 @@ const ConnectedHeader = (props) => {
                                         aria-label="Перейти к отмеченным публикациям"
                                         type="button"
                                         onClick={() => {
+                                            props.clearLikedPublications();
                                             props.getLikedPublications(props.currentUser);
                                             props.setLikedContainerIsOpen(true);
                                             document.body.classList.add('js-fixed');
@@ -152,7 +158,6 @@ const mapDispatchToProps = dispatch => {
     return {
         getLikedPublications: (currentUser) => dispatch(getLikedPublications(currentUser)),
         clearLikedPublications: () => dispatch(clearLikedPublications()),
-        clearCurrentUser: () => dispatch(clearCurrentUser())
     }
 }
 

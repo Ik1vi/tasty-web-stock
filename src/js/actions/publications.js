@@ -1,4 +1,4 @@
-import { CLEAR_PUBLICATIONS, ERROR, IS_LOADING, PUBLICATIONS_REQUESTED } from "../constants/action-types";
+import { CLEAR_PUBLICATIONS, ERROR, IS_LOADING, PUBLICATIONS_REQUESTED, LIKE, DISLIKE } from "../constants/action-types";
 
 import unsplash from '../api/index.js';
 import { toJson } from 'unsplash-js';
@@ -35,5 +35,33 @@ export const setLoading = (isLoading) => {
 }
 
 export const clearPublications = () => {
-    return {type: CLEAR_PUBLICATIONS}
+    return { type: CLEAR_PUBLICATIONS }
+}
+
+export const dislike = (id) => {
+    return function (dispatch) {
+        unsplash.photos.unlikePhoto(id)
+            .then(toJson)
+            .then(() => {
+                dispatch({
+                    type: DISLIKE,
+                    pubId: id,
+                    liked: false,
+                })
+            });
+    }
+}
+
+export const like = (id) => {
+    return function (dispatch) {
+        unsplash.photos.likePhoto(id)
+            .then(toJson)
+            .then(() => {
+                dispatch({
+                    type: LIKE,
+                    pubId: id,
+                    liked: true,
+                })
+            });
+    }
 }

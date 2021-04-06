@@ -5,8 +5,6 @@ import { Main } from '../components/Main.js';
 import { Auth } from '../components/Auth.js';
 import { Error } from '../components/Error.js';
 
-import unsplash from '../api/index.js';
-
 export function App() {
     const [authorized, setAuthorized] = useState(JSON.parse(localStorage.getItem('authorized') || false));
 

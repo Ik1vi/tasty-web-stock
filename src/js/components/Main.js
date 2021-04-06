@@ -19,14 +19,12 @@ import { getCurrentUser } from '../actions/currentUser.js';
 
 const ConnectedMain = (props) => {
     const [page, setPage] = useState(1);
-
     const [color, setColor] = useState(null);
 
     const [menuOpened, setMenuOpened] = useState(false);
 
     const [picContainerIsOpen, setPicContainerIsOpen] = useState(false);
     const [picContainerIsVisible, setPicContainerIsVisible] = useState(false);
-
     const [likedContainerIsOpen, setLikedContainerIsOpen] = useState(false);
 
     const [currentPublication, setCurrentPublication] = useState(

@@ -9,9 +9,6 @@ export const PicItem = React.forwardRef((props, ref) => {
     const [hovered, setHovered] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
 
-    const [likeState, setLikeState] = useState(props.likedByUser);
-    const [totalLikes, setTotalLikes] = useState(props.likes);
-
     const [itIsLikedContainer, setItIsLikedContainer] = useState(props.checkLikedContainer);
 
     window.addEventListener('resize', props.resizeAllGridItems);
@@ -66,17 +63,15 @@ export const PicItem = React.forwardRef((props, ref) => {
                         <div className="liked-container__like-info">
                             <p
                                 className="liked-container__total-likes">
-                                {totalLikes}
+                                {props.likes}
                             </p>
                         </div>)
                         : (
                             <LikeBtn
                                 className="publication__like"
                                 id={props.id}
-                                totalLikes={totalLikes}
-                                likeState={likeState}
-                                setLikeState={setLikeState}
-                                setTotalLikes={setTotalLikes}
+                                totalLikes={props.likes}
+                                likeState={props.likedByUser}
 
                                 authorized={props.authorized}
                                 authorizeUser={props.authorizeUser}
