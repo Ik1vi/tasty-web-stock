@@ -4,15 +4,18 @@ import { ContentImg } from '../components/ContentImg.js';
 import { PublicationTime } from '../components/PublicationTime.js';
 import { Author } from '../components/Author.js';
 import { CloseBtn } from '../components/CloseBtn.js'
+import { LikeBtn } from './LikeBtn.js';
 
-export function PictureContainer(props) {
+import { connect } from 'react-redux';
+
+const ConnectedPictureContainer = (props) => {
     const [isLoaded, setIsLoaded] = useState(false);
 
     return (
         <div className="picture-container js-picture-container" >
             <CloseBtn
                 className="picture-container__btn-close"
-                
+
                 setPicContainerIsOpen={props.setPicContainerIsOpen}
                 setPicContainerIsVisible={props.setPicContainerIsVisible}
                 setLikedContainerIsOpen={props.setLikedContainerIsOpen}
@@ -28,12 +31,22 @@ export function PictureContainer(props) {
                     />
                 </div>
 
-                <div className="picture-container__like-info">
+                <LikeBtn
+                    className="publication__like"
+                    id={props.currentPublication.id}
+                    totalLikes={props.currentPublication.likes}
+                    likeState={props.currentPublication.likedByUser}
+
+                    authorized={props.authorized}
+                    authorizeUser={props.authorizeUser}
+                />
+
+                {/* <div className="picture-container__like-info">
                     <p
                         className={"picture-container__total-likes" + (props.currentPublication.likedByUser ? " picture-container__total-likes--liked" : " ")}>
                         {props.currentPublication.likes}
                     </p>
-                </div>
+                </div> */}
 
                 {props.picContainerIsVisible ? (
                     <a
@@ -59,3 +72,11 @@ export function PictureContainer(props) {
         </div>
     )
 }
+
+const mapStateToProps = state => {
+    return {
+        currentPublication: state.currentPublicationReducer.currentPublication,
+    }
+}
+
+export const PictureContainer = connect(mapStateToProps)(ConnectedPictureContainer);

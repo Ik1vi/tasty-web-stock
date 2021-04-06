@@ -16,6 +16,7 @@ import { LikedContainer } from './LikedContainer.js';
 
 import { getPublications } from '../actions/publications.js';
 import { getCurrentUser } from '../actions/currentUser.js';
+import { setCurrentPublication } from '../actions/currentPublication.js';
 
 const ConnectedMain = (props) => {
     const [page, setPage] = useState(1);
@@ -27,28 +28,28 @@ const ConnectedMain = (props) => {
     const [picContainerIsVisible, setPicContainerIsVisible] = useState(false);
     const [likedContainerIsOpen, setLikedContainerIsOpen] = useState(false);
 
-    const [currentPublication, setCurrentPublication] = useState(
-        {
-            'id': '',
-            'authorName': '',
-            'authorImg': '',
-            'authorHref': '',
-            'time': '',
-            'fullImg': '',
-            'src': '',
-            'placeholder': '',
-            'imgHref': '',
-            'alt': '',
-            'likes': '',
-            'likedByUser': false
-        }
-    )
+    // const [currentPublication, setCurrentPublication] = useState(
+    //     {
+    //         'id': '',
+    //         'authorName': '',
+    //         'authorImg': '',
+    //         'authorHref': '',
+    //         'time': '',
+    //         'fullImg': '',
+    //         'src': '',
+    //         'placeholder': '',
+    //         'imgHref': '',
+    //         'alt': '',
+    //         'likes': '',
+    //         'likedByUser': false
+    //     }
+    // )
 
     const observer = useRef()
 
     const picContainerHandler = (newCurrentPublication) => {
         if (!picContainerIsOpen) {
-            setCurrentPublication(newCurrentPublication);
+            props.setCurrentPublication(newCurrentPublication);
 
             setPicContainerIsVisible(true);
             setPicContainerIsOpen(true);
@@ -119,7 +120,7 @@ const ConnectedMain = (props) => {
                     + (likedContainerIsOpen ? ' liked-container-open' : '')
                     + (picContainerIsOpen ? ' picture-container-open' : '')}>
                     <PictureContainer
-                        currentPublication={currentPublication}
+                        // currentPublication={currentPublication}
 
                         picContainerHandler={picContainerHandler}
 
@@ -189,7 +190,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         getPublications: (page, color) => dispatch(getPublications(page, color)),
-        getCurrentUser: () => dispatch(getCurrentUser())
+        getCurrentUser: () => dispatch(getCurrentUser()),
+        setCurrentPublication: (currentPub) => dispatch(setCurrentPublication(currentPub))
     }
 }
 

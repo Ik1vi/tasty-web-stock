@@ -29,8 +29,6 @@ export function Page(props) {
                             key={p.id}
                             id={p.id}
 
-                            blurHash={p.blur_hash}
-
                             src={p.urls.regular}
                             fullImg={p.urls.full}
                             placeholder={p.urls.thumb}

@@ -1,16 +1,19 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { setCurrentPublication, updateLikeState } from '../actions/currentPublication';
 import { dislike, like } from '../actions/publications';
 
-export function ConnectedLikeBtn(props) {
+const ConnectedLikeBtn = (props) => {
     const updateLikeState = () => {
         if (!props.authorized) {
             props.authorizeUser();
         } else {
             if (props.likeState) {
-                props.dislike(props.id, props.totalLikes)
+                props.dislike(props.id, props.totalLikes);
+                props.updateLikeState(false, props.totalLikes - 1);
             } else {
-                props.like(props.id, props.totalLikes)
+                props.like(props.id, props.totalLikes);
+                props.updateLikeState(true, props.totalLikes + 1);
             }
         }
     }
@@ -34,7 +37,9 @@ export function ConnectedLikeBtn(props) {
 const mapDispatchToProps = dispatch => {
     return {
         like: (id, totalLikes) => dispatch(like(id, totalLikes)),
-        dislike: (id, totalLikes) => dispatch(dislike(id, totalLikes))
+        dislike: (id, totalLikes) => dispatch(dislike(id, totalLikes)),
+
+        updateLikeState: (likeState, totalLikes) => dispatch(updateLikeState(likeState, totalLikes))
     }
 }
 

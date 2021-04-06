@@ -26,8 +26,8 @@ export const PicItem = React.forwardRef((props, ref) => {
                 'placeholder': props.placeholder,
                 'imgHref': props.imgHref,
                 'alt': props.alt,
-                'likes': totalLikes,
-                'likedByUser': likeState
+                'likes': props.likes,
+                'likedByUser': props.likedByUser
             }
             props.setPicContainerIsVisible(true);
             props.picContainerHandler(newCurrentPublication);
