@@ -1,4 +1,4 @@
-import { CLEAR_LIKED_PUBLICATIONS, ERROR, IS_LOADING, LIKED_PUBLICATIONS_REQUESTED } from "../constants/action-types";
+import { CLEAR_LIKED_PUBLICATIONS, LIKED_PUBLICATIONS_REQUESTED, LIKED_PUB_ERROR, LIKED_PUB_IS_LOADING } from "../constants/action-types";
 
 const initialState = {
     likedPublications: [],
@@ -14,10 +14,10 @@ function likedPublicationsReducer(state = initialState, action) {
                 ...state, likedPublications: [...state.likedPublications, ...action.likedPublications]
             }
 
-        case IS_LOADING:
+        case LIKED_PUB_IS_LOADING:
             return { ...state, isLoading: action.value }
 
-        case ERROR:
+        case LIKED_PUB_ERROR:
             return { ...state, error: action.value }
 
         case CLEAR_LIKED_PUBLICATIONS:

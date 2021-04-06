@@ -1,4 +1,4 @@
-import { ERROR, IS_LOADING, PUBLICATIONS_REQUESTED, CLEAR_PUBLICATIONS, DISLIKE, LIKE } from "../constants/action-types";
+import { PUBLICATIONS_REQUESTED, CLEAR_PUBLICATIONS, DISLIKE, LIKE, PUB_ERROR, PUB_IS_LOADING } from "../constants/action-types";
 
 const initialState = {
     publications: [],
@@ -16,10 +16,10 @@ function publicationsReducer(state = initialState, action) {
                 totalPages: action.totalPages,
             }
 
-        case IS_LOADING:
+        case PUB_IS_LOADING:
             return { ...state, isLoading: action.value }
 
-        case ERROR:
+        case PUB_ERROR:
             return { ...state, error: action.value }
 
         case CLEAR_PUBLICATIONS:

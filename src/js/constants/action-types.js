@@ -13,5 +13,8 @@ export const CLEAR_CURRENT_PUBLICATION = 'CLEAR_CURRENT_PUBLICATION';
 export const LIKE = 'LIKE';
 export const DISLIKE = 'DISLIKE';
 
-export const IS_LOADING = 'IS_LOADING';
-export const ERROR = 'ERROR';
+export const PUB_IS_LOADING = 'PUB_IS_LOADING';
+export const PUB_ERROR = 'PUB_ERROR';
+
+export const LIKED_PUB_IS_LOADING = 'LIKED_PUB_IS_LOADING';
+export const LIKED_PUB_ERROR = 'LIKED_PUB_ERROR';

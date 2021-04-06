@@ -1,4 +1,4 @@
-import { CLEAR_PUBLICATIONS, ERROR, IS_LOADING, PUBLICATIONS_REQUESTED, LIKE, DISLIKE } from "../constants/action-types";
+import { CLEAR_PUBLICATIONS, PUBLICATIONS_REQUESTED, LIKE, DISLIKE, PUB_ERROR, PUB_IS_LOADING } from "../constants/action-types";
 
 import unsplash from '../api/index.js';
 import { toJson } from 'unsplash-js';
@@ -17,7 +17,7 @@ export const getPublications = (page, color) => {
             .then(toJson)
             .then(res => {
                 if (res.errors) {
-                    dispatch({ type: ERROR, value: res.errors[0] })
+                    dispatch({ type: PUB_ERROR, value: res.errors[0] })
                     dispatch(setLoading(false))
                 } else {
                     const feed = res;
@@ -31,7 +31,7 @@ export const getPublications = (page, color) => {
 }
 
 export const setLoading = (isLoading) => {
-    return { type: IS_LOADING, value: isLoading }
+    return { type: PUB_IS_LOADING, value: isLoading }
 }
 
 export const clearPublications = () => {
