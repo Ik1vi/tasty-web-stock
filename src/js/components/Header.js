@@ -151,6 +151,7 @@ const mapStateToProps = state => {
         error: state.likedPublicationsReducer.error,
 
         currentUser: state.currentUserReducer.currentUser,
+        authorized: state.currentUserReducer.authorized,
     }
 }
 

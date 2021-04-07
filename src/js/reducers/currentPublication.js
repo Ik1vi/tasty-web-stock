@@ -1,4 +1,4 @@
-import { CLEAR_CURRENT_PUBLICATION, CURRENT_PUBLICATION, CURRENT_PUB_LIKE_EVENT } from "../constants/action-types";
+import { CURRENT_PUBLICATION, CURRENT_PUB_LIKE_EVENT } from "../constants/action-types";
 
 const initialState = {
     currentPublication: {
@@ -37,9 +37,6 @@ function currentPublicationReducer(state = initialState, action) {
                     likedByUser: action.likeState
                 }
             }
-
-        case CLEAR_CURRENT_PUBLICATION:
-            return { ...state, currentPublication: { ...initialState } }
 
         default: return state;
     }

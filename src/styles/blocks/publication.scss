@@ -16,6 +16,12 @@
         }
     }
 
+    &__like {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+    }
+
     &__publication-time {
         position: absolute;
         bottom: 15px;

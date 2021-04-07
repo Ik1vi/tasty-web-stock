@@ -73,7 +73,6 @@ export const PicItem = React.forwardRef((props, ref) => {
                                 totalLikes={props.likes}
                                 likeState={props.likedByUser}
 
-                                authorized={props.authorized}
                                 authorizeUser={props.authorizeUser}
                             />
                         )) : (null)}

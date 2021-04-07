@@ -32,21 +32,13 @@ const ConnectedPictureContainer = (props) => {
                 </div>
 
                 <LikeBtn
-                    className="publication__like"
+                    className="picture-container__like"
                     id={props.currentPublication.id}
                     totalLikes={props.currentPublication.likes}
                     likeState={props.currentPublication.likedByUser}
 
-                    authorized={props.authorized}
                     authorizeUser={props.authorizeUser}
                 />
-
-                {/* <div className="picture-container__like-info">
-                    <p
-                        className={"picture-container__total-likes" + (props.currentPublication.likedByUser ? " picture-container__total-likes--liked" : " ")}>
-                        {props.currentPublication.likes}
-                    </p>
-                </div> */}
 
                 {props.picContainerIsVisible ? (
                     <a

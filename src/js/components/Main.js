@@ -1,8 +1,5 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
-
 import unsplash from '../api/index.js';
-import { toJson } from 'unsplash-js';
-
 import { connect } from 'react-redux';
 
 import '../../styles/style.scss';
@@ -58,10 +55,6 @@ const ConnectedMain = (props) => {
     });
 
     const authorizeUser = () => {
-        localStorage.removeItem('authorized');
-        localStorage.removeItem('bearerToken');
-        props.setAuthorized(false);
-
         if (!props.authorized) {
             const authenticationUrl = unsplash.auth.getAuthenticationUrl([
                 "public",
@@ -113,7 +106,6 @@ const ConnectedMain = (props) => {
                         setLikedContainerIsOpen={setLikedContainerIsOpen}
 
                         authorizeUser={authorizeUser}
-                        authorized={props.authorized}
                     />
 
                     <LikedContainer
@@ -125,7 +117,6 @@ const ConnectedMain = (props) => {
                         setLikedContainerIsOpen={setLikedContainerIsOpen}
 
                         authorizeUser={authorizeUser}
-                        authorized={props.authorized}
                     />
 
                     <Header
@@ -138,8 +129,6 @@ const ConnectedMain = (props) => {
                         setLikedContainerIsOpen={setLikedContainerIsOpen}
 
                         authorizeUser={authorizeUser}
-                        authorized={props.authorized}
-                        setAuthorized={props.setAuthorized}
                     />
 
                     <Page
@@ -149,7 +138,6 @@ const ConnectedMain = (props) => {
                         setPicContainerIsVisible={setPicContainerIsVisible}
                         loading={props.isLoading}
 
-                        authorized={props.authorized}
                         authorizeUser={authorizeUser}
                     />
                 </div>
@@ -166,6 +154,7 @@ const mapStateToProps = state => {
         error: state.publicationsReducer.error,
 
         currentUser: state.currentUserReducer.currentUser,
+        authorized: state.currentUserReducer.authorized
     }
 }
 

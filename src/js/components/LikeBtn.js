@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setCurrentPublication, updateLikeState } from '../actions/currentPublication';
+import { updateLikeState } from '../actions/currentPublication';
 import { dislike, like } from '../actions/publications';
 
 const ConnectedLikeBtn = (props) => {
@@ -34,6 +34,12 @@ const ConnectedLikeBtn = (props) => {
     );
 }
 
+const mapStateToProps = state => {
+    return {
+        authorized: state.currentUserReducer.authorized,
+    }
+}
+
 const mapDispatchToProps = dispatch => {
     return {
         like: (id, totalLikes) => dispatch(like(id, totalLikes)),
@@ -43,5 +49,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export const LikeBtn = connect(null, mapDispatchToProps)(ConnectedLikeBtn);
-
+export const LikeBtn = connect(mapStateToProps, mapDispatchToProps)(ConnectedLikeBtn);

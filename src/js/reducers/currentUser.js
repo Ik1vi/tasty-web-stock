@@ -1,7 +1,9 @@
-import { CLEAR_CURRENT_USER, CURRENT_USER_REQUESTED } from "../constants/action-types";
+import { AUTHORIZE_USER, CLEAR_CURRENT_USER, CURRENT_USER_REQUESTED } from "../constants/action-types";
 
 const initialState = {
     currentUser: null,
+    authorized: JSON.parse(localStorage.getItem('authorized') || false),
+    bearerToken: localStorage.getItem('bearerToken') || null 
 };
 
 function currentUserReducer(state = initialState, action) {
@@ -12,6 +14,9 @@ function currentUserReducer(state = initialState, action) {
 
         case CLEAR_CURRENT_USER:
             return { ...state, currentUser: null}
+
+        case AUTHORIZE_USER:
+            return { ...state, authorized: true, bearerToken: action.bearerToken}
 
         default: return state;
     }

@@ -1,21 +1,13 @@
 import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { authorizeUser } from '../actions/currentUser.js';
 
-import unsplash from '../api/index.js';
-
-export function Auth(props) {
-
+const ConnectedAuth = (props) => {
     useEffect(() => {
         const code = location.search.split('code=')[1];
 
         if (code) {
-            unsplash.auth.userAuthentication(code)
-                .then(res =>
-                    res.json())
-                .then(json => {
-                    localStorage.setItem('bearerToken', json.access_token);
-                    localStorage.setItem('authorized', true);
-                    location.assign('/');
-                });
+            props.authorizeUser(code);
         } else {
             console.error('No token from unsplash')
         }
@@ -25,3 +17,12 @@ export function Auth(props) {
         <div className="loading"></div>
     )
 }
+
+const mapDispatchToProps = dispatch => {
+    return {
+        authorizeUser: (code) => dispatch(authorizeUser(code))
+    }
+}
+
+export const Auth = connect(null, mapDispatchToProps)(ConnectedAuth);
+

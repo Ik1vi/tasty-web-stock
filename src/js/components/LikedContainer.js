@@ -47,7 +47,6 @@ const connectedLikedContainer = (props) => {
                             picContainerHandler={props.picContainerHandler}
                             setPicContainerIsVisible={props.setPicContainerIsVisible}
 
-                            authorized={props.authorized}
                             authorizeUser={props.authorizeUser}
 
                             checkLikedContainer={true}
@@ -69,4 +68,3 @@ const mapStateToProps = state => {
 }
 
 export const LikedContainer = connect(mapStateToProps)(connectedLikedContainer);
-
