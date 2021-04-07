@@ -2,6 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
     devServer: {
@@ -65,6 +66,7 @@ module.exports = {
     },
 
     plugins: [
+        new Dotenv(),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             favicon: "./src/favicon.png",
