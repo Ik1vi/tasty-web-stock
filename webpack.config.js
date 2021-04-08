@@ -16,14 +16,14 @@ module.exports = {
 
     output: {
         path: path.resolve(__dirname, "build"),
-        publicPath: ''
+        publicPath: '/'
     },
 
-    resolve: {
-        fallback: {
-          util: require.resolve("util/")
-        }
-    },
+    // resolve: {
+    //     fallback: {
+    //       util: require.resolve("util/")
+    //     }
+    // },
 
     module: {
         rules: [
