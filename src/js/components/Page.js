@@ -7,8 +7,8 @@ export function Page(props) {
     const grid = document.querySelector('.js-pic-grid');
 
     let resizeGridItem = function (item) {
-        let rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
-        let rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
+        let rowHeight = 10;
+        let rowGap = 1;
 
         let rowSpan = Math.ceil((item.querySelector('.js-publication').getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
         item.style.gridRowEnd = "span " + rowSpan;
